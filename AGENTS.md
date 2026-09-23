@@ -2,6 +2,19 @@
 
 This project is a website built with Edge Delivery Services in Adobe Experience Manager Sites as a Cloud Service. As an agent, follow the instructions in this file to deliver code based on Adobe's standards for fast, easy-to-author, and maintainable web experiences.
 
+## Skills
+
+Project skills live under `.claude/skills/` (each with a `SKILL.md`). Run `.agents/discover-skills` to list all available skills with their descriptions.
+
+**For ALL development work involving blocks, core scripts, or functionality, you MUST start with the `content-driven-development` skill.** It orchestrates other skills as needed throughout the development workflow.
+
+Two skills serve as primary entry points for common workflows:
+
+- **content-driven-development** - Start here for ALL code changes including: new blocks, block modifications, CSS styling, bug fixes, core functionality (scripts.js, styles.css, delayed.js), auto-blocking changes, or any JavaScript/CSS work. Orchestrates the complete development workflow from content modeling through implementation and testing.
+- **page-import** - Start here when importing or migrating webpages from any URL to AEM Edge Delivery Services. Orchestrates the complete import workflow including scraping, analysis, structure identification, and HTML generation.
+
+All other skills are either invoked by these primary skills or used for specific standalone tasks (e.g., searching platform documentation, finding reference implementations, reviewing PRs). Let skill descriptions guide you to the right tool for your task.
+
 ## Project Overview
 
 This project is based on the https://github.com/adobe-rnd/aem-boilerplate-xwalk/ project and set up as a new project. You are expected to follow the coding style and practices established in the boilerplate, but add functionality according to the needs of the site currently developed.
