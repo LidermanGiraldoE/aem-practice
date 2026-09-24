@@ -1,0 +1,5 @@
+# Local Claude Code overrides are not shared via the repository.
+settings.local.json
+
+# Skill-generated caches — local scratch data, not shared via the repo.
+skills/*/.cache/

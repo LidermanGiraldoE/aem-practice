@@ -1,0 +1,44 @@
+/*
+ * Custom Utilities
+ *
+ * Use this file for custom utility classes that are not part of Tailwind.
+ * https://tailwindcss.com/docs/adding-custom-styles#adding-custom-utilities
+ *
+ * Use @utility utility-name for classes that integrate with Tailwind variants (md:, hover:, etc.)
+ * but are only emitted when the class name is found in scanned content.
+ *
+ * Example:
+ *
+ * @utility content-auto {
+ *   content-visibility: auto;
+ * }
+ */
+
+@utility content-auto {
+  content-visibility: auto;
+}
+
+/* ── Text box trim ──────────────────────────────────────────────
+ * Optical vertical centering: trims the font's built-in leading space so
+ * text aligns to its cap/alphabetic edges. No native Tailwind utility yet.
+ */
+
+@utility trim-both {
+  text-box-trim: trim-both;
+}
+
+@utility trim-start {
+  text-box-trim: trim-start;
+}
+
+@utility trim-end {
+  text-box-trim: trim-end;
+}
+
+@utility edge-cap-alpha {
+  text-box-edge: cap alphabetic;
+}
+
+@utility shadow-focus-ring {
+  box-shadow: 0 0 0 6px rgba(13, 170, 222, 0.30);
+}

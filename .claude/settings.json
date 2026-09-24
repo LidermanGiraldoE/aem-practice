@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude_ai_Adobe_Experience_Manager__list-aem-environments",
+      "mcp__claude_ai_Adobe_Experience_Manager__read-api",
+      "mcp__claude_ai_Adobe_Experience_Manager__lookup-api-spec",
+      "mcp__claude_ai_Adobe_Experience_Manager__write-api"
+    ]
+  },
+  "enabledPlugins": {
+    "aem-edge-delivery-services@adobe-skills": true
+  }
+}

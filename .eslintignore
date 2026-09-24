@@ -1,3 +1,6 @@
 helix-importer-ui
 dompurify.min.js
 *.min.js
+scripts/vendor/
+scripts/__dropins__/
+styles/tailwind.css

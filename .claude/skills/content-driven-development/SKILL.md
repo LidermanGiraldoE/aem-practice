@@ -1,11 +1,14 @@
 ---
 name: content-driven-development
 description: Apply a Content Driven Development process to AEM Edge Delivery Services development. Use for ALL code changes - new blocks, block modifications, CSS styling, bug fixes, core functionality (scripts.js, styles, etc.), or any JavaScript/CSS work that needs validation.
+license: Apache-2.0
+metadata:
+  version: "2.0.1"
 ---
 
 # Content Driven Development (CDD)
 
-You are an orchestrator of the Content Driven Development workflow for AEM Edge Delivery Services. This workflow ensures code is built against real content with author-friendly content models.
+Orchestrate the Content Driven Development workflow for AEM Edge Delivery Services. This workflow ensures code is built against real content with author-friendly content models.
 
 **CRITICAL: Never start writing or modifying code without first identifying or creating the content you will use to test your changes.**
 
@@ -32,7 +35,7 @@ Content Driven Development prioritizes creating or identifying test content befo
 
 **Optional: Understanding CDD Principles**
 
-Read `resources/cdd-philosophy.md` if:
+Read [references/cdd-philosophy.md](references/cdd-philosophy.md) if:
 - User asks "why" questions about content-first approach
 - You need to understand reasoning behind CDD decisions
 - You're unsure whether to prioritize author vs developer experience
@@ -161,38 +164,11 @@ Expected: `200`
 
 ---
 
-## Step 3b: Define Data Model, Row Mapping & Bridge Pattern
-
-**Skip if:** CSS-only changes that don't affect content structure or model fields
-
-**Invoke:** block-data-modeling skill
-
-**Provide:**
-- Content model output from Step 3 (field list, block type)
-- Block name and rendering approach (`native` or `preact`)
-
-**The block-data-modeling skill will:**
-- Classify block type (simple / container-items / config-items)
-- Generate `blocks/<name>/_<name>.json` with definitions, models, filters
-- Produce a row-index mapping (field → DOM row → JS read pattern)
-- Select and template the bridge pattern (`decorate()` starter code)
-- Validate the model against 8 rules (V-001 through V-008)
-
-**Success criteria:**
-- ✅ `_<name>.json` written and passes `npm run build:json`
-- ✅ Row-index mapping documented
-- ✅ Bridge pattern template produced
-- ✅ All validation rules PASS
-
-**Mark todo complete when:** Model JSON built, row mapping documented, bridge pattern ready
-
----
-
 ## Step 4: Identify/Create Test Content
 
 **Goal:** End this step with accessible test content URL(s) covering all test scenarios
 
-**Choose the best ath based on your situation:**
+**Choose the best path based on your situation:**
 
 ---
 
@@ -223,10 +199,12 @@ Expected: `200`
 4. Validate: `curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/path`
 5. Expected: `200` status
 
+> **Using DA:** If you need to push HTML content programmatically to DA (rather than asking the user to author it), invoke the **da-auth** skill first to obtain a valid `DA_TOKEN`, then use the DA Admin API (`POST https://admin.da.live/source/{org}/{repo}/{path}`) to push the content and trigger a preview.
+
 **Approach 2: Local HTML (Temporary)**
 1. Create HTML file in `drafts/tmp/{block-name}.plain.html`
 2. Follow structure from Step 3 content model
-3. Read `resources/html-structure.md` for local HTML file format guidance
+3. Read [references/html-structure.md](references/html-structure.md) for local HTML file format guidance
 4. Restart dev server: `aem up --html-folder drafts --no-open --forward-browser-logs`
 5. Validate: `curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/drafts/tmp/{block-name}`
 6. Expected: `200` status
@@ -372,7 +350,7 @@ npm test
    ```bash
    git commit -m "feat(block-name): add new block"
    ```
-   Include revelevant details in commit message and agent attribution in footer (agent adds `Co-authored-by: cursor <noreply@cursor.com>`)
+   Include relevant details in commit message and agent attribution in footer (agent adds `Co-authored-by: cursor <noreply@cursor.com>`)
 
 4. **Push to feature branch:**
    ```bash
@@ -451,7 +429,7 @@ This PR is currently a **draft** pending creation of CMS test content.
 
 - **analyze-and-plan**: Invoked in Step 2 for requirements analysis and acceptance criteria
 - **content-modeling**: Invoked in Step 3 for designing content models
-- **block-data-modeling**: Invoked in Step 3b to generate the `_<name>.json` model, row-index mapping, and bridge pattern
+- **da-auth**: Obtain a valid Adobe IMS token before pushing content to DA or triggering DA previews programmatically — invoke at the start of Step 4 when using DA
 - **find-test-content**: Invoked in Step 4, Option C for finding existing content
 - **building-blocks**: Invoked in Step 5 for implementation
 - **testing-blocks**: Invoked by building-blocks for browser testing
@@ -467,5 +445,5 @@ Common mistakes that violate CDD principles:
 
 ## Resources
 
-- **Philosophy:** `resources/cdd-philosophy.md` - Why content-first matters
-- **HTML Structure:** `resources/html-structure.md` - Guide for creating local HTML test files
+- **Philosophy:** [references/cdd-philosophy.md](references/cdd-philosophy.md) - Why content-first matters
+- **HTML Structure:** [references/html-structure.md](references/html-structure.md) - Guide for creating local HTML test files

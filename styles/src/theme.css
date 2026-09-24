@@ -1,0 +1,140 @@
+/*
+ * Custom Theme
+ *
+ * Use this file to customize or extend the default Tailwind theme.
+ * https://tailwindcss.com/docs/theme#customizing-your-theme
+ *
+ * Use @theme to define design tokens that generate Tailwind utility classes
+ * and are emitted as CSS custom properties when used in content.
+ *
+ * Example:
+ *
+ * @theme {
+ *   --color-primary: #003E96;
+ * }
+ */
+
+@theme {
+  /* ── Fonts - CAFAM Portal ────────── ────────── */
+
+  --font-display: var(--font-family-display), sans-serif;
+  --font-body: var(--font-family-body), sans-serif;
+
+  /* ── Brand Colors - CAFAM Portal ────────── ────────── */
+
+  --color-primary: var(--principales-azul-cafam-500);
+  --color-primary-hover: var(--principales-azul-cafam-700);
+
+  --color-secondary: var(--principales-cyan-cafam-500);
+  --color-secondary-hover: var(--principales-cyan-cafam-700);
+
+  --color-third: transparent;
+  --color-third-hover: var(--principales-azul-cafam-50);
+
+  --color-complementary: transparent;
+  --color-complementary-hover: var(--principales-azul-cafam-50);
+
+  --color-success: var(--semantic-success);
+  --color-success-hover: var(--semantic-success-dark);
+
+  --color-warning: var(--semantic-warning);
+  --color-warning-hover: var(--semantic-warning-dark);
+
+  --color-error: var(--semantic-error);
+  --color-error-hover: var(--semantic-error-dark);
+
+  --color-disabled: var(--neutral-gray-20);
+
+  --color-surface-primary: var(--surface-cyan-soft); /* Background */
+
+  --color-surface-primary-item: var(--surface-cyan-lighter); /* Background Items */
+
+  --color-border-primary: var(--surface-cyan-lighter); /* Border Items */
+  --color-border-primary-hover: var(--principales-azul-cafam-500); /* Border Items Hover */
+
+  --color-neutral-black: var(--neutral-black);
+  --color-neutral-dark: var(--neutral-dark);
+  --color-neutral-white: var(--neutral-white);
+
+  /* ── Breakpoints ────────── ────────── */
+
+  --breakpoint-*: initial;
+  --breakpoint-xs: 600px;
+  --breakpoint-md: 900px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1600px;
+
+  /* ── Service Colors ────────── ────────── */
+
+  /* Tourism */
+  --color-service-tourism-1: var(--servicios-turismo-tema-1-500);
+  --color-service-tourism-1-hover: var(--servicios-turismo-tema-1-700);
+  --color-service-tourism-2: var(--servicios-turismo-tema-2-500);
+  --color-service-tourism-2-hover: var(--servicios-turismo-tema-2-700);
+
+  /* Health */
+  --color-service-health-1: var(--servicios-salud-tema-1-500);
+  --color-service-health-1-hover: var(--servicios-salud-tema-1-700);
+  --color-service-health-2: var(--servicios-salud-tema-2-500);
+  --color-service-health-2-hover: var(--servicios-salud-tema-2-700);
+
+  /* Education */
+  --color-service-education-1: var(--servicios-educacion-tema-1-500);
+  --color-service-education-1-hover: var(--servicios-educacion-tema-1-700);
+  --color-service-education-2: var(--servicios-educacion-tema-2-500);
+  --color-service-education-2-hover: var(--servicios-educacion-tema-2-700);
+
+  /* Housing */
+  --color-service-housing-1: var(--servicios-vivienda-tema-1-500);
+  --color-service-housing-1-hover: var(--servicios-vivienda-tema-1-700);
+  --color-service-housing-2: var(--servicios-vivienda-tema-2-500);
+  --color-service-housing-2-hover: var(--servicios-vivienda-tema-2-700);
+
+  /* Events */
+  --color-service-events-1: var(--servicios-eventos-tema-1-500);
+  --color-service-events-1-hover: var(--servicios-eventos-tema-1-700);
+  --color-service-events-2: var(--servicios-eventos-tema-2-500);
+  --color-service-events-2-hover: var(--servicios-eventos-tema-2-700);
+
+  /* Employment */
+  --color-service-employment-1: var(--servicios-empleo-tema-1-500);
+  --color-service-employment-1-hover: var(--servicios-empleo-tema-1-700);
+  --color-service-employment-2: var(--servicios-empleo-tema-2-500);
+  --color-service-employment-2-hover: var(--servicios-empleo-tema-2-700);
+
+  /* Culture  */
+  --color-service-culture-1: var(--servicios-cultura-tema-1-500);
+  --color-service-culture-1-hover: var(--servicios-cultura-tema-1-700);
+  --color-service-culture-2: var(--servicios-cultura-tema-2-500);
+  --color-service-culture-2-hover: var(--servicios-cultura-tema-2-700);
+
+  /* Credits & Insurance */
+  --color-service-credits-insurance-1: var(--servicios-credito-seguros-tema-1-500);
+  --color-service-credits-insurance-1-hover: var(--servicios-credito-seguros-tema-1-700);
+  --color-service-credits-insurance-2: var(--servicios-credito-seguros-tema-2-500);
+  --color-service-credits-insurance-2-hover: var(--servicios-credito-seguros-tema-2-700);
+
+  /* Medications */
+  --color-service-medications-1: var(--servicios-medicamentos-tema-1-500);
+  --color-service-medications-1-hover: var(--servicios-medicamentos-tema-1-700);
+  --color-service-medications-2: var(--servicios-medicamentos-tema-2-500);
+  --color-service-medications-2-hover: var(--servicios-medicamentos-tema-2-700);
+
+  /* Recreation */
+  --color-service-recreation-1: var(--servicios-recreacion-tema-1-500);
+  --color-service-recreation-1-hover: var(--servicios-recreacion-tema-1-700);
+  --color-service-recreation-2: var(--servicios-recreacion-tema-2-500);
+  --color-service-recreation-2-hover: var(--servicios-recreacion-tema-2-700);
+
+  /* Subsidies */
+  --color-service-subsidies-1: var(--servicios-subsidio-tema-1-500);
+  --color-service-subsidies-1-hover: var(--servicios-subsidio-tema-1-700);
+  --color-service-subsidies-2: var(--servicios-subsidio-tema-2-500);
+  --color-service-subsidies-2-hover: var(--servicios-subsidio-tema-2-700);
+
+  /* Agreements */
+  --color-service-agreements-1: var(--servicios-convenios-tema-1-500);
+  --color-service-agreements-1-hover: var(--servicios-convenios-tema-1-700);
+  --color-service-agreements-2: var(--servicios-convenios-tema-2-500);
+  --color-service-agreements-2-hover: var(--servicios-convenios-tema-2-700);
+}

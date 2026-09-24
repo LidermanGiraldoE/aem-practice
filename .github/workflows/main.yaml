@@ -12,3 +12,13 @@ jobs:
         node-version: 24
     - run: npm ci
     - run: npm run lint
+
+    - name: Verify generated Universal Editor artifacts are up to date
+      run: |
+        npm run build:json
+        if ! git diff --quiet -- component-definition.json component-models.json component-filters.json; then
+          echo "::error::Generated artifacts are stale. Run 'npm run build:json' and commit the result."
+          git diff --stat -- component-definition.json component-models.json component-filters.json
+          exit 1
+        fi
+        echo "OK: generated artifacts match their sources."

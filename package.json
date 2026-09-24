@@ -8,11 +8,21 @@
     "lint:css": "stylelint \"blocks/**/*.css\" \"styles/*.css\"",
     "lint": "npm run lint:js && npm run lint:css",
     "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix",
+    "gen": "npm run build:json && npm run tw:build",
+    "verify:gen": "node tools/verify-models.mjs",
+    "sync:dev": "node tools/sync-with-development.mjs",
     "build:json": "npm-run-all -p build:json:models build:json:definitions build:json:filters",
     "build:json:models": "merge-json-cli -i \"models/_component-models.json\" -o \"component-models.json\"",
     "build:json:definitions": "merge-json-cli -i \"models/_component-definition.json\" -o \"component-definition.json\"",
     "build:json:filters": "merge-json-cli -i \"models/_component-filters.json\" -o \"component-filters.json\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev": "npm-run-all -p start tw:watch",
+    "start": "aem up --url https://development--aem-practice--lidermangiraldoe.aem.page/",
+    "tw:watch": "tailwindcss -i ./styles/src/input.css -o ./styles/tailwind.css --watch --minify",
+    "tw:build": "tailwindcss -i ./styles/src/input.css -o ./styles/tailwind.css --minify",
+    "install:dropins": "node postinstall.js",
+    "postinstall": "npm run install:dropins",
+    "postupdate": "npm run install:dropins"
   },
   "repository": {
     "type": "git",
@@ -36,5 +46,14 @@
     "npm-run-all": "4.1.5",
     "stylelint": "17.12.0",
     "stylelint-config-standard": "40.0.0"
+  },
+  "dependencies": {
+    "@dropins/tools": "^1.9.0",
+    "@tailwindcss/cli": "^4.3.2",
+    "driver.js": "^1.8.0",
+    "htm": "^3.1.1",
+    "swiper": "^14.0.1",
+    "tailwind-variants": "^3.2.2",
+    "tailwindcss": "^4.3.2"
   }
 }

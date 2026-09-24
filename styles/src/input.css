@@ -1,0 +1,24 @@
+/*
+ * Tailwind CSS Input File
+ *
+ * This file is used to import Tailwind CSS and custom CSS variables, theme and utility files.
+ * It also defines the source files for Tailwind to scan for class names.
+ */
+
+@layer theme, base, components, utilities;
+
+@import "./preflight.css" layer(base);
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@import "./figma.css";
+
+@import "./theme.css";
+@import "./utilities.css";
+
+@source "../../blocks/**/*.{html,js}";
+@source "../../design-system/**/*.{html,js}";
+@source "../../uikit/**/*.{html,js}";
+@source not "../../**/*.md";
+@source not "../../scripts/__dropins__/**";
+@source not "../../scripts/vendor/**";
