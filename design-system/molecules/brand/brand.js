@@ -24,10 +24,15 @@ export default function createBrand({
   }
 
   if (descriptor) {
+    const separator = document.createElement('span');
+    separator.className = 'ds-brand-separator';
+    separator.setAttribute('aria-hidden', 'true');
+    separator.textContent = '/';
+
     const descriptorElement = document.createElement('span');
     descriptorElement.className = 'ds-brand-descriptor';
     descriptorElement.textContent = descriptor;
-    link.append(descriptorElement);
+    link.append(separator, descriptorElement);
   }
 
   return link;

@@ -8,7 +8,7 @@ export default function decorate(block) {
   const [markRow, nameRow, descriptorRow, hrefRow] = [...block.children];
   const mark = getRowText(markRow);
   const name = getRowText(nameRow);
-  const descriptor = getRowText(descriptorRow);
+  const descriptor = getRowText(descriptorRow).replace(/^\/\s+/, '');
   const href = hrefRow?.querySelector('a')?.getAttribute('href') || getRowText(hrefRow) || '/';
 
   if (!mark && !name && !descriptor) {
