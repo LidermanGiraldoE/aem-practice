@@ -228,6 +228,30 @@
     ]
   },
   {
+    "id": "header-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "name",
+        "label": "Header Item Name",
+        "description": "The name displayed in the Content Tree"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "label": "Label",
+        "required": true
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      }
+    ]
+  },
+  {
     "id": "hero",
     "fields": [
       {

@@ -17,7 +17,8 @@
       "columns",
       "design-system",
       "fragment",
-      "header-brand"
+      "header-brand",
+      "header-items"
     ]
   },
   {
@@ -39,6 +40,12 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "header-items",
+    "components": [
+      "header-item"
     ]
   }
 ]

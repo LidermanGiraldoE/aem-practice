@@ -52,7 +52,8 @@
         "columns",
         "design-system",
         "fragment",
-        "header-brand"
+        "header-brand",
+        "header-items"
       ]
     }
   ]
