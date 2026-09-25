@@ -4,6 +4,17 @@
   move-to-http-header="true"
 >
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- Set theme before first paint to avoid a dark/light flash -->
+<script nonce="aem">
+  (() => {
+    let theme = 'dark';
+    try {
+      const saved = localStorage.getItem('aem-forge-theme');
+      if (saved === 'dark' || saved === 'light') theme = saved;
+    } catch { /* storage unavailable */ }
+    document.documentElement.dataset.theme = theme;
+  })();
+</script>
 <script nonce="aem" type="speculationrules">
   {
     "prerender": [{
