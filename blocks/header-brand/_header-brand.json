@@ -11,7 +11,7 @@
               "name": "Header Brand",
               "model": "header-brand",
               "mark": "A",
-              "brandName": "AEM Forge",
+              "brandName": "AEM",
               "descriptor": "/ knowledge",
               "href": "/"
             }
@@ -36,15 +36,14 @@
           "valueType": "string",
           "name": "brandName",
           "label": "Brand Name",
-          "value": "AEM Forge",
+          "value": "AEM",
           "required": true
         },
         {
           "component": "text",
           "valueType": "string",
           "name": "descriptor",
-          "label": "Descriptor",
-          "value": "/ knowledge"
+          "label": "Descriptor"
         },
         {
           "component": "text",
