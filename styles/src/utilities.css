@@ -40,5 +40,5 @@
 }
 
 @utility shadow-focus-ring {
-  box-shadow: 0 0 0 6px rgba(13, 170, 222, 0.30);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ds-brand) 18%, transparent);
 }
