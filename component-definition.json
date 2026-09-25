@@ -228,6 +228,36 @@
           }
         },
         {
+          "title": "Header Language",
+          "id": "header-language",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Header Language",
+                  "filter": "header-language"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Header Language Option",
+          "id": "header-language-option",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Header Language Option",
+                  "model": "header-language-option"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Header Search",
           "id": "header-search",
           "plugins": {

@@ -20,7 +20,8 @@
       "header-brand",
       "header-items",
       "header-search",
-      "header-theme"
+      "header-theme",
+      "header-language"
     ]
   },
   {
@@ -48,6 +49,12 @@
     "id": "header-items",
     "components": [
       "header-item"
+    ]
+  },
+  {
+    "id": "header-language",
+    "components": [
+      "header-language-option"
     ]
   },
   {

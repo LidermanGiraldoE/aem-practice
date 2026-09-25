@@ -252,6 +252,32 @@
     ]
   },
   {
+    "id": "header-language-option",
+    "fields": [
+      {
+        "component": "text",
+        "name": "name",
+        "label": "Language Option Name",
+        "description": "The name displayed in the Content Tree"
+      },
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Display Label",
+        "valueType": "string",
+        "required": true
+      },
+      {
+        "component": "text",
+        "name": "locale",
+        "label": "Language Code",
+        "valueType": "string",
+        "description": "The language code used by the site, for example es or en",
+        "required": true
+      }
+    ]
+  },
+  {
     "id": "header-search",
     "fields": [
       {

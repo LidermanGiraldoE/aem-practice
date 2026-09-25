@@ -55,7 +55,8 @@
         "header-brand",
         "header-items",
         "header-search",
-        "header-theme"
+        "header-theme",
+        "header-language"
       ]
     }
   ]
