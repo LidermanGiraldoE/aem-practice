@@ -180,6 +180,10 @@
     ]
   },
   {
+    "id": "design-system",
+    "fields": []
+  },
+  {
     "id": "fragment",
     "fields": [
       {

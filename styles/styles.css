@@ -191,7 +191,7 @@ button.button {
   border-radius: 11px;
   padding: 0 18px;
   background: var(--ds-surface);
-  color: var(--text-color);
+  color: var(--ds-text);
   font: inherit;
   font-size: 14px;
   font-weight: 700;
@@ -264,7 +264,7 @@ a.button:not(.primary, .accent):hover,
 button.button:not(.primary, .accent):hover {
   border-color: color-mix(in srgb, var(--ds-line) 68%, var(--ds-text) 32%);
   background: var(--ds-surface-2);
-  color: var(--text-color);
+  color: var(--ds-text);
 }
 
 main img {
