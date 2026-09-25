@@ -1,8 +1,15 @@
 .*
 *.md
+*.d.ts
+*.map
 karma.config.js
 LICENSE
 package.json
 package-lock.json
 test/*
-_*
+_*.json
+postinstall.js
+cypress/
+blocks/*/references/
+drafts/
+/tools/
