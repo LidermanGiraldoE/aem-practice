@@ -110,10 +110,10 @@
 
   /* Breakpoints (mobile-first) */
   --breakpoint-*: initial;
-  --breakpoint-sm: 560px;
-  --breakpoint-md: 760px;
-  --breakpoint-lg: 900px;
-  --breakpoint-xl: 1100px;
+  --breakpoint-sm: 360px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1240px;
+  --breakpoint-xl: 1440px;
 
   /* Easing: ease-{name} */
   --ease-standard: cubic-bezier(0.2, 0.7, 0.2, 1);

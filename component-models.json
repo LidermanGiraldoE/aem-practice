@@ -194,6 +194,41 @@
     ]
   },
   {
+    "id": "header-brand",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "mark",
+        "label": "Brand Mark",
+        "value": "A"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "brandName",
+        "label": "Brand Name",
+        "value": "AEM Forge",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "descriptor",
+        "label": "Descriptor",
+        "value": "/ knowledge"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "href",
+        "label": "Home Link",
+        "value": "/",
+        "required": true
+      }
+    ]
+  },
+  {
     "id": "hero",
     "fields": [
       {
