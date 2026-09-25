@@ -252,6 +252,19 @@
     ]
   },
   {
+    "id": "header-search",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "placeholder",
+        "label": "Search Label",
+        "value": "Buscar...",
+        "required": true
+      }
+    ]
+  },
+  {
     "id": "hero",
     "fields": [
       {
