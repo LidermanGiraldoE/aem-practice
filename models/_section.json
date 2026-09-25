@@ -54,7 +54,8 @@
         "fragment",
         "header-brand",
         "header-items",
-        "header-search"
+        "header-search",
+        "header-theme"
       ]
     }
   ]

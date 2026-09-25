@@ -265,6 +265,32 @@
     ]
   },
   {
+    "id": "header-theme-option",
+    "fields": [
+      {
+        "component": "text",
+        "name": "name",
+        "label": "Theme Option Name",
+        "description": "The name displayed in the Content Tree"
+      },
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Display Label",
+        "valueType": "string",
+        "required": true
+      },
+      {
+        "component": "text",
+        "name": "theme",
+        "label": "Theme Identifier",
+        "valueType": "string",
+        "description": "The theme key used by the site, for example dark or light",
+        "required": true
+      }
+    ]
+  },
+  {
     "id": "hero",
     "fields": [
       {

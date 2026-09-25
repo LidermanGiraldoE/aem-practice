@@ -19,7 +19,8 @@
       "fragment",
       "header-brand",
       "header-items",
-      "header-search"
+      "header-search",
+      "header-theme"
     ]
   },
   {
@@ -47,6 +48,12 @@
     "id": "header-items",
     "components": [
       "header-item"
+    ]
+  },
+  {
+    "id": "header-theme",
+    "components": [
+      "header-theme-option"
     ]
   }
 ]
