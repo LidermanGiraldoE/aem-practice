@@ -1,7 +1,7 @@
-.header-search-trigger .icon img {
+.header-search-icon {
   filter: invert(1);
 }
 
-:root[data-theme='light'] .header-search-trigger .icon img {
+:root[data-theme='light'] .header-search-icon {
   filter: none;
 }

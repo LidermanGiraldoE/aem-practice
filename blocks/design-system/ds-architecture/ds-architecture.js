@@ -2,6 +2,7 @@ import { h } from '@dropins/tools/preact.js';
 import htm from 'htm';
 import { FoundationsSamples } from './foundations.samples.js';
 import { AtomsSamples } from './atoms.samples.js';
+import HeaderSample from '../../../design-system/molecules/header.sample.js';
 
 const html = htm.bind(h);
 
@@ -22,6 +23,7 @@ export const DsArchitecture = () => html`
     </div>
     <${FoundationsSamples} />
     <${AtomsSamples} />
+    <${HeaderSample} />
   </div>
 `;
 

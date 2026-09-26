@@ -44,7 +44,7 @@ function closeResultsOnBlur(event, setIsOpen) {
   if (!event.currentTarget.form.contains(event.relatedTarget)) setIsOpen(false);
 }
 
-export default function HeaderSearch({ label = 'Search' }) {
+export default function HeaderSearch({ label = 'Search', fluid = false }) {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -126,9 +126,9 @@ export default function HeaderSearch({ label = 'Search' }) {
   };
 
   return html`
-    <div class="header-search-trigger relative w-full md:w-80">
+    <div class="header-search-trigger relative w-full ${fluid ? 'min-w-0' : 'md:w-80'}">
       <form role="search" class="relative flex h-header-control min-w-0 items-center gap-3 rounded-md border border-line px-2.5 text-fg-2 transition-colors focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-brand" onSubmit=${handleSubmit}>
-        <span class="icon icon-search size-4 shrink-0" aria-hidden="true"></span>
+        <img src="/icons/search.svg" alt="" class="header-search-icon size-4 shrink-0" />
         <input
           type="search"
           value=${query}
