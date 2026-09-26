@@ -29,7 +29,7 @@ export default function HeaderOptionControl({
   onChange,
 }) {
   return html`
-    <label class="inline-flex min-h-11 cursor-pointer items-center gap-1.5 rounded-md border border-line px-3 text-fg-2 transition-colors focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-brand" onClick=${openSelectPicker}>
+    <label class="inline-flex min-h-header-control cursor-pointer items-center gap-1.5 rounded-md border border-line px-2 text-fg-2 transition-colors focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-brand" onClick=${openSelectPicker}>
       <span class="inline-flex size-4 shrink-0 items-center justify-center text-base leading-none" aria-hidden="true">${icon}</span>
       <${Select}
         ariaLabel=${ariaLabel}

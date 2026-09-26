@@ -103,8 +103,9 @@
   --container-site: 1180px;
   --container-hero: 900px;
   --container-prose: 760px;
-  --container-copy: 720px;
+    --container-copy: 720px;
   --spacing-header: 72px;
+    --spacing-header-control: 38px;
   --spacing-section: 110px;
   --spacing-gutter: 20px;
 

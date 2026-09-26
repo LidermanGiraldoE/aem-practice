@@ -18,7 +18,7 @@ export default function Select({
   return html`
     <select
       aria-label=${ariaLabel}
-      class="max-w-24 cursor-pointer rounded-sm bg-transparent px-2 py-1.5 text-sm text-fg outline-offset-2 ${focusStyles} ${className}"
+      class="max-w-24 cursor-pointer rounded-sm bg-transparent py-1.5 text-sm text-fg outline-offset-2 ${focusStyles} ${className}"
       defaultValue=${value}
       onChange=${onChange}
     >

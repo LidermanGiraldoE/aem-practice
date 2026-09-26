@@ -21,7 +21,7 @@ header .container.nav {
   gap: 0 calc(var(--spacing) * 3);
   width: min(calc(100% - var(--spacing-gutter) * 2), var(--container-site));
   max-width: none;
-  min-height: calc(var(--spacing-header) + 44px);
+  min-height: calc(var(--spacing-header) + var(--spacing-header-control));
   height: auto;
   margin-inline: auto;
   padding: 0;
@@ -130,6 +130,10 @@ header .nav-links a:focus-visible {
   color: var(--ds-text);
 }
 
+header .nav-links ul {
+  margin: 0;
+}
+
 header .nav-tools {
   grid-area: tools;
   display: grid;
@@ -139,8 +143,8 @@ header .nav-tools {
   gap: calc(var(--spacing) * 2);
   width: 100%;
   min-width: 0;
-  min-height: 44px;
-  padding-bottom: calc(var(--spacing) * 2);
+  min-height: var(--spacing-header-control);
+  padding-bottom: 0;
 }
 
 header .nav-tools .header-search-wrapper,
@@ -190,7 +194,7 @@ header .nav[aria-expanded='true'] .nav-tools {
 @media (width <= 768px) {
   header {
     height: auto;
-    min-height: calc(var(--spacing-header) + 44px);
+    min-height: calc(var(--spacing-header) + var(--spacing-header-control));
   }
 }
 
