@@ -22,3 +22,4 @@
 @source not "../../**/*.md";
 @source not "../../scripts/__dropins__/**";
 @source not "../../scripts/vendor/**";
+@source inline("bg-surface-overlay");

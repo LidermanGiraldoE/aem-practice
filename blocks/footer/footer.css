@@ -4,17 +4,14 @@ footer {
 }
 
 footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+  box-sizing: border-box;
+  width: min(calc(100% - 2 * var(--spacing-gutter)), var(--container-site));
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding: 40px 0 24px;
 }
 
 footer .footer p {
   margin: 0;
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
-  }
-}

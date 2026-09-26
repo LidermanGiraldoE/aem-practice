@@ -66,7 +66,7 @@ const COLOR_GROUPS = [
     title: 'Gradients',
     tokens: [
       ['gradient-brand', 'var(--ds-gradient-brand)', '--ds-gradient-brand'],
-      ['gradient-brand-mark', 'var(--ds-gradient-brand-mark)', '--ds-gradient-brand-mark'],
+      ['gradient-mint-cyan', 'bg-gradient-mint-cyan', '--ds-gradient-mint-cyan'],
       ['gradient-accent', 'var(--ds-gradient-accent)', '--ds-gradient-accent'],
     ],
   },

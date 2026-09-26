@@ -1,4 +1,5 @@
-import createBrand from '../../design-system/molecules/brand/brand.js';
+import { h, render } from '@dropins/tools/preact.js';
+import Brand from '../../design-system/molecules/brand/brand.js';
 
 function getRowText(row) {
   return row?.textContent?.trim() || '';
@@ -16,10 +17,11 @@ export default function decorate(block) {
     return;
   }
 
-  block.replaceChildren(createBrand({
+  block.replaceChildren();
+  render(h(Brand, {
     mark,
     name,
     descriptor,
     href,
-  }));
+  }), block);
 }

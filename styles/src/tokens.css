@@ -22,6 +22,7 @@
   --ds-surface-card: #0d1117;
   --ds-surface-input: #0c1016;
   --ds-surface-icon: #111925;
+  --ds-surface-overlay: rgb(7 9 12 / 74%);
 
   /* Text */
   --ds-text: #f5f7fb;
@@ -51,7 +52,7 @@
 
   /* Gradients */
   --ds-gradient-brand: linear-gradient(180deg, var(--ds-brand-2), var(--ds-brand));
-  --ds-gradient-brand-mark: linear-gradient(135deg, var(--ds-brand), var(--ds-cyan));
+  --ds-gradient-mint-cyan: linear-gradient(135deg, var(--ds-brand), var(--ds-cyan));
   --ds-gradient-accent: linear-gradient(90deg, var(--ds-brand-2), #73e7ff 52%, #a797ff);
   --ds-grid-line: rgb(255 255 255 / 4.5%);
 
@@ -80,6 +81,7 @@
   --ds-surface-card: #fff;
   --ds-surface-input: #fff;
   --ds-surface-icon: #f0f3f6;
+  --ds-surface-overlay: rgb(247 248 250 / 82%);
 
   --ds-text: #11151c;
   --ds-text-2: #4b5563;

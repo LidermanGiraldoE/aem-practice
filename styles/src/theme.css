@@ -137,6 +137,7 @@
   --color-surface-card: var(--ds-surface-card);
   --color-surface-input: var(--ds-surface-input);
   --color-surface-icon: var(--ds-surface-icon);
+  --color-surface-overlay: var(--ds-surface-overlay);
   --color-overlay: var(--ds-overlay);
 
   /* Text: text-fg, text-fg-2, text-fg-3 */
@@ -155,6 +156,9 @@
   --color-violet: var(--ds-violet);
   --color-cyan: var(--ds-cyan);
   --color-coral: var(--ds-coral);
+
+  /* Reusable gradients */
+  --background-gradient-mint-cyan: var(--ds-gradient-mint-cyan);
 
   /* Feedback */
   --color-success: var(--ds-success);

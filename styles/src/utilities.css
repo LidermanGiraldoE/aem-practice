@@ -18,6 +18,10 @@
   content-visibility: auto;
 }
 
+@utility bg-gradient-mint-cyan {
+  background-image: var(--background-gradient-mint-cyan);
+}
+
 /* ── Text box trim ──────────────────────────────────────────────
  * Optical vertical centering: trims the font's built-in leading space so
  * text aligns to its cap/alphabetic edges. No native Tailwind utility yet.

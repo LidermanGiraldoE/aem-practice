@@ -1,39 +1,22 @@
-export default function createBrand({
+import { h } from '@dropins/tools/preact.js';
+import htm from 'htm';
+
+const html = htm.bind(h);
+
+export default function Brand({
   mark = '',
   name = '',
   descriptor = '',
   href = '/',
 }) {
-  const link = document.createElement('a');
-  link.className = 'ds-brand';
-  link.setAttribute('href', href || '/');
-
-  if (mark) {
-    const markElement = document.createElement('span');
-    markElement.className = 'ds-brand-mark';
-    markElement.setAttribute('aria-hidden', 'true');
-    markElement.textContent = mark;
-    link.append(markElement);
-  }
-
-  if (name) {
-    const nameElement = document.createElement('strong');
-    nameElement.className = 'ds-brand-name';
-    nameElement.textContent = name;
-    link.append(nameElement);
-  }
-
-  if (descriptor) {
-    const separator = document.createElement('span');
-    separator.className = 'ds-brand-separator';
-    separator.setAttribute('aria-hidden', 'true');
-    separator.textContent = '/';
-
-    const descriptorElement = document.createElement('span');
-    descriptorElement.className = 'ds-brand-descriptor';
-    descriptorElement.textContent = descriptor;
-    link.append(separator, descriptorElement);
-  }
-
-  return link;
+  return html`
+    <a href=${href || '/'} class="inline-flex min-w-0 items-center gap-2 text-fg !no-underline hover:text-fg">
+      ${mark && html`<span class="grid size-7.5 shrink-0 place-items-center rounded-sm bg-gradient-mint-cyan text-brand-ink font-bold" aria-hidden="true">${mark}</span>`}
+      ${name && html`<strong class="text-base font-bold">${name}</strong>`}
+      ${descriptor && html`
+        <span class="hidden text-base font-semibold text-fg-2 md:inline" aria-hidden="true">/</span>
+        <span class="hidden text-base font-semibold text-fg-2 md:inline">${descriptor}</span>
+      `}
+    </a>
+  `;
 }

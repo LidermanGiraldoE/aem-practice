@@ -1,0 +1,7 @@
+.header-search-trigger .icon img {
+  filter: invert(1);
+}
+
+:root[data-theme='light'] .header-search-trigger .icon img {
+  filter: none;
+}
