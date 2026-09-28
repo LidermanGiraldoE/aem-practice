@@ -10,7 +10,7 @@ export default function Brand({
   href = '/',
 }) {
   return html`
-    <a href=${href || '/'} class="inline-flex min-w-0 items-center gap-2 text-fg !no-underline hover:text-fg">
+    <a href=${href || '/'} class="inline-flex min-w-0 items-center gap-2 rounded-md py-1.5 text-fg no-underline! transition-colors hover:bg-surface-overlay hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">
       ${mark && html`<span class="grid size-7.5 shrink-0 place-items-center rounded-sm bg-gradient-mint-cyan text-brand-ink font-bold" aria-hidden="true">${mark}</span>`}
       ${name && html`<strong class="text-base font-bold">${name}</strong>`}
       ${descriptor && html`

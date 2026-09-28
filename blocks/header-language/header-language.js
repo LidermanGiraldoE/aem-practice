@@ -15,18 +15,13 @@ export default function decorate(block) {
   }
   block.replaceChildren();
 
-  const { lang } = document.documentElement;
-  const pageLocale = lang.toLowerCase();
-  const matchingOption = options.find(([, locale]) => (
-    locale.toLowerCase() === pageLocale || pageLocale.startsWith(`${locale.toLowerCase()}-`)
-  ));
-  const [, matchingLocale] = matchingOption || options[0];
+  const [, firstLocale] = options[0];
 
   render(h(HeaderOptionControl, {
     ariaLabel: 'Select language',
     icon: '◎',
     options: options.map(([label, locale]) => ({ label, value: locale })),
-    value: matchingLocale,
+    value: firstLocale,
     onChange: (event) => {
       const { value: locale } = event.currentTarget;
       document.dispatchEvent(new CustomEvent('header-language-change', {

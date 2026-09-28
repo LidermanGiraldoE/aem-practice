@@ -11,7 +11,7 @@ export default function NavigationLinks({ items, className = '' }) {
           <a
             href=${item.href}
             title=${item.title || null}
-            class="text-fg-2 no-underline hover:text-fg focus-visible:text-fg"
+            class="inline-flex items-center rounded-md px-2 py-1.5 text-fg-2 !no-underline transition-colors hover:bg-surface-overlay hover:text-fg focus-visible:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
           >${item.label}</a>
         </li>
       `)}
