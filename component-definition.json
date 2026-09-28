@@ -171,6 +171,35 @@
               }
             }
           }
+        },
+        {
+          "title": "Hero Banner",
+          "id": "hero-banner",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Hero Banner",
+                  "model": "hero-banner",
+                  "content_eyebrow": "AEM · Edge Delivery · Frontend",
+                  "content_richtext": "<h1>Entiende AEM.</h1><h2>Todo lo necesario para crear mejor.</h2><p>Una base de conocimiento práctica para dominar AEM Sites, Edge Delivery Services y desarrollo frontend: arquitectura, componentes, performance, authoring y patrones reales de proyecto.</p>",
+                  "primary_linkText": "Explorar conocimiento →",
+                  "primary_link": "#learn",
+                  "primary_linkType": "primary",
+                  "primary_icon": "none",
+                  "secondary_linkText": "Ver rutas de aprendizaje",
+                  "secondary_link": "#paths",
+                  "secondary_linkType": "secondary",
+                  "secondary_icon": "none",
+                  "terminal_windowLabel": "aem-forge — edge delivery knowledge",
+                  "terminal_richtext": "<p># Aprende construyendo</p><pre><code>$ open docs/edge-delivery/blocks</code></pre><p># Concepto activo</p><p>AEM | Edge Delivery Services</p><p>Pattern | Block-based composition</p><p>Goal | Fast, maintainable, author-friendly</p><p># Código de referencia</p><pre><code>export default function decorate(block) {\n  const rows = [...block.children];\n  rows.forEach((row) =&gt; {\n    row.classList.add('feature__row');\n  });\n}</code></pre>",
+                  "terminal_status": "✓ Pattern documented",
+                  "terminal_statusDetail": "Design system mapped"
+                }
+              }
+            }
+          }
         }
       ]
     },

@@ -56,7 +56,8 @@
         "header-items",
         "header-search",
         "header-theme",
-        "header-language"
+        "header-language",
+        "hero-banner"
       ]
     }
   ]

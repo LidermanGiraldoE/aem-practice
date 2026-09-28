@@ -317,6 +317,174 @@
     ]
   },
   {
+    "id": "hero-banner",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "content-tab",
+        "label": "Content"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_eyebrow",
+        "label": "Eyebrow"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content_richtext",
+        "label": "Hero Copy",
+        "description": "Author the main heading, accent heading, and supporting paragraph here. Choose heading levels and paragraph formatting in the rich text editor."
+      },
+      {
+        "component": "tab",
+        "name": "ctas-tab",
+        "label": "Calls to Action"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "primary_linkText",
+        "label": "Primary CTA Text"
+      },
+      {
+        "component": "aem-content",
+        "name": "primary_link",
+        "label": "Primary CTA Link"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "primary_linkType",
+        "label": "Primary Button Style",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Primary",
+            "value": "primary"
+          },
+          {
+            "name": "Ghost",
+            "value": "secondary"
+          },
+          {
+            "name": "Accent",
+            "value": "accent"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "primary_icon",
+        "label": "Primary Button Icon",
+        "options": [
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "Arrow Right",
+            "value": "arrow-right"
+          },
+          {
+            "name": "Arrow Up Right",
+            "value": "arrow-up-right"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "secondary_linkText",
+        "label": "Secondary CTA Text"
+      },
+      {
+        "component": "aem-content",
+        "name": "secondary_link",
+        "label": "Secondary CTA Link"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "secondary_linkType",
+        "label": "Secondary Button Style",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Primary",
+            "value": "primary"
+          },
+          {
+            "name": "Ghost",
+            "value": "secondary"
+          },
+          {
+            "name": "Accent",
+            "value": "accent"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "secondary_icon",
+        "label": "Secondary Button Icon",
+        "options": [
+          {
+            "name": "None",
+            "value": "none"
+          },
+          {
+            "name": "Arrow Right",
+            "value": "arrow-right"
+          },
+          {
+            "name": "Arrow Up Right",
+            "value": "arrow-up-right"
+          }
+        ]
+      },
+      {
+        "component": "tab",
+        "name": "terminal-tab",
+        "label": "Terminal Preview"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "terminal_windowLabel",
+        "label": "Terminal Window Label"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "terminal_richtext",
+        "label": "Terminal Content",
+        "description": "Author terminal output and code using the rich text editor."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "terminal_status",
+        "label": "Terminal Status"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "terminal_statusDetail",
+        "label": "Terminal Status Detail"
+      }
+    ]
+  },
+  {
     "id": "hero",
     "fields": [
       {
