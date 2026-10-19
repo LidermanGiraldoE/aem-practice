@@ -10,7 +10,8 @@
 }
 
 .hero-banner-scene {
-  min-height: calc(100svh - var(--spacing-header));
+  /* capped: Universal Editor sizes its iframe to the content, so a bare svh height feeds back on itself */
+  min-height: min(calc(100svh - var(--spacing-header)), 1000px);
   background-image:
     linear-gradient(var(--ds-grid-line) 1px, transparent 1px),
     linear-gradient(90deg, var(--ds-grid-line) 1px, transparent 1px);
@@ -220,7 +221,7 @@
 
 @media (width < 768px) {
   .hero-banner-scene {
-    min-height: calc(100svh - var(--spacing-header) - var(--spacing-header-control));
+    min-height: min(calc(100svh - var(--spacing-header) - var(--spacing-header-control)), 1000px);
   }
 
   .hero-banner-container {
