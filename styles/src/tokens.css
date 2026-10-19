@@ -33,6 +33,12 @@
   --ds-line: #202837;
   --ds-line-strong: #2a3342;
 
+  /* Secondary button (flat, opaque) */
+  --ds-button-secondary-bg: #1a212c;
+  --ds-button-secondary-bg-hover: #232c39;
+  --ds-button-secondary-border: #2a3342;
+  --ds-button-secondary-border-hover: #374356;
+
   /* Overlay base: white on dark, ink on light (use with Tailwind opacity, e.g. bg-overlay/3) */
   --ds-overlay: #fff;
 
@@ -89,6 +95,11 @@
 
   --ds-line: #dbe1e8;
   --ds-line-strong: #cfd6df;
+
+  --ds-button-secondary-bg: #eef2f6;
+  --ds-button-secondary-bg-hover: #e2e8ef;
+  --ds-button-secondary-border: #d3dae3;
+  --ds-button-secondary-border-hover: #bfc8d3;
 
   --ds-overlay: #11151c;
 

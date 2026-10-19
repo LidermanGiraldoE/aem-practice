@@ -253,7 +253,8 @@ button.button.accent:focus-visible {
 
 a.button.secondary,
 button.button.secondary {
-  background: color-mix(in srgb, var(--ds-overlay) 2.5%, transparent);
+  border-color: var(--ds-button-secondary-border);
+  background: var(--ds-button-secondary-bg);
 }
 
 a.button:not(.primary, .accent):hover,
@@ -261,6 +262,12 @@ button.button:not(.primary, .accent):hover {
   border-color: color-mix(in srgb, var(--ds-line) 68%, var(--ds-text) 32%);
   background: var(--ds-surface-2);
   color: var(--ds-text);
+}
+
+a.button.secondary:hover,
+button.button.secondary:hover {
+  border-color: var(--ds-button-secondary-border-hover);
+  background: var(--ds-button-secondary-bg-hover);
 }
 
 main img {
