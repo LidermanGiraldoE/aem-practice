@@ -16,7 +16,11 @@ export default function CtaBanner({
   const Heading = HEADING_LEVELS.has(titleLevel) ? titleLevel : 'h2';
 
   return html`
-    <div class="flex flex-col items-center rounded-4xl border border-line-strong bg-surface-raised bg-[linear-gradient(var(--ds-grid-line)_1px,transparent_1px),linear-gradient(90deg,var(--ds-grid-line)_1px,transparent_1px)] bg-size-[36px_36px] px-7 py-14 text-center md:py-19">
+    <div class="relative isolate flex flex-col items-center overflow-hidden rounded-4xl border border-line-strong bg-surface-raised bg-[linear-gradient(var(--ds-grid-line)_1px,transparent_1px),linear-gradient(90deg,var(--ds-grid-line)_1px,transparent_1px)] bg-size-[36px_36px] px-7 py-14 text-center md:py-19">
+      <div
+        class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(75%_120%_at_0%_0%,color-mix(in_srgb,var(--ds-brand)_22%,transparent),color-mix(in_srgb,var(--ds-cyan)_8%,transparent)_45%,transparent_75%),radial-gradient(75%_120%_at_100%_100%,color-mix(in_srgb,var(--ds-violet)_24%,transparent),color-mix(in_srgb,var(--ds-accent-violet)_8%,transparent)_45%,transparent_75%)]"
+        aria-hidden="true"
+      ></div>
       <${Eyebrow}>${eyebrow}<//>
       ${title && html`
         <${Heading} class="m-0! mt-4! max-w-hero text-cta! font-extrabold! text-fg">${title}<//>

@@ -35,7 +35,7 @@ export default function SplitShowcase({
           </ul>
         `}
       </div>
-      ${cards.length > 0 && html`<${StackPanel} cards=${cards} />`}
+      ${cards.length > 0 && html`<${StackPanel} cards=${cards} reverse=${reverse} />`}
     </div>
   `;
 }

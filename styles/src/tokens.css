@@ -49,6 +49,8 @@
   --ds-violet: #8a7dff;
   --ds-cyan: #49bfff;
   --ds-coral: #ff6240;
+  --ds-accent-cyan: #73e7ff;
+  --ds-accent-violet: #a797ff;
 
   /* Feedback */
   --ds-success: #48d58c;
@@ -59,7 +61,7 @@
   /* Gradients */
   --ds-gradient-brand: linear-gradient(180deg, var(--ds-brand-2), var(--ds-brand));
   --ds-gradient-mint-cyan: linear-gradient(135deg, var(--ds-brand), var(--ds-cyan));
-  --ds-gradient-accent: linear-gradient(90deg, var(--ds-brand-2), #73e7ff 52%, #a797ff);
+  --ds-gradient-accent: linear-gradient(90deg, var(--ds-brand-2), var(--ds-accent-cyan) 52%, var(--ds-accent-violet));
   --ds-grid-line: rgb(255 255 255 / 4.5%);
 
   /* Shadows */
