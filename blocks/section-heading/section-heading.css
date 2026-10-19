@@ -1,3 +1,4 @@
-.section-heading {
-  margin-bottom: calc(var(--spacing) * 12);
+/* a heading introduces the next block, so it sits closer than the default section rhythm */
+main > .section > .section-heading-wrapper + div {
+  margin-top: calc(var(--spacing) * 12);
 }
