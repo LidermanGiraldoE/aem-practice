@@ -247,7 +247,41 @@
       {
         "component": "aem-content",
         "name": "link",
-        "label": "Link"
+        "label": "Link",
+        "description": "Optional for items that only open a submenu"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description",
+        "description": "Optional short text shown under the item inside the submenu"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "level",
+        "label": "Level",
+        "value": "1",
+        "description": "Items nest under the closest previous item with a lower level",
+        "options": [
+          {
+            "name": "1 - Main menu",
+            "value": "1"
+          },
+          {
+            "name": "2 - Submenu",
+            "value": "2"
+          },
+          {
+            "name": "3 - Submenu of a submenu",
+            "value": "3"
+          },
+          {
+            "name": "4 - Fourth level",
+            "value": "4"
+          }
+        ]
       }
     ]
   },

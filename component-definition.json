@@ -250,7 +250,8 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "Header Item",
-                  "model": "header-item"
+                  "model": "header-item",
+                  "level": "1"
                 }
               }
             }
