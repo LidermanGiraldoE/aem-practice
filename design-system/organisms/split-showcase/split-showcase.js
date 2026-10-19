@@ -17,13 +17,14 @@ export default function SplitShowcase({
 }) {
   return html`
     <div class="grid items-center gap-14 lg:grid-cols-2">
-      <div class=${reverse ? 'lg:order-2' : ''}>
+      <div class=${reverse ? 'lg:order-2' : ''} data-reveal="up">
         <${SectionHeading}
           eyebrow=${eyebrow}
           title=${title}
           titleLevel=${titleLevel}
           description=${description}
           align="left"
+          reveal=${false}
         />
         ${checks.length > 0 && html`
           <ul class="m-0! mt-6! grid list-none gap-3.25 p-0">

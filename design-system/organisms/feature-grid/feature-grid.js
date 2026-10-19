@@ -14,9 +14,9 @@ export default function FeatureGrid({ items = [], columns = 3 }) {
   if (!items.length) return null;
 
   return html`
-    <ul class="m-0! grid list-none grid-cols-1 gap-4 p-0 ${COLUMN_CLASSES[columns] || COLUMN_CLASSES[3]}">
+    <ul class="m-0! grid list-none grid-cols-1 gap-4 p-0 ${COLUMN_CLASSES[columns] || COLUMN_CLASSES[3]}" data-reveal-group>
       ${items.map((item, index) => html`
-        <li key=${index} class="m-0">
+        <li key=${index} class="m-0" data-reveal-item>
           <${FeatureCard} icon=${item.icon} title=${item.title} description=${item.description} />
         </li>
       `)}

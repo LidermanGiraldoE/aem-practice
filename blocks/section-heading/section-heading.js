@@ -1,5 +1,6 @@
 import { h, render } from '@dropins/tools/preact.js';
 import SectionHeading from '../../design-system/molecules/section-heading/section-heading.js';
+import observeReveal from '../../scripts/reveal.js';
 
 function getText(element) {
   return element?.textContent?.trim() || '';
@@ -19,4 +20,5 @@ export default function decorate(block) {
 
   block.replaceChildren();
   render(h(SectionHeading, props), block);
+  observeReveal(block);
 }

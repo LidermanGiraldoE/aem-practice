@@ -1,6 +1,7 @@
 import { h, render } from '@dropins/tools/preact.js';
 import SplitShowcase from '../../design-system/organisms/split-showcase/split-showcase.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import observeReveal from '../../scripts/reveal.js';
 
 function getText(element) {
   return element?.textContent?.trim() || '';
@@ -47,6 +48,7 @@ export default function decorate(block) {
 
   block.replaceChildren();
   render(h(SplitShowcase, { ...props, reverse: block.classList.contains('reverse') }), block);
+  observeReveal(block);
 
   block.querySelectorAll('[data-item-index]').forEach((element) => {
     moveInstrumentation(rows[Number(element.dataset.itemIndex)], element);

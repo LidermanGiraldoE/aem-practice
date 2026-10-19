@@ -270,3 +270,50 @@
     transform: none;
   }
 }
+
+/* entrance on load; keyframes only animate "from", so content always ends visible */
+@keyframes hero-enter-fade {
+  from { opacity: 0; }
+}
+
+@keyframes hero-enter-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--ds-reveal-distance), 0);
+  }
+}
+
+@keyframes hero-enter-slide {
+  from { transform: translate3d(0, var(--ds-reveal-distance), 0); }
+}
+
+@keyframes hero-enter-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.975) translate3d(0, 12px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-banner .hero-eyebrow {
+    animation: hero-enter-fade var(--ds-motion-enter) var(--ease-emphasized) backwards;
+  }
+
+  /* the h1 is the LCP element: it slides without fading so it is painted from the first frame */
+  .hero-banner-copy-richtext h1 {
+    animation: hero-enter-slide var(--ds-motion-enter) var(--ease-emphasized) 80ms backwards;
+  }
+
+  .hero-banner-copy-richtext h2,
+  .hero-banner-copy-richtext p {
+    animation: hero-enter-rise var(--ds-motion-enter) var(--ease-emphasized) 150ms backwards;
+  }
+
+  .hero-actions {
+    animation: hero-enter-rise var(--ds-motion-enter) var(--ease-emphasized) 220ms backwards;
+  }
+
+  .hero-banner-preview {
+    animation: hero-enter-scale var(--ds-motion-enter) var(--ease-emphasized) 280ms backwards;
+  }
+}

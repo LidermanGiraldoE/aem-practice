@@ -337,3 +337,28 @@ main .section.soft {
     padding: var(--spacing-section) 0;
   }
 }
+
+/* scroll reveal: hidden states only apply once scripts/reveal.js adds .motion-ready */
+html.motion-ready [data-reveal],
+html.motion-ready [data-reveal-item] {
+  opacity: 0;
+}
+
+html.motion-ready [data-reveal='up'],
+html.motion-ready [data-reveal-item] {
+  transform: translate3d(0, var(--ds-reveal-distance), 0);
+}
+
+html.motion-ready [data-reveal='scale'] {
+  transform: scale(0.975) translate3d(0, 12px, 0);
+}
+
+html.motion-ready [data-reveal].is-visible,
+html.motion-ready [data-reveal-item].is-visible {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--ds-motion-enter) var(--ease-emphasized),
+    transform var(--ds-motion-enter) var(--ease-emphasized);
+  transition-delay: var(--reveal-delay, 0ms);
+}

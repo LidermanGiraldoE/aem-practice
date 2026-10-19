@@ -1,6 +1,7 @@
 import { h, render } from '@dropins/tools/preact.js';
 import DocGrid from '../../design-system/organisms/doc-grid/doc-grid.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import observeReveal from '../../scripts/reveal.js';
 
 function getText(element) {
   return element?.textContent?.trim() || '';
@@ -26,6 +27,7 @@ export default function decorate(block) {
 
   block.replaceChildren();
   render(h(DocGrid, { items, columns: block.classList.contains('one-column') ? 1 : 2 }), block);
+  observeReveal(block);
 
   block.querySelectorAll(':scope > ul > li').forEach((li, i) => moveInstrumentation(rows[i], li));
 }

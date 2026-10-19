@@ -11,6 +11,7 @@ export default function SectionHeading({
   titleLevel = 'h2',
   description = '',
   align = 'center',
+  reveal = true,
 }) {
   if (!eyebrow && !title && !description) return null;
 
@@ -18,7 +19,10 @@ export default function SectionHeading({
   const centered = align !== 'left';
 
   return html`
-    <div class="flex max-w-prose flex-col gap-3 ${centered ? 'mx-auto items-center text-center' : 'items-start text-left'}">
+    <div
+      class="flex max-w-prose flex-col gap-3 ${centered ? 'mx-auto items-center text-center' : 'items-start text-left'}"
+      data-reveal=${reveal ? 'up' : null}
+    >
       <${Eyebrow}>${eyebrow}<//>
       ${title && html`
         <${Heading} class="m-0! text-h2! font-extrabold! text-fg">${title}<//>

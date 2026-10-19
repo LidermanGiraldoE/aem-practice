@@ -1,6 +1,7 @@
 import { h, render } from '@dropins/tools/preact.js';
 import FeatureGrid from '../../design-system/organisms/feature-grid/feature-grid.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import observeReveal from '../../scripts/reveal.js';
 
 function getText(element) {
   return element?.textContent?.trim() || '';
@@ -23,6 +24,7 @@ export default function decorate(block) {
 
   block.replaceChildren();
   render(h(FeatureGrid, { items, columns: getColumns(block) }), block);
+  observeReveal(block);
 
   block.querySelectorAll(':scope > ul > li').forEach((li, i) => moveInstrumentation(rows[i], li));
 }

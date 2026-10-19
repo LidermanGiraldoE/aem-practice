@@ -1,5 +1,6 @@
 import { h, render } from '@dropins/tools/preact.js';
 import CtaBanner from '../../design-system/organisms/cta-banner/cta-banner.js';
+import observeReveal from '../../scripts/reveal.js';
 
 function getText(element) {
   return element?.textContent?.trim() || '';
@@ -43,4 +44,5 @@ export default function decorate(block) {
 
   block.replaceChildren();
   render(h(CtaBanner, props), block);
+  observeReveal(block);
 }

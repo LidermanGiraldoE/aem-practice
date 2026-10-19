@@ -22,6 +22,7 @@ export default function StackPanel({ cards = [], reverse = false }) {
   const panelHeight = Math.max(420, PANEL_PADDING * 2 + stackHeight);
   const [topGlow, bottomGlow] = reverse ? [GLOW_VIOLET, GLOW_GREEN] : [GLOW_GREEN, GLOW_VIOLET];
 
+  // the reveal sits on a wrapper inside each li because the li already animates transform (float)
   return html`
     <div
       class="relative overflow-hidden rounded-panel border border-line-strong bg-surface-raised shadow-panel md:min-h-[var(--stack-panel-height)]"
@@ -35,7 +36,7 @@ export default function StackPanel({ cards = [], reverse = false }) {
         class="pointer-events-none absolute -bottom-30 -left-25 size-87.5 rounded-full ${bottomGlow}"
         aria-hidden="true"
       ></div>
-      <ul class="relative m-0! flex list-none flex-col gap-3 p-6 md:absolute md:inset-x-12 md:inset-y-14.5 md:block md:p-0">
+      <ul class="relative m-0! flex list-none flex-col gap-3 p-6 md:absolute md:inset-x-12 md:inset-y-14.5 md:block md:p-0" data-reveal-group>
         ${cards.map((card, index) => html`
           <li
             key=${card.index ?? index}
@@ -43,7 +44,9 @@ export default function StackPanel({ cards = [], reverse = false }) {
             class="m-0 md:absolute md:top-[var(--stack-card-top)] md:w-[78%] ${CARD_POSITIONS[index % 3]} ${CARD_ANIMATIONS[index % 3]}"
             style=${{ '--stack-card-top': `${index * CARD_STEP}px` }}
           >
-            <${StackCard} tags=${card.tags} title=${card.title} description=${card.description} />
+            <div data-reveal-item>
+              <${StackCard} tags=${card.tags} title=${card.title} description=${card.description} />
+            </div>
           </li>
         `)}
       </ul>
