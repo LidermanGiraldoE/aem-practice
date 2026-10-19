@@ -136,6 +136,10 @@
           {
             "name": "Highlight",
             "value": "highlight"
+          },
+          {
+            "name": "Spacious",
+            "value": "spacious"
           }
         ]
       }
@@ -182,6 +186,57 @@
   {
     "id": "design-system",
     "fields": []
+  },
+  {
+    "id": "feature-cards",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Columns on desktop",
+        "value": "",
+        "options": [
+          {
+            "name": "3 columns",
+            "value": ""
+          },
+          {
+            "name": "2 columns",
+            "value": "two-columns"
+          },
+          {
+            "name": "4 columns",
+            "value": "four-columns"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "feature-card",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon",
+        "description": "A short symbol shown in the icon box, for example ◇ ⌁ ⌘ ↗ ◌ ✓"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description"
+      }
+    ]
   },
   {
     "id": "fragment",
@@ -541,6 +596,68 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "section-heading",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "eyebrow",
+        "label": "Eyebrow"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "required": true
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleType",
+        "label": "Title Level",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H1",
+            "value": "h1"
+          },
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Alignment",
+        "value": "",
+        "options": [
+          {
+            "name": "Center",
+            "value": ""
+          },
+          {
+            "name": "Left",
+            "value": "left"
+          }
+        ]
       }
     ]
   }

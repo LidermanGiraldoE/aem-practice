@@ -22,7 +22,9 @@
       "header-search",
       "header-theme",
       "header-language",
-      "hero-banner"
+      "hero-banner",
+      "section-heading",
+      "feature-cards"
     ]
   },
   {
@@ -44,6 +46,12 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "feature-cards",
+    "components": [
+      "feature-card"
     ]
   },
   {

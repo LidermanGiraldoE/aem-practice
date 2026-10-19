@@ -310,3 +310,15 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+main .section.spacious {
+  margin: 0;
+  border-bottom: 1px solid var(--ds-line);
+  padding: 72px 0;
+}
+
+@media (width >= 768px) {
+  main .section.spacious {
+    padding: var(--spacing-section) 0;
+  }
+}
