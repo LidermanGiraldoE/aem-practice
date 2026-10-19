@@ -660,5 +660,110 @@
         ]
       }
     ]
+  },
+  {
+    "id": "split-showcase",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "eyebrow",
+        "label": "Eyebrow"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "required": true
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleType",
+        "label": "Title Level",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H1",
+            "value": "h1"
+          },
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Layout",
+        "value": "",
+        "options": [
+          {
+            "name": "Text left, cards right",
+            "value": ""
+          },
+          {
+            "name": "Cards left, text right",
+            "value": "reverse"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "showcase-check",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "lead",
+        "label": "Bold Lead",
+        "description": "Highlighted first words, for example \"Rutas progresivas.\""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "text",
+        "label": "Text"
+      }
+    ]
+  },
+  {
+    "id": "showcase-card",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "tags",
+        "label": "Tags",
+        "description": "Comma-separated, for example \"AEM Sites, Core Components\""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description"
+      }
+    ]
   }
 ]

@@ -119,6 +119,23 @@
   /* Easing: ease-{name} */
   --ease-standard: cubic-bezier(0.2, 0.7, 0.2, 1);
   --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Ambient float for stacked cards: animate-stack-float-{1..3} */
+  --animate-stack-float-1: stack-float-1 7s ease-in-out infinite alternate;
+  --animate-stack-float-2: stack-float-2 8s ease-in-out infinite alternate;
+  --animate-stack-float-3: stack-float-3 7.5s ease-in-out infinite alternate;
+
+  @keyframes stack-float-1 {
+    to { transform: translate3d(0, -5px, 0); }
+  }
+
+  @keyframes stack-float-2 {
+    to { transform: translate3d(3px, -7px, 0); }
+  }
+
+  @keyframes stack-float-3 {
+    to { transform: translate3d(-2px, -5px, 0); }
+  }
 }
 
 /* ── Themed tokens (resolve per [data-theme] scope, see tokens.css) ── */

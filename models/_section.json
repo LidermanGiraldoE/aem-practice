@@ -63,7 +63,8 @@
         "header-language",
         "hero-banner",
         "section-heading",
-        "feature-cards"
+        "feature-cards",
+        "split-showcase"
       ]
     }
   ]

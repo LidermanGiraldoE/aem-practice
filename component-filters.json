@@ -24,7 +24,8 @@
       "header-language",
       "hero-banner",
       "section-heading",
-      "feature-cards"
+      "feature-cards",
+      "split-showcase"
     ]
   },
   {
@@ -70,6 +71,13 @@
     "id": "header-theme",
     "components": [
       "header-theme-option"
+    ]
+  },
+  {
+    "id": "split-showcase",
+    "components": [
+      "showcase-check",
+      "showcase-card"
     ]
   }
 ]
