@@ -37,6 +37,10 @@
             {
               "name": "Spacious",
               "value": "spacious"
+            },
+            {
+              "name": "Soft background",
+              "value": "soft"
             }
           ]
         }
@@ -64,7 +68,8 @@
         "hero-banner",
         "section-heading",
         "feature-cards",
-        "split-showcase"
+        "split-showcase",
+        "doc-cards"
       ]
     }
   ]

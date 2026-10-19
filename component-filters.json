@@ -25,7 +25,8 @@
       "hero-banner",
       "section-heading",
       "feature-cards",
-      "split-showcase"
+      "split-showcase",
+      "doc-cards"
     ]
   },
   {
@@ -47,6 +48,12 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "doc-cards",
+    "components": [
+      "doc-card"
     ]
   },
   {

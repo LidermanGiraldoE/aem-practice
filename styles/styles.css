@@ -328,6 +328,10 @@ main .section.spacious {
   padding: 72px 0;
 }
 
+main .section.soft {
+  background-color: var(--ds-bg-soft);
+}
+
 @media (width >= 768px) {
   main .section.spacious {
     padding: var(--spacing-section) 0;

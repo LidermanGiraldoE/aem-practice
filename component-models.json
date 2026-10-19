@@ -140,6 +140,10 @@
           {
             "name": "Spacious",
             "value": "spacious"
+          },
+          {
+            "name": "Soft background",
+            "value": "soft"
           }
         ]
       }
@@ -186,6 +190,66 @@
   {
     "id": "design-system",
     "fields": []
+  },
+  {
+    "id": "doc-cards",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Columns on desktop",
+        "value": "",
+        "options": [
+          {
+            "name": "2 columns",
+            "value": ""
+          },
+          {
+            "name": "1 column",
+            "value": "one-column"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "doc-card",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "category",
+        "label": "Category",
+        "description": "Shown in uppercase above the title, for example \"AEM Sites\""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "readTime",
+        "label": "Reading Time",
+        "description": "For example \"12 min\""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_title",
+        "label": "Title",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_description",
+        "label": "Description"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link",
+        "description": "Page the card opens. Without a link the card is not clickable."
+      }
+    ]
   },
   {
     "id": "feature-cards",
