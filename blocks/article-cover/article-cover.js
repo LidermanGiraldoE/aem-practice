@@ -11,7 +11,9 @@ export default function decorate(block) {
     image: article.image,
     glyph: category.glyph,
     tone: category.tone,
-    ratio: 'aspect-[16/9] md:aspect-[21/9]',
+    // authored covers are 16:9; only the generated cover uses the wider band
+    ratio: article.image ? 'aspect-video' : 'aspect-[16/9] md:aspect-[21/9]',
+    width: 2000,
     className: 'rounded-3xl!',
     eager: true,
   }), block);

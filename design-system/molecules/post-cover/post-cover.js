@@ -16,6 +16,7 @@ export default function PostCover({
   glyph = '',
   tone = 'brand',
   ratio = 'aspect-video',
+  width = 750,
   eager = false,
   className = '',
 }) {
@@ -25,10 +26,10 @@ export default function PostCover({
     return html`
       <div class=${frame}>
         <img
-          src=${`${image}?width=750&format=webply&optimize=medium`}
+          src=${`${image}?width=${width}&format=webply&optimize=medium`}
           alt=""
           loading=${eager ? 'eager' : 'lazy'}
-          class="absolute inset-0 size-full object-cover"
+          class="absolute inset-0 size-full! object-cover"
         />
       </div>
     `;
