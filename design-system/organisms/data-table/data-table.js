@@ -41,6 +41,7 @@ function Cell({ cell }) {
 
 export default function DataTable({
   caption = '',
+  showCaption = false,
   headers = [],
   rows = [],
   footnote = '',
@@ -56,7 +57,11 @@ export default function DataTable({
         tabindex="0"
       >
         <table class="w-full min-w-180 border-collapse">
-          ${caption && html`<caption class="sr-only">${caption}</caption>`}
+          ${caption && html`
+            <caption class=${showCaption ? 'px-5 pt-5 pb-1 text-left text-md text-fg-2 md:px-6' : 'sr-only'}>
+              ${caption}
+            </caption>
+          `}
           ${headers.length > 0 && html`
             <thead>
               <tr class="border-b border-line">

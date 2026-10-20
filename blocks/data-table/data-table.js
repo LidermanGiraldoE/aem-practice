@@ -124,6 +124,7 @@ export default async function decorate(block) {
 
   render(h(DataTable, {
     caption: item.caption || '',
+    showCaption: block.classList.contains('caption'),
     headers,
     rows,
     footnote: toHtml(sanitize(item.footnote?.html)),

@@ -27,6 +27,14 @@
           "label": "Content Fragment",
           "description": "Content Fragment del modelo Table",
           "required": true
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "classes_caption",
+          "label": "Mostrar caption",
+          "description": "Si está desactivado, el caption solo lo leen los lectores de pantalla",
+          "value": false
         }
       ]
     }
