@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cómo pensar un bloque antes de escribir código · AEM knowledge</title>
+  <meta name="description" content="Prototipo: artículo de blog con índice, progreso de lectura, código, callouts y artículos relacionados.">
+  <script>
+    (() => {
+      let theme = 'dark';
+      try {
+        const saved = localStorage.getItem('aem-forge-theme');
+        if (saved === 'dark' || saved === 'light') theme = saved;
+      } catch (e) { /* sin almacenamiento */ }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <div class="reading-progress" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">A</span>AEM <span class="brand__desc">knowledge</span></a>
+      <nav class="nav" aria-label="Principal">
+        <a href="docs.html">Documentación</a>
+        <a href="guide.html">Guías</a>
+        <a href="paths.html">Rutas</a>
+        <a href="blog.html" aria-current="page">Blog</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-search-open><span aria-hidden="true">⌕</span>Buscar…<kbd>⌘K</kbd></button>
+        <button class="icon-btn search-icon" type="button" data-search-open aria-label="Buscar">⌕</button>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Cambiar tema">☀</button>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Principal (móvil)">
+      <div class="container">
+        <a href="docs.html">Documentación</a>
+        <a href="guide.html">Guías</a>
+        <a href="paths.html">Rutas</a>
+        <a href="blog.html">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- block: article-header · nuevo (breadcrumb + título + metadatos; en EDS se alimenta de page metadata) -->
+    <section class="page-hero">
+      <div class="container" style="max-width: 860px; margin-inline: auto;">
+        <ol class="breadcrumb">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li aria-current="page">Edge Delivery</li>
+        </ol>
+        <div class="tags"><span class="badge">Edge Delivery</span><span class="badge badge--violet">Universal Editor</span></div>
+        <h1 class="display" style="font-size: clamp(36px, 5vw, 58px);">Cómo pensar un bloque antes de escribir una sola línea de código</h1>
+        <p class="lead">El modelo de contenido es el contrato entre autores y desarrolladores. Este es el proceso que usamos para diseñar bloques que se editan a la primera.</p>
+        <div class="meta">
+          <div class="author">
+            <span class="avatar" aria-hidden="true">LG</span>
+            <span><strong>Liderman Giraldo</strong>Frontend · AEM</span>
+          </div>
+          <span>20 oct 2026</span>
+          <span>·</span>
+          <span>12 min de lectura</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container article-cover" style="padding-top: 40px;">
+      <div class="cover" aria-hidden="true"><span class="cover__glyph">content → model → block</span></div>
+    </div>
+
+    <div class="container article-layout">
+      <article data-article>
+        <!-- block: tldr · nuevo (resumen en viñetas) -->
+        <aside class="tldr" aria-labelledby="tldr-title">
+          <h2 id="tldr-title">En resumen</h2>
+          <ul>
+            <li>Empieza por el contenido real, no por el diseño ni por el JSON del modelo.</li>
+            <li>Cada campo del modelo debe tener un nombre que el autor entienda sin ayuda.</li>
+            <li>Las variantes visuales van en <code>classes</code>, no en bloques duplicados.</li>
+          </ul>
+        </aside>
+
+        <div class="prose">
+          <p>Casi todos los bloques difíciles de mantener tienen el mismo origen: se diseñaron <strong>desde el código hacia el contenido</strong>. Alguien vio un Figma, escribió el JavaScript y al final inventó un modelo para que “encajara”. El resultado es un formulario lleno de campos que el autor no entiende.</p>
+          <p>En Edge Delivery Services el orden correcto es el inverso. Y no es una preferencia: el <a href="docs.html">markup que entrega AEM</a> depende directamente de cómo modelas los campos.</p>
+
+          <h2 id="contenido-primero">1. Contenido primero</h2>
+          <p>Antes de abrir el editor, escribe el contenido real que va a llevar el bloque. No “Lorem ipsum”: textos reales, con su longitud real. Te vas a dar cuenta rápido de qué es obligatorio, qué es opcional y qué se repite.</p>
+          <ul>
+            <li><strong>¿Se repite?</strong> Entonces es un bloque contenedor con ítems.</li>
+            <li><strong>¿Cambia solo el aspecto?</strong> Es una variante, no un bloque nuevo.</li>
+            <li><strong>¿Es una lista de datos?</strong> Quizá vive mejor en un Content Fragment.</li>
+          </ul>
+
+          <div class="callout callout--tip" role="note">
+            <span class="callout__icon" aria-hidden="true">✓</span>
+            <div><span class="callout__title">Regla práctica</span>Si no puedes explicar el bloque con un ejemplo de contenido real en una frase, todavía no está listo para programarse.</div>
+          </div>
+
+          <h2 id="modelo">2. Diseña el modelo para el autor</h2>
+          <p>El modelo es la interfaz del autor. Los nombres de los campos y sus descripciones son <em>copy</em> de producto, no detalles técnicos.</p>
+
+          <div class="code">
+            <div class="code__head"><span class="code__dots" aria-hidden="true"><span></span><span></span><span></span></span>_feature-card.json<button class="copy-btn" type="button">Copiar</button></div>
+            <pre><code>{
+  <span class="tk-k">"id"</span>: <span class="tk-s">"feature-card"</span>,
+  <span class="tk-k">"fields"</span>: [
+    { <span class="tk-k">"component"</span>: <span class="tk-s">"text"</span>, <span class="tk-k">"name"</span>: <span class="tk-s">"title"</span>, <span class="tk-k">"label"</span>: <span class="tk-s">"Title"</span> },
+    { <span class="tk-k">"component"</span>: <span class="tk-s">"richtext"</span>, <span class="tk-k">"name"</span>: <span class="tk-s">"text"</span>, <span class="tk-k">"label"</span>: <span class="tk-s">"Description"</span> },
+    { <span class="tk-k">"component"</span>: <span class="tk-s">"aem-content"</span>, <span class="tk-k">"name"</span>: <span class="tk-s">"link"</span>, <span class="tk-k">"label"</span>: <span class="tk-s">"Link"</span> }
+  ]
+}</code></pre>
+          </div>
+
+          <h3 id="nombres">Nombres que se explican solos</h3>
+          <p>Evita <code>text1</code>, <code>text2</code> o <code>field_a</code>. Usa los sufijos de <strong>field collapse</strong> (<code>Alt</code>, <code>Text</code>, <code>Type</code>, <code>Title</code>) para que AEM agrupe la imagen con su texto alternativo o el enlace con su etiqueta.</p>
+
+          <blockquote>
+            “Un buen modelo de contenido se nota cuando el autor no necesita abrir la documentación.”
+            <cite>— Equipo de Experiencia Digital</cite>
+          </blockquote>
+
+          <h2 id="variantes">3. Variantes, no copias</h2>
+          <p>Si dos bloques comparten estructura y solo cambian colores, alineación o columnas, son el mismo bloque con variantes. Así mantienes un único JavaScript y un único modelo.</p>
+
+          <div class="table-wrap">
+            <!-- block: data-table · existente -->
+            <table class="table">
+              <caption>¿Bloque nuevo o variante?</caption>
+              <thead>
+                <tr><th scope="col">Situación</th><th scope="col" class="center">Variante</th><th scope="col" class="center">Bloque nuevo</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Cambia solo el color o fondo</th><td class="center"><span class="status" aria-label="Sí">✓</span></td><td class="center"><span class="status status--no" aria-label="No">—</span></td></tr>
+                <tr><th scope="row">Cambia el orden imagen / texto</th><td class="center"><span class="status" aria-label="Sí">✓</span></td><td class="center"><span class="status status--no" aria-label="No">—</span></td></tr>
+                <tr><th scope="row">Cambian los campos del autor</th><td class="center"><span class="status status--partial" aria-label="Depende">~</span></td><td class="center"><span class="status" aria-label="Sí">✓</span></td></tr>
+                <tr><th scope="row">Cambia el comportamiento (JS)</th><td class="center"><span class="status status--no" aria-label="No">—</span></td><td class="center"><span class="status" aria-label="Sí">✓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout callout--warning" role="note">
+            <span class="callout__icon" aria-hidden="true">!</span>
+            <div><span class="callout__title">Cuidado con los nombres de clase</span>Las variantes se convierten en clases CSS. Evita nombres que choquen con utilidades de Tailwind como <code>table</code>, <code>block</code> o <code>hidden</code>.</div>
+          </div>
+
+          <h2 id="decorar">4. Decora sin romper el contrato</h2>
+          <p>El JavaScript del bloque recibe un DOM predecible. Léelo, transfórmalo y conserva la instrumentación de Universal Editor para que el autor siga pudiendo seleccionar cada ítem.</p>
+
+          <div class="code">
+            <div class="code__head"><span class="code__dots" aria-hidden="true"><span></span><span></span><span></span></span>feature-cards.js<button class="copy-btn" type="button">Copiar</button></div>
+            <pre><code><span class="tk-k">export default function</span> <span class="tk-f">decorate</span>(block) {
+  <span class="tk-c">// cada fila es una tarjeta; las vacías se conservan para UE</span>
+  <span class="tk-k">const</span> items = [...block.children].<span class="tk-f">map</span>((row) =&gt; ({
+    title: row.<span class="tk-f">querySelector</span>(<span class="tk-s">'h3'</span>)?.textContent || <span class="tk-s">''</span>,
+    href: row.<span class="tk-f">querySelector</span>(<span class="tk-s">'a'</span>)?.href || <span class="tk-s">''</span>,
+  }));
+  <span class="tk-f">render</span>(items, block);
+}</code></pre>
+          </div>
+
+          <h2 id="checklist">5. Checklist antes del pull request</h2>
+          <ol>
+            <li>El bloque funciona con campos vacíos u opcionales.</li>
+            <li>Los encabezados respetan la jerarquía de la página.</li>
+            <li>Todo es accesible con teclado y tiene nombres accesibles.</li>
+            <li>Probaste en móvil, tablet y escritorio, en tema claro y oscuro.</li>
+            <li><code>npm run lint</code> pasa sin errores.</li>
+          </ol>
+
+          <figure>
+            <div class="cover cover--violet" aria-hidden="true"><span class="cover__glyph">UE ✓</span></div>
+            <figcaption>Así se ve un bloque bien modelado en el panel de propiedades de Universal Editor.</figcaption>
+          </figure>
+
+          <hr>
+          <p>Diseñar desde el contenido parece más lento al principio, pero cada bloque que modelas bien es un bloque que nadie tendrá que reescribir. Si quieres practicarlo, sigue la guía <a href="guide.html">Crea tu primer bloque</a>.</p>
+        </div>
+
+        <!-- block: article-footer · nuevo (tags, compartir y autor) -->
+        <footer class="article-footer">
+          <div class="tags" aria-label="Etiquetas">
+            <span class="tag">#modelado</span><span class="tag">#bloques</span><span class="tag">#universal-editor</span><span class="tag">#buenas-prácticas</span>
+          </div>
+          <div class="share">
+            <span class="muted">Compartir:</span>
+            <a class="btn btn--secondary btn--sm" href="#">LinkedIn</a>
+            <a class="btn btn--secondary btn--sm" href="#">X</a>
+            <button class="btn btn--secondary btn--sm" type="button">Copiar enlace</button>
+          </div>
+          <div class="card author-card">
+            <span class="avatar avatar--lg" aria-hidden="true">LG</span>
+            <div>
+              <strong>Liderman Giraldo</strong>
+              <p>Desarrollador frontend en proyectos AEM. Escribe sobre bloques, modelos de contenido y sistemas de diseño para Edge Delivery.</p>
+            </div>
+          </div>
+        </footer>
+      </article>
+
+      <!-- block: toc · nuevo (índice automático a partir de los h2/h3) -->
+      <aside class="toc" aria-labelledby="toc-title">
+        <p class="toc__title" id="toc-title">En este artículo</p>
+        <nav data-spy aria-labelledby="toc-title">
+          <ol>
+            <li><a href="#contenido-primero">1. Contenido primero</a></li>
+            <li><a href="#modelo">2. Diseña el modelo para el autor</a></li>
+            <li class="toc__sub"><a href="#nombres">Nombres que se explican solos</a></li>
+            <li><a href="#variantes">3. Variantes, no copias</a></li>
+            <li><a href="#decorar">4. Decora sin romper el contrato</a></li>
+            <li><a href="#checklist">5. Checklist antes del PR</a></li>
+          </ol>
+        </nav>
+        <div class="toc__extra">
+          <a href="#main">↑ Volver arriba</a>
+          <a href="#">Editar en GitHub</a>
+        </div>
+      </aside>
+    </div>
+
+    <!-- block: related-posts · nuevo (podría reutilizar el grid de blog-list) -->
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Sigue leyendo</span>
+          <h2 class="h2">Artículos relacionados</h2>
+        </div>
+        <div class="grid grid--3">
+          <article class="card card--link post-card">
+            <div class="cover cover--violet" aria-hidden="true"><span class="cover__glyph">model.json</span></div>
+            <div class="post-card__body">
+              <div class="post-card__meta"><span class="badge badge--violet">Universal Editor</span><span class="muted">10 min</span></div>
+              <h3 class="post-card__title"><a class="stretched" href="blog-post.html">Field collapse y element grouping sin dolor</a></h3>
+            </div>
+          </article>
+          <article class="card card--link post-card">
+            <div class="cover" aria-hidden="true"><span class="cover__glyph">&lt;div&gt;</span></div>
+            <div class="post-card__body">
+              <div class="post-card__meta"><span class="badge">Edge Delivery</span><span class="muted">8 min</span></div>
+              <h3 class="post-card__title"><a class="stretched" href="blog-post.html">El markup de EDS explicado: secciones, bloques y filas</a></h3>
+            </div>
+          </article>
+          <article class="card card--link post-card">
+            <div class="cover cover--cyan" aria-hidden="true"><span class="cover__glyph">tw:</span></div>
+            <div class="post-card__body">
+              <div class="post-card__meta"><span class="badge badge--cyan">Frontend</span><span class="muted">9 min</span></div>
+              <h3 class="post-card__title"><a class="stretched" href="blog-post.html">Tailwind + Preact dentro de bloques vanilla</a></h3>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">A</span>AEM <span class="brand__desc">knowledge</span></a>
+          <p>Tu mapa para entender AEM: documentación, guías y rutas para construir con criterio.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Aprender</h2>
+          <ul>
+            <li><a href="docs.html">Documentación</a></li>
+            <li><a href="guide.html">Guías</a></li>
+            <li><a href="paths.html">Rutas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Comunidad</h2>
+          <ul>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#">Ejemplos</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Recursos</h2>
+          <ul>
+            <li><a href="https://www.aem.live/docs/" rel="noopener">aem.live</a></li>
+            <li><a href="https://experienceleague.adobe.com/" rel="noopener">Experience League</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 AEM knowledge</span>
+        <span>Hecho con Edge Delivery Services</span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search" id="search" aria-label="Buscar en el sitio">
+    <input class="search__input" type="search" placeholder="Buscar guías, documentación, artículos…" aria-label="Buscar">
+    <ul class="search__results"></ul>
+    <p class="search__empty" hidden>Sin resultados. Prueba con otra palabra.</p>
+    <div class="search__footer"><span><kbd>Esc</kbd> cerrar</span><span><kbd>⌘K</kbd> abrir/cerrar</span></div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rutas de aprendizaje · AEM knowledge</title>
+  <meta name="description" content="Prototipo: catálogo de rutas de aprendizaje con filtro por rol, comparativa y preguntas frecuentes.">
+  <script>
+    (() => {
+      let theme = 'dark';
+      try {
+        const saved = localStorage.getItem('aem-forge-theme');
+        if (saved === 'dark' || saved === 'light') theme = saved;
+      } catch (e) { /* sin almacenamiento */ }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">A</span>AEM <span class="brand__desc">knowledge</span></a>
+      <nav class="nav" aria-label="Principal">
+        <a href="docs.html">Documentación</a>
+        <a href="guide.html">Guías</a>
+        <a href="paths.html" aria-current="page">Rutas</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-search-open><span aria-hidden="true">⌕</span>Buscar…<kbd>⌘K</kbd></button>
+        <button class="icon-btn search-icon" type="button" data-search-open aria-label="Buscar">⌕</button>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Cambiar tema">☀</button>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Principal (móvil)">
+      <div class="container">
+        <a href="docs.html">Documentación</a>
+        <a href="guide.html">Guías</a>
+        <a href="paths.html">Rutas</a>
+        <a href="blog.html">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- block: page-hero · nuevo (variante centrada con estadísticas) -->
+    <section class="page-hero page-hero--center grid-bg">
+      <div class="container">
+        <span class="eyebrow">Rutas de aprendizaje</span>
+        <h1 class="display">Un camino claro<br><span class="text-gradient">según tu rol.</span></h1>
+        <p class="lead">Rutas progresivas que conectan documentación, guías y práctica. Elige por dónde empezar y avanza a tu ritmo, sin perderte entre cientos de páginas.</p>
+        <dl class="stats" style="width: min(100%, 760px);">
+          <div class="stat"><dt>Rutas</dt><dd>6</dd></div>
+          <div class="stat"><dt>Lecciones</dt><dd>124</dd></div>
+          <div class="stat"><dt>Horas</dt><dd>48</dd></div>
+          <div class="stat"><dt>Proyectos</dt><dd>9</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- block: path-cards · nuevo (catálogo filtrable por rol) -->
+    <section class="section" data-filter>
+      <div class="container">
+        <div class="section-head section-head--row">
+          <h2 class="h2">Elige tu ruta</h2>
+          <p class="muted" data-filter-count aria-live="polite"></p>
+        </div>
+        <div class="toolbar">
+          <div class="chips" role="group" aria-label="Filtrar por rol">
+            <button class="chip" type="button" data-filter-value="all" aria-pressed="true">Todas</button>
+            <button class="chip" type="button" data-filter-value="dev" aria-pressed="false">Desarrollo</button>
+            <button class="chip" type="button" data-filter-value="author" aria-pressed="false">Autoría</button>
+            <button class="chip" type="button" data-filter-value="arch" aria-pressed="false">Arquitectura</button>
+            <button class="chip" type="button" data-filter-value="design" aria-pressed="false">Diseño</button>
+          </div>
+        </div>
+
+        <div class="grid grid--3">
+          <article class="card card--link path-card" data-tags="dev">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">{ }</span><span class="badge">Intermedio</span></div>
+            <h3 class="h3"><a class="stretched" href="path-detail.html">Ruta para desarrolladores</a></h3>
+            <p>Bloques, estilos, modelos de Universal Editor y despliegue con Code Sync.</p>
+            <div class="path-card__stats"><span>6 módulos</span><span>28 lecciones</span><span>12 h</span></div>
+            <div class="path-card__progress">
+              <div class="progress-row"><span>Tu progreso</span><span>38%</span></div>
+              <div class="progress"><div class="progress__bar" style="--value: 38%;"></div></div>
+            </div>
+          </article>
+
+          <article class="card card--link path-card path-card--violet" data-tags="author">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">✎</span><span class="badge badge--success">Principiante</span></div>
+            <h3 class="h3"><a class="stretched" href="path-detail.html">Ruta para autores</a></h3>
+            <p>Crea, edita y publica contenido en Universal Editor sin tocar código.</p>
+            <div class="path-card__stats"><span>4 módulos</span><span>16 lecciones</span><span>5 h</span></div>
+            <div class="path-card__progress">
+              <div class="progress-row"><span>Sin empezar</span><span>0%</span></div>
+              <div class="progress"><div class="progress__bar"></div></div>
+            </div>
+          </article>
+
+          <article class="card card--link path-card path-card--cyan" data-tags="arch dev">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">⌘</span><span class="badge badge--coral">Avanzado</span></div>
+            <h3 class="h3"><a class="stretched" href="path-detail.html">Arquitectura EDS + AEM</a></h3>
+            <p>Content Fragments, integraciones, CDN, seguridad y decisiones a escala.</p>
+            <div class="path-card__stats"><span>5 módulos</span><span>22 lecciones</span><span>10 h</span></div>
+            <div class="path-card__progress">
+              <div class="progress-row"><span>Sin empezar</span><span>0%</span></div>
+              <div class="progress"><div class="progress__bar"></div></div>
+            </div>
+          </article>
+
+          <article class="card card--link path-card path-card--warning" data-tags="dev design">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">↗</span><span class="badge">Intermedio</span></div>
+            <h3 class="h3"><a class="stretched" href="path-detail.html">Performance-first</a></h3>
+            <p>LCP, CLS, carga por fases e imágenes: cómo mantener Lighthouse en 100.</p>
+            <div class="path-card__stats"><span>3 módulos</span><span>14 lecciones</span><span>6 h</span></div>
+            <div class="path-card__progress">
+              <div class="progress-row"><span>Tu progreso</span><span>72%</span></div>
+              <div class="progress"><div class="progress__bar" style="--value: 72%;"></div></div>
+            </div>
+          </article>
+
+          <article class="card card--link path-card path-card--coral" data-tags="design">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">◐</span><span class="badge">Intermedio</span></div>
+            <h3 class="h3"><a class="stretched" href="path-detail.html">Design system con Tailwind</a></h3>
+            <p>Tokens, átomos y componentes Preact reutilizables dentro de bloques.</p>
+            <div class="path-card__stats"><span>4 módulos</span><span>20 lecciones</span><span>8 h</span></div>
+            <div class="path-card__progress">
+              <div class="progress-row"><span>Sin empezar</span><span>0%</span></div>
+              <div class="progress"><div class="progress__bar"></div></div>
+            </div>
+          </article>
+
+          <article class="card card--link path-card" data-tags="author arch">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">▤</span><span class="badge badge--success">Principiante</span></div>
+            <h3 class="h3"><a class="stretched" href="path-detail.html">Modelado de contenido</a></h3>
+            <p>Del brief a modelos claros: bloques, fragmentos y metadatos que escalan.</p>
+            <div class="path-card__stats"><span>4 módulos</span><span>24 lecciones</span><span>7 h</span></div>
+            <div class="path-card__progress">
+              <div class="progress-row"><span>Sin empezar</span><span>0%</span></div>
+              <div class="progress"><div class="progress__bar"></div></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="empty-state" hidden>
+          <p><strong>Todavía no hay rutas para ese rol.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: feature-cards · existente (cómo funcionan las rutas) -->
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Cómo funciona</span>
+          <h2 class="h2">Aprender haciendo, en tres pasos</h2>
+        </div>
+        <div class="grid grid--3">
+          <div class="card">
+            <span class="path-card__icon" aria-hidden="true">01</span>
+            <h3 class="h3" style="margin-top: 18px;">Elige una ruta</h3>
+            <p class="muted" style="margin-top: 8px;">Filtra por tu rol y empieza por el nivel que te corresponde.</p>
+          </div>
+          <div class="card">
+            <span class="path-card__icon" aria-hidden="true">02</span>
+            <h3 class="h3" style="margin-top: 18px;">Practica cada módulo</h3>
+            <p class="muted" style="margin-top: 8px;">Lecciones cortas con ejercicios reales sobre un proyecto base.</p>
+          </div>
+          <div class="card">
+            <span class="path-card__icon" aria-hidden="true">03</span>
+            <h3 class="h3" style="margin-top: 18px;">Construye el proyecto</h3>
+            <p class="muted" style="margin-top: 8px;">Cada ruta termina con un entregable que puedes mostrar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: data-table · existente (comparativa de rutas) -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Comparativa</span>
+          <h2 class="h2">¿Qué ruta es para ti?</h2>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <caption class="sr-only">Comparativa de contenidos por ruta</caption>
+            <thead>
+              <tr>
+                <th scope="col">Tema</th>
+                <th scope="col" class="center">Desarrollo</th>
+                <th scope="col" class="center">Autoría</th>
+                <th scope="col" class="center">Arquitectura</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Universal Editor</th><td class="center"><span class="status" aria-label="Sí">✓</span></td><td class="center"><span class="status" aria-label="Sí">✓</span></td><td class="center"><span class="status status--partial" aria-label="Parcial">~</span></td></tr>
+              <tr><th scope="row">Bloques y JavaScript</th><td class="center"><span class="status" aria-label="Sí">✓</span></td><td class="center"><span class="status status--no" aria-label="No aplica">—</span></td><td class="center"><span class="status status--partial" aria-label="Parcial">~</span></td></tr>
+              <tr><th scope="row">Content Fragments</th><td class="center"><span class="status status--partial" aria-label="Parcial">~</span></td><td class="center"><span class="status" aria-label="Sí">✓</span></td><td class="center"><span class="status" aria-label="Sí">✓</span></td></tr>
+              <tr><th scope="row">CDN, CORS y seguridad</th><td class="center"><span class="status status--no" aria-label="No aplica">—</span></td><td class="center"><span class="status status--no" aria-label="No aplica">—</span></td><td class="center"><span class="status" aria-label="Sí">✓</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: accordion · nuevo (FAQ; mismo bloque que en la guía) -->
+    <section class="section section--soft">
+      <div class="container" style="max-width: 820px;">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Preguntas frecuentes</span>
+          <h2 class="h2">Antes de empezar</h2>
+        </div>
+        <div class="accordion">
+          <details open>
+            <summary>¿Necesito experiencia previa con AEM?</summary>
+            <div class="accordion__body">No para las rutas de nivel principiante. Para las intermedias conviene haber terminado la guía “Crea tu primer bloque”.</div>
+          </details>
+          <details>
+            <summary>¿Se guarda mi progreso?</summary>
+            <div class="accordion__body">Sí. El progreso se guarda en tu navegador; si inicias sesión, se sincroniza entre dispositivos.</div>
+          </details>
+          <details>
+            <summary>¿Puedo seguir varias rutas a la vez?</summary>
+            <div class="accordion__body">Claro. Muchas lecciones se comparten entre rutas y se marcan como completadas en todas.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: cta-banner · existente -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-band" style="grid-template-columns: 1fr; justify-items: center; text-align: center;">
+          <div class="cta-band__copy" style="align-items: center;">
+            <span class="eyebrow">¿No sabes por dónde empezar?</span>
+            <h2 class="h2">Empieza por los fundamentos.</h2>
+            <p class="lead">Una guía de 45 minutos para entender cómo encaja todo.</p>
+          </div>
+          <a class="btn btn--primary" href="guide.html">Crear mi primer bloque →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">A</span>AEM <span class="brand__desc">knowledge</span></a>
+          <p>Tu mapa para entender AEM: documentación, guías y rutas para construir con criterio.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Aprender</h2>
+          <ul>
+            <li><a href="docs.html">Documentación</a></li>
+            <li><a href="guide.html">Guías</a></li>
+            <li><a href="paths.html">Rutas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Comunidad</h2>
+          <ul>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#">Ejemplos</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Recursos</h2>
+          <ul>
+            <li><a href="https://www.aem.live/docs/" rel="noopener">aem.live</a></li>
+            <li><a href="https://experienceleague.adobe.com/" rel="noopener">Experience League</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 AEM knowledge</span>
+        <span>Hecho con Edge Delivery Services</span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search" id="search" aria-label="Buscar en el sitio">
+    <input class="search__input" type="search" placeholder="Buscar guías, documentación, artículos…" aria-label="Buscar">
+    <ul class="search__results"></ul>
+    <p class="search__empty" hidden>Sin resultados. Prueba con otra palabra.</p>
+    <div class="search__footer"><span><kbd>Esc</kbd> cerrar</span><span><kbd>⌘K</kbd> abrir/cerrar</span></div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ruta para desarrolladores · AEM knowledge</title>
+  <meta name="description" content="Prototipo: detalle de una ruta con progreso, objetivos, temario por módulos y requisitos.">
+  <script>
+    (() => {
+      let theme = 'dark';
+      try {
+        const saved = localStorage.getItem('aem-forge-theme');
+        if (saved === 'dark' || saved === 'light') theme = saved;
+      } catch (e) { /* sin almacenamiento */ }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">A</span>AEM <span class="brand__desc">knowledge</span></a>
+      <nav class="nav" aria-label="Principal">
+        <a href="docs.html">Documentación</a>
+        <a href="guide.html">Guías</a>
+        <a href="paths.html" aria-current="page">Rutas</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-search-open><span aria-hidden="true">⌕</span>Buscar…<kbd>⌘K</kbd></button>
+        <button class="icon-btn search-icon" type="button" data-search-open aria-label="Buscar">⌕</button>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Cambiar tema">☀</button>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Principal (móvil)">
+      <div class="container">
+        <a href="docs.html">Documentación</a>
+        <a href="guide.html">Guías</a>
+        <a href="paths.html">Rutas</a>
+        <a href="blog.html">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- block: path-hero · nuevo (texto + tarjeta de progreso) -->
+    <section class="page-hero grid-bg">
+      <div class="container path-hero-grid">
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <ol class="breadcrumb">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="paths.html">Rutas</a></li>
+            <li aria-current="page">Desarrolladores</li>
+          </ol>
+          <div class="tags"><span class="badge">Ruta</span><span class="badge badge--cyan">Intermedio</span></div>
+          <h1 class="display">Ruta para<br><span class="text-gradient">desarrolladores.</span></h1>
+          <p class="lead">Aprende a construir bloques que los autores entienden, con estilos escalables, modelos claros para Universal Editor y un flujo de despliegue sin sustos.</p>
+          <div class="meta">
+            <span>6 módulos</span><span>·</span><span>28 lecciones</span><span>·</span><span>12 horas</span><span>·</span><span>Actualizada oct 2026</span>
+          </div>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="guide.html">Continuar donde lo dejé →</a>
+            <a class="btn btn--secondary" href="#temario">Ver temario</a>
+          </div>
+        </div>
+
+        <aside class="summary-card" aria-labelledby="summary-title">
+          <div class="summary-card__top">
+            <div class="ring" style="--p: 38;" role="img" aria-label="38% completado"><span>38%</span></div>
+            <div>
+              <p class="toc__title" id="summary-title" style="margin: 0;">Tu progreso</p>
+              <p style="margin-top: 6px; font-size: 20px; font-weight: 700;">11 de 28 lecciones</p>
+              <p class="muted" style="font-size: 14px;">≈ 7 h restantes</p>
+            </div>
+          </div>
+          <ul class="summary-list">
+            <li>Nivel<strong>Intermedio</strong></li>
+            <li>Proyecto final<strong>Sitio con 6 bloques</strong></li>
+            <li>Certificado<strong>Sí, al completar</strong></li>
+          </ul>
+          <div class="next-lesson">
+            <small>Siguiente lección</small>
+            <a href="guide.html">3.2 · Variantes con block options</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- block: split-showcase · existente (lo que vas a lograr) -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Objetivos</span>
+          <h2 class="h2">Lo que vas a lograr</h2>
+        </div>
+        <ul class="checks grid grid--2">
+          <li><span class="tick" aria-hidden="true">✓</span><div><strong>Diseñar modelos de contenido</strong>Campos claros, variantes y filtros para Universal Editor.</div></li>
+          <li><span class="tick" aria-hidden="true">✓</span><div><strong>Construir bloques accesibles</strong>Semántica, teclado y estados vacíos desde el primer día.</div></li>
+          <li><span class="tick" aria-hidden="true">✓</span><div><strong>Estilizar con tokens</strong>Tailwind y componentes Preact sin romper el markup de AEM.</div></li>
+          <li><span class="tick" aria-hidden="true">✓</span><div><strong>Integrar Content Fragments</strong>Persisted queries, CORS y sanitización.</div></li>
+          <li><span class="tick" aria-hidden="true">✓</span><div><strong>Medir el rendimiento</strong>Fases eager, lazy y delayed con Lighthouse en cada PR.</div></li>
+          <li><span class="tick" aria-hidden="true">✓</span><div><strong>Desplegar con confianza</strong>Ramas, previews y publicación desde AEM.</div></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="temario">
+      <div class="container curriculum">
+        <!-- block: curriculum · nuevo (módulos con lecciones; cada módulo es un ítem) -->
+        <div>
+          <div class="section-head" style="margin-bottom: 32px;">
+            <span class="eyebrow">Temario</span>
+            <h2 class="h2">6 módulos, de cero a producción</h2>
+          </div>
+          <ol class="timeline accordion">
+            <li class="module is-done">
+              <span class="module__dot" aria-hidden="true">✓</span>
+              <details>
+                <summary><span>1 · Fundamentos de Edge Delivery<small>4 lecciones · 1 h 30 min · Completado</small></span></summary>
+                <div class="accordion__body">
+                  <ul class="lessons">
+                    <li class="is-done"><span class="lesson__state" aria-hidden="true">✓</span><a href="#">Qué es EDS y cómo se diferencia de AEM Sites</a><span class="lesson__time">15 min</span></li>
+                    <li class="is-done"><span class="lesson__state" aria-hidden="true">✓</span><a href="#">Secciones, bloques y contenido por defecto</a><span class="lesson__time">25 min</span></li>
+                    <li class="is-done"><span class="lesson__state" aria-hidden="true">✓</span><a href="#">Fases eager, lazy y delayed</a><span class="lesson__time">30 min</span></li>
+                    <li class="is-done"><span class="lesson__state" aria-hidden="true">✓</span><a href="#">Entorno local con AEM CLI</a><span class="lesson__time">20 min</span></li>
+                  </ul>
+                </div>
+              </details>
+            </li>
+            <li class="module is-done">
+              <span class="module__dot" aria-hidden="true">✓</span>
+              <details>
+                <summary><span>2 · Tu primer bloque<small>5 lecciones · 2 h · Completado</small></span></summary>
+                <div class="accordion__body">
+                  <ul class="lessons">
+                    <li class="is-done"><span class="lesson__state" aria-hidden="true">✓</span><a href="guide.html">Crea tu primer bloque</a><span class="lesson__time">45 min</span></li>
+                    <li class="is-done"><span class="lesson__state" aria-hidden="true">✓</span><a href="#">Leer el markup sin romperlo</a><span class="lesson__time">20 min</span></li>
+                    <li class="is-done"><span class="lesson__state" aria-hidden="true">✓</span><a href="#">CSS acotado y mobile-first</a><span class="lesson__time">25 min</span></li>
+                  </ul>
+                </div>
+              </details>
+            </li>
+            <li class="module is-current">
+              <span class="module__dot" aria-hidden="true">3</span>
+              <details open>
+                <summary><span>3 · Universal Editor a fondo<small>5 lecciones · 2 h 15 min · En curso</small></span></summary>
+                <div class="accordion__body">
+                  <ul class="lessons">
+                    <li class="is-done"><span class="lesson__state" aria-hidden="true">✓</span><a href="docs.html">Modelos de componentes</a><span class="lesson__time">30 min</span></li>
+                    <li><span class="lesson__state" aria-hidden="true">✓</span><a href="docs.html#variantes">Variantes con block options</a><span class="lesson__time">25 min</span></li>
+                    <li><span class="lesson__state" aria-hidden="true">✓</span><a href="#">Bloques contenedores y filtros</a><span class="lesson__time">30 min</span></li>
+                    <li><span class="lesson__state" aria-hidden="true">✓</span><a href="#">Field collapse y element grouping</a><span class="lesson__time">25 min</span></li>
+                    <li><span class="lesson__state" aria-hidden="true">✓</span><a href="#">Instrumentación y edición en contexto</a><span class="lesson__time">25 min</span></li>
+                  </ul>
+                </div>
+              </details>
+            </li>
+            <li class="module">
+              <span class="module__dot" aria-hidden="true">4</span>
+              <details>
+                <summary><span>4 · Design system con Tailwind y Preact<small>5 lecciones · 2 h</small></span></summary>
+                <div class="accordion__body">
+                  <ul class="lessons">
+                    <li><span class="lesson__state" aria-hidden="true">✓</span><a href="#">Tokens y temas claro / oscuro</a><span class="lesson__time">25 min</span></li>
+                    <li><span class="lesson__state" aria-hidden="true">✓</span><a href="#">Átomos, moléculas y organismos</a><span class="lesson__time">30 min</span></li>
+                    <li><span class="lesson__state" aria-hidden="true">✓</span><a href="#">Renderizar Preact dentro de un bloque</a><span class="lesson__time">30 min</span></li>
+                  </ul>
+                </div>
+              </details>
+            </li>
+            <li class="module">
+              <span class="module__dot" aria-hidden="true">5</span>
+              <details>
+                <summary><span>5 · Datos con Content Fragments<small>5 lecciones · 2 h 30 min</small></span></summary>
+                <div class="accordion__body">
+                  <ul class="lessons">
+                    <li><span class="lesson__state" aria-hidden="true">✓</span><a href="docs.html#graphql">Modelos, endpoints y persisted queries</a><span class="lesson__time">35 min</span></li>
+                    <li><span class="lesson__state" aria-hidden="true">✓</span><a href="#">CORS en publish</a><span class="lesson__time">20 min</span></li>
+                    <li><span class="lesson__state" aria-hidden="true">✓</span><a href="#">Proyecto: bloque data-table</a><span class="lesson__time">60 min</span></li>
+                  </ul>
+                </div>
+              </details>
+            </li>
+            <li class="module">
+              <span class="module__dot" aria-hidden="true">6</span>
+              <details>
+                <summary><span>6 · Calidad y despliegue<small>4 lecciones · 1 h 45 min</small></span></summary>
+                <div class="accordion__body">
+                  <ul class="lessons">
+                    <li><span class="lesson__state" aria-hidden="true">✓</span><a href="#">Lint, pruebas y revisión de código</a><span class="lesson__time">25 min</span></li>
+                    <li><span class="lesson__state" aria-hidden="true">✓</span><a href="#">Ramas, previews y Code Sync</a><span class="lesson__time">25 min</span></li>
+                    <li><span class="lesson__state" aria-hidden="true">✓</span><a href="#">Proyecto final</a><span class="lesson__time">55 min</span></li>
+                  </ul>
+                </div>
+              </details>
+            </li>
+          </ol>
+        </div>
+
+        <!-- block: path-aside · nuevo (requisitos, habilidades, ayuda) -->
+        <div class="aside-stack">
+          <div class="card">
+            <h3>Requisitos</h3>
+            <ul class="checks">
+              <li><span class="tick" aria-hidden="true">✓</span>HTML, CSS y JavaScript moderno</li>
+              <li><span class="tick" aria-hidden="true">✓</span>Git básico: ramas y pull requests</li>
+              <li><span class="tick" aria-hidden="true">✓</span>Acceso a un entorno AEM (opcional)</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Habilidades</h3>
+            <div class="tags">
+              <span class="tag">Edge Delivery</span><span class="tag">Universal Editor</span><span class="tag">Tailwind</span><span class="tag">Preact</span><span class="tag">GraphQL</span><span class="tag">Accesibilidad</span><span class="tag">Lighthouse</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>¿Te atascaste?</h3>
+            <p class="muted" style="font-size: 14px;">Pregunta en el canal del equipo o revisa la sección de solución de problemas de cada guía.</p>
+            <a class="btn btn--secondary btn--sm" href="#" style="margin-top: 14px;">Abrir el canal</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: path-cards · nuevo (mismo bloque del catálogo, sin filtros) -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head section-head--row">
+          <h2 class="h2">Rutas relacionadas</h2>
+          <a class="btn btn--secondary" href="paths.html">Ver todas las rutas</a>
+        </div>
+        <div class="grid grid--3">
+          <article class="card card--link path-card path-card--cyan">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">⌘</span><span class="badge badge--coral">Avanzado</span></div>
+            <h3 class="h3"><a class="stretched" href="path-detail.html">Arquitectura EDS + AEM</a></h3>
+            <p>Content Fragments, integraciones, CDN y seguridad.</p>
+          </article>
+          <article class="card card--link path-card path-card--warning">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">↗</span><span class="badge">Intermedio</span></div>
+            <h3 class="h3"><a class="stretched" href="path-detail.html">Performance-first</a></h3>
+            <p>LCP, CLS, carga por fases e imágenes.</p>
+          </article>
+          <article class="card card--link path-card path-card--coral">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">◐</span><span class="badge">Intermedio</span></div>
+            <h3 class="h3"><a class="stretched" href="path-detail.html">Design system con Tailwind</a></h3>
+            <p>Tokens, átomos y componentes Preact.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">A</span>AEM <span class="brand__desc">knowledge</span></a>
+          <p>Tu mapa para entender AEM: documentación, guías y rutas para construir con criterio.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Aprender</h2>
+          <ul>
+            <li><a href="docs.html">Documentación</a></li>
+            <li><a href="guide.html">Guías</a></li>
+            <li><a href="paths.html">Rutas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Comunidad</h2>
+          <ul>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#">Ejemplos</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Recursos</h2>
+          <ul>
+            <li><a href="https://www.aem.live/docs/" rel="noopener">aem.live</a></li>
+            <li><a href="https://experienceleague.adobe.com/" rel="noopener">Experience League</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 AEM knowledge</span>
+        <span>Hecho con Edge Delivery Services</span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search" id="search" aria-label="Buscar en el sitio">
+    <input class="search__input" type="search" placeholder="Buscar guías, documentación, artículos…" aria-label="Buscar">
+    <ul class="search__results"></ul>
+    <p class="search__empty" hidden>Sin resultados. Prueba con otra palabra.</p>
+    <div class="search__footer"><span><kbd>Esc</kbd> cerrar</span><span><kbd>⌘K</kbd> abrir/cerrar</span></div>
+  </dialog>
+</body>
+</html>

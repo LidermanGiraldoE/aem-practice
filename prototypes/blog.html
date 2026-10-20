@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blog · AEM knowledge</title>
+  <meta name="description" content="Prototipo: listado de blog con artículo destacado, filtros por categoría y newsletter.">
+  <script>
+    (() => {
+      let theme = 'dark';
+      try {
+        const saved = localStorage.getItem('aem-forge-theme');
+        if (saved === 'dark' || saved === 'light') theme = saved;
+      } catch (e) { /* sin almacenamiento */ }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">A</span>AEM <span class="brand__desc">knowledge</span></a>
+      <nav class="nav" aria-label="Principal">
+        <a href="docs.html">Documentación</a>
+        <a href="guide.html">Guías</a>
+        <a href="paths.html">Rutas</a>
+        <a href="blog.html" aria-current="page">Blog</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-search-open><span aria-hidden="true">⌕</span>Buscar…<kbd>⌘K</kbd></button>
+        <button class="icon-btn search-icon" type="button" data-search-open aria-label="Buscar">⌕</button>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Cambiar tema">☀</button>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Principal (móvil)">
+      <div class="container">
+        <a href="docs.html">Documentación</a>
+        <a href="guide.html">Guías</a>
+        <a href="paths.html">Rutas</a>
+        <a href="blog.html">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- block: page-hero · nuevo (hero compacto, variante centrada) -->
+    <section class="page-hero page-hero--center grid-bg">
+      <div class="container">
+        <span class="eyebrow">Blog</span>
+        <h1 class="display">Notas de campo<br><span class="text-gradient">sobre AEM.</span></h1>
+        <p class="lead">Decisiones técnicas, errores que ya cometimos por ti y patrones que funcionan en proyectos reales con Edge Delivery y Universal Editor.</p>
+      </div>
+    </section>
+
+    <!-- block: blog-featured · nuevo (artículo destacado) -->
+    <section class="section--tight">
+      <div class="container">
+        <article class="card card--link featured">
+          <div class="cover" aria-hidden="true"><span class="cover__glyph">{ block }</span></div>
+          <div class="featured__body">
+            <div class="meta">
+              <span class="badge">Destacado</span>
+              <span>Edge Delivery</span>
+              <span>·</span>
+              <span>12 min de lectura</span>
+            </div>
+            <h2 class="featured__title"><a class="stretched" href="blog-post.html">Cómo pensar un bloque antes de escribir una sola línea de código</a></h2>
+            <p class="lead">El modelo de contenido es el contrato entre autores y desarrolladores. Te mostramos el proceso que usamos para diseñar bloques que se editan a la primera.</p>
+            <div class="author">
+              <span class="avatar" aria-hidden="true">LG</span>
+              <span><strong>Liderman Giraldo</strong>20 oct 2026</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- block: blog-list · nuevo (listado filtrable: chips + búsqueda + grid) -->
+    <section class="section" data-filter>
+      <div class="container">
+        <div class="section-head section-head--row">
+          <div>
+            <h2 class="h2">Últimos artículos</h2>
+          </div>
+          <p class="muted" data-filter-count aria-live="polite"></p>
+        </div>
+
+        <div class="toolbar">
+          <div class="chips" role="group" aria-label="Filtrar por categoría">
+            <button class="chip" type="button" data-filter-value="all" aria-pressed="true">Todos</button>
+            <button class="chip" type="button" data-filter-value="eds" aria-pressed="false">Edge Delivery</button>
+            <button class="chip" type="button" data-filter-value="ue" aria-pressed="false">Universal Editor</button>
+            <button class="chip" type="button" data-filter-value="frontend" aria-pressed="false">Frontend</button>
+            <button class="chip" type="button" data-filter-value="performance" aria-pressed="false">Performance</button>
+            <button class="chip" type="button" data-filter-value="casos" aria-pressed="false">Casos reales</button>
+          </div>
+          <label class="sr-only" for="blog-search">Buscar artículos</label>
+          <input class="input" id="blog-search" type="search" placeholder="Buscar artículos…" data-filter-search>
+        </div>
+
+        <div class="grid grid--3">
+          <article class="card card--link post-card" data-tags="eds frontend">
+            <div class="cover" aria-hidden="true"><span class="cover__glyph">&lt;div&gt;</span></div>
+            <div class="post-card__body">
+              <div class="post-card__meta"><span class="badge">Edge Delivery</span><span class="muted">8 min</span></div>
+              <h3 class="post-card__title"><a class="stretched" href="blog-post.html">El markup de EDS explicado: secciones, bloques y filas</a></h3>
+              <p class="post-card__excerpt">Lo que AEM entrega al navegador y cómo leerlo antes de decorar un bloque.</p>
+              <div class="author"><span class="avatar" aria-hidden="true">LG</span><span>Liderman Giraldo · 14 oct</span></div>
+            </div>
+          </article>
+
+          <article class="card card--link post-card" data-tags="ue">
+            <div class="cover cover--violet" aria-hidden="true"><span class="cover__glyph">model.json</span></div>
+            <div class="post-card__body">
+              <div class="post-card__meta"><span class="badge badge--violet">Universal Editor</span><span class="muted">10 min</span></div>
+              <h3 class="post-card__title"><a class="stretched" href="blog-post.html">Field collapse y element grouping sin dolor</a></h3>
+              <p class="post-card__excerpt">Cómo nombrar campos para que AEM genere HTML semántico sin escribir lógica extra.</p>
+              <div class="author"><span class="avatar avatar--violet" aria-hidden="true">AT</span><span>Andrea Tejada · 9 oct</span></div>
+            </div>
+          </article>
+
+          <article class="card card--link post-card" data-tags="performance eds">
+            <div class="cover cover--warning" aria-hidden="true"><span class="cover__glyph">100</span></div>
+            <div class="post-card__body">
+              <div class="post-card__meta"><span class="badge badge--warning">Performance</span><span class="muted">7 min</span></div>
+              <h3 class="post-card__title"><a class="stretched" href="blog-post.html">Lighthouse 100 no es suerte: el presupuesto de la fase eager</a></h3>
+              <p class="post-card__excerpt">Qué cargar antes del LCP, qué diferir y cómo medirlo en cada pull request.</p>
+              <div class="author"><span class="avatar avatar--coral" aria-hidden="true">MG</span><span>Marcelo Gamboa · 2 oct</span></div>
+            </div>
+          </article>
+
+          <article class="card card--link post-card" data-tags="frontend">
+            <div class="cover cover--cyan" aria-hidden="true"><span class="cover__glyph">tw:</span></div>
+            <div class="post-card__body">
+              <div class="post-card__meta"><span class="badge badge--cyan">Frontend</span><span class="muted">9 min</span></div>
+              <h3 class="post-card__title"><a class="stretched" href="blog-post.html">Tailwind + Preact dentro de bloques vanilla</a></h3>
+              <p class="post-card__excerpt">Un sistema de diseño moderno sin romper el contrato de markup de AEM.</p>
+              <div class="author"><span class="avatar" aria-hidden="true">LG</span><span>Liderman Giraldo · 25 sep</span></div>
+            </div>
+          </article>
+
+          <article class="card card--link post-card" data-tags="casos ue">
+            <div class="cover cover--coral" aria-hidden="true"><span class="cover__glyph">CORS</span></div>
+            <div class="post-card__body">
+              <div class="post-card__meta"><span class="badge badge--coral">Casos reales</span><span class="muted">11 min</span></div>
+              <h3 class="post-card__title"><a class="stretched" href="blog-post.html">Content Fragments en EDS: lo que nadie te cuenta del CORS</a></h3>
+              <p class="post-card__excerpt">Persisted queries, encoding de rutas y la política correcta en publish.</p>
+              <div class="author"><span class="avatar avatar--violet" aria-hidden="true">JE</span><span>Juan Elkin · 18 sep</span></div>
+            </div>
+          </article>
+
+          <article class="card card--link post-card" data-tags="eds casos">
+            <div class="cover" aria-hidden="true"><span class="cover__glyph">git push</span></div>
+            <div class="post-card__body">
+              <div class="post-card__meta"><span class="badge">Edge Delivery</span><span class="muted">6 min</span></div>
+              <h3 class="post-card__title"><a class="stretched" href="blog-post.html">Ramas, previews y aem.page: un flujo de trabajo para equipos</a></h3>
+              <p class="post-card__excerpt">Cómo revisar cambios por rama sin pisar el trabajo de otros desarrolladores.</p>
+              <div class="author"><span class="avatar avatar--coral" aria-hidden="true">MG</span><span>Marcelo Gamboa · 11 sep</span></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="empty-state" hidden>
+          <p><strong>No encontramos artículos con ese filtro.</strong></p>
+          <p class="muted">Prueba otra categoría o busca con menos palabras.</p>
+        </div>
+
+        <nav class="pagination" aria-label="Paginación">
+          <a href="#" aria-label="Página anterior">←</a>
+          <a href="#" aria-current="page">1</a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+          <span aria-hidden="true">…</span>
+          <a href="#">8</a>
+          <a href="#" aria-label="Página siguiente">→</a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- block: newsletter · nuevo (podría ser variante de cta-banner) -->
+    <section class="section--tight" style="padding-bottom: 110px;">
+      <div class="container">
+        <div class="cta-band">
+          <div class="cta-band__copy">
+            <span class="eyebrow">Newsletter</span>
+            <h2 class="h2">Un correo al mes. Solo lo que vale la pena.</h2>
+            <p class="lead">Nuevos artículos, guías y cambios importantes de la plataforma, sin ruido.</p>
+          </div>
+          <form class="form-inline" data-demo-form>
+            <label class="sr-only" for="newsletter-email">Correo electrónico</label>
+            <input class="input" id="newsletter-email" type="email" placeholder="tu@correo.com" required autocomplete="email">
+            <button class="btn btn--primary" type="submit">Suscribirme</button>
+            <p class="form-note" role="status">Sin spam. Puedes darte de baja cuando quieras.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">A</span>AEM <span class="brand__desc">knowledge</span></a>
+          <p>Tu mapa para entender AEM: documentación, guías y rutas para construir con criterio.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Aprender</h2>
+          <ul>
+            <li><a href="docs.html">Documentación</a></li>
+            <li><a href="guide.html">Guías</a></li>
+            <li><a href="paths.html">Rutas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Comunidad</h2>
+          <ul>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#">Ejemplos</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Recursos</h2>
+          <ul>
+            <li><a href="https://www.aem.live/docs/" rel="noopener">aem.live</a></li>
+            <li><a href="https://experienceleague.adobe.com/" rel="noopener">Experience League</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 AEM knowledge</span>
+        <span>Hecho con Edge Delivery Services</span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search" id="search" aria-label="Buscar en el sitio">
+    <input class="search__input" type="search" placeholder="Buscar guías, documentación, artículos…" aria-label="Buscar">
+    <ul class="search__results"></ul>
+    <p class="search__empty" hidden>Sin resultados. Prueba con otra palabra.</p>
+    <div class="search__footer"><span><kbd>Esc</kbd> cerrar</span><span><kbd>⌘K</kbd> abrir/cerrar</span></div>
+  </dialog>
+</body>
+</html>

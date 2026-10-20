@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modelos de componentes · Documentación · AEM knowledge</title>
+  <meta name="description" content="Prototipo: página de documentación con navegación lateral, índice, pestañas de código y feedback.">
+  <script>
+    (() => {
+      let theme = 'dark';
+      try {
+        const saved = localStorage.getItem('aem-forge-theme');
+        if (saved === 'dark' || saved === 'light') theme = saved;
+      } catch (e) { /* sin almacenamiento */ }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">A</span>AEM <span class="brand__desc">knowledge</span></a>
+      <nav class="nav" aria-label="Principal">
+        <a href="docs.html" aria-current="page">Documentación</a>
+        <a href="guide.html">Guías</a>
+        <a href="paths.html">Rutas</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-search-open><span aria-hidden="true">⌕</span>Buscar…<kbd>⌘K</kbd></button>
+        <button class="icon-btn search-icon" type="button" data-search-open aria-label="Buscar">⌕</button>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Cambiar tema">☀</button>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Principal (móvil)">
+      <div class="container">
+        <a href="docs.html">Documentación</a>
+        <a href="guide.html">Guías</a>
+        <a href="paths.html">Rutas</a>
+        <a href="blog.html">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="docs-mobile-bar">
+      <button class="btn btn--secondary btn--sm" type="button" data-docs-open>☰ Menú de documentación</button>
+      <span class="badge">v2026.10</span>
+    </div>
+  </div>
+
+  <div class="container docs-layout">
+    <!-- block: docs-sidebar · nuevo (en EDS: fragmento de navegación, como nav.plain.html) -->
+    <aside class="docs-sidebar" aria-label="Documentación">
+      <label class="sr-only" for="docs-filter">Filtrar documentación</label>
+      <input class="input" id="docs-filter" type="search" placeholder="Filtrar temas…" data-nav-filter>
+
+      <details class="side-group" open>
+        <summary>Empezar</summary>
+        <ul class="side-nav">
+          <li><a href="#">Introducción</a></li>
+          <li><a href="#">Instalación local</a></li>
+          <li><a href="#">Estructura del proyecto</a></li>
+        </ul>
+      </details>
+
+      <details class="side-group" open>
+        <summary>Universal Editor</summary>
+        <ul class="side-nav">
+          <li><a href="#" aria-current="page">Modelos de componentes</a></li>
+          <li><a href="#">Definiciones</a></li>
+          <li><a href="#">Filtros</a></li>
+          <li><a href="#variantes">Variantes y block options</a></li>
+        </ul>
+      </details>
+
+      <details class="side-group" open>
+        <summary>Content Fragments</summary>
+        <ul class="side-nav">
+          <li><a href="#">Modelos de fragmentos</a></li>
+          <li><a href="#graphql">GraphQL <span class="badge">Nuevo</span></a></li>
+          <li><a href="#">Persisted queries</a></li>
+        </ul>
+      </details>
+
+      <details class="side-group">
+        <summary>Despliegue</summary>
+        <ul class="side-nav">
+          <li><a href="#">Preview y publish</a></li>
+          <li><a href="#">AEM Code Sync</a></li>
+          <li><a href="#">CORS en publish</a></li>
+        </ul>
+      </details>
+    </aside>
+    <button class="docs-backdrop" type="button" data-docs-close aria-label="Cerrar menú de documentación"></button>
+
+    <main id="main" class="docs-content">
+      <!-- block: docs-header · nuevo (breadcrumb + título + metadatos) -->
+      <div class="docs-header">
+        <ol class="breadcrumb">
+          <li><a href="#">Documentación</a></li>
+          <li><a href="#">Universal Editor</a></li>
+          <li aria-current="page">Modelos de componentes</li>
+        </ol>
+        <h1 class="h2">Modelos de componentes</h1>
+        <p class="lead">Define qué campos ve el autor en Universal Editor y cómo se convierten en el markup que recibe tu bloque.</p>
+        <div class="meta">
+          <span class="badge badge--violet">Universal Editor</span>
+          <span>Actualizado el 20 oct 2026</span>
+          <span>·</span>
+          <span>6 min de lectura</span>
+        </div>
+      </div>
+
+      <div class="prose">
+        <h2 id="introduccion">Introducción</h2>
+        <p>Cada bloque que aparece en Universal Editor necesita tres piezas: una <strong>definición</strong> (cómo se llama y qué plantilla crea), un <strong>modelo</strong> (qué campos tiene) y, si es un contenedor, un <strong>filtro</strong> (qué hijos acepta).</p>
+
+        <div class="callout" role="note">
+          <span class="callout__icon" aria-hidden="true">i</span>
+          <div><span class="callout__title">Archivos generados</span>No edites <code>component-models.json</code> a mano. Edita los parciales y ejecuta <code>npm run build:json</code>.</div>
+        </div>
+
+        <h2 id="estructura">Estructura de archivos</h2>
+        <p>Cada bloque guarda su configuración junto a su código, en un parcial que empieza por guion bajo:</p>
+
+        <div class="code">
+          <div class="code__head"><span class="code__dots" aria-hidden="true"><span></span><span></span><span></span></span>Terminal<button class="copy-btn" type="button">Copiar</button></div>
+          <pre><code><span class="tk-c"># estructura de un bloque</span>
+blocks/
+└── data-table/
+    ├── _data-table.json   <span class="tk-c"># definición + modelo + filtros</span>
+    ├── data-table.css
+    └── data-table.js</code></pre>
+        </div>
+
+        <h2 id="tipos">Tipos de campo</h2>
+        <p>Estos son los tipos que más vas a usar y cómo se renderizan en el markup del bloque:</p>
+
+        <div class="table-wrap">
+          <!-- block: data-table · existente -->
+          <table class="table">
+            <thead>
+              <tr><th scope="col">Componente</th><th scope="col">Uso</th><th scope="col">Markup resultante</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row"><code>text</code></th><td>Textos cortos: títulos, etiquetas</td><td>Texto plano</td></tr>
+              <tr><th scope="row"><code>richtext</code></th><td>Párrafos con formato y enlaces</td><td><code>&lt;p&gt;</code>, <code>&lt;ul&gt;</code>…</td></tr>
+              <tr><th scope="row"><code>reference</code></th><td>Imágenes del DAM</td><td><code>&lt;picture&gt;</code></td></tr>
+              <tr><th scope="row"><code>aem-content</code></th><td>Enlaces a páginas</td><td><code>&lt;a&gt;</code></td></tr>
+              <tr><th scope="row"><code>aem-content-fragment</code></th><td>Selector de Content Fragment</td><td>Ruta del fragmento</td></tr>
+              <tr><th scope="row"><code>boolean</code></th><td>Interruptores y block options</td><td>Clase CSS si usa <code>classes_*</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="variantes">Variantes y block options</h2>
+        <p>Los campos llamados <code>classes</code> o <code>classes_*</code> no se renderizan como filas: se convierten en clases del bloque. Así un mismo bloque soporta variantes sin duplicar código.</p>
+
+        <!-- block: code-tabs · nuevo (mismo ejemplo en varios lenguajes) -->
+        <div class="tabs">
+          <div class="tablist" role="tablist" aria-label="Ejemplo de variante">
+            <button class="tab" type="button" role="tab" id="tab-model" aria-controls="panel-model" aria-selected="true">Modelo</button>
+            <button class="tab" type="button" role="tab" id="tab-html" aria-controls="panel-html" aria-selected="false" tabindex="-1">Markup</button>
+            <button class="tab" type="button" role="tab" id="tab-js" aria-controls="panel-js" aria-selected="false" tabindex="-1">JavaScript</button>
+          </div>
+          <div class="code" role="tabpanel" id="panel-model" aria-labelledby="tab-model">
+            <div class="code__head">_data-table.json<button class="copy-btn" type="button">Copiar</button></div>
+            <pre><code>{
+  <span class="tk-k">"component"</span>: <span class="tk-s">"boolean"</span>,
+  <span class="tk-k">"valueType"</span>: <span class="tk-s">"boolean"</span>,
+  <span class="tk-k">"name"</span>: <span class="tk-s">"classes_caption"</span>,
+  <span class="tk-k">"label"</span>: <span class="tk-s">"Show Caption"</span>,
+  <span class="tk-k">"value"</span>: <span class="tk-n">false</span>
+}</code></pre>
+          </div>
+          <div class="code" role="tabpanel" id="panel-html" aria-labelledby="tab-html" hidden>
+            <div class="code__head">index.html<button class="copy-btn" type="button">Copiar</button></div>
+            <pre><code><span class="tk-c">&lt;!-- con el interruptor activado --&gt;</span>
+&lt;<span class="tk-k">div</span> <span class="tk-f">class</span>=<span class="tk-s">"data-table caption"</span>&gt;
+  &lt;<span class="tk-k">div</span>&gt;&lt;<span class="tk-k">div</span>&gt;/content/dam/…/tabla&lt;/<span class="tk-k">div</span>&gt;&lt;/<span class="tk-k">div</span>&gt;
+&lt;/<span class="tk-k">div</span>&gt;</code></pre>
+          </div>
+          <div class="code" role="tabpanel" id="panel-js" aria-labelledby="tab-js" hidden>
+            <div class="code__head">data-table.js<button class="copy-btn" type="button">Copiar</button></div>
+            <pre><code><span class="tk-k">const</span> showCaption = block.classList.<span class="tk-f">contains</span>(<span class="tk-s">'caption'</span>);</code></pre>
+          </div>
+        </div>
+
+        <h2 id="graphql">Content Fragments con GraphQL</h2>
+        <p>Cuando el contenido es tabular o se reutiliza en varias páginas, guárdalo en un Content Fragment y léelo desde el bloque con una persisted query.</p>
+        <ol class="steps">
+          <li><strong>Crea el modelo</strong> en <em>Tools → Content Fragment Models</em> y habilítalo.</li>
+          <li><strong>Crea el endpoint</strong> en <em>Tools → GraphQL</em> y publícalo.</li>
+          <li><strong>Guarda la query</strong> en el GraphQL Query Editor y publícala.</li>
+          <li><strong>Configura CORS</strong> en publish para los orígenes de <code>aem.page</code> y <code>aem.live</code>.</li>
+        </ol>
+
+        <div class="callout callout--warning" role="note">
+          <span class="callout__icon" aria-hidden="true">!</span>
+          <div><span class="callout__title">Codificación de la ruta</span>AEM no decodifica <code>%2F</code> en las variables de una persisted query. Mantén las barras de la ruta sin codificar.</div>
+        </div>
+
+        <h2 id="buenas-practicas">Buenas prácticas</h2>
+        <ul>
+          <li>Etiquetas y descripciones en el mismo idioma en todos los modelos.</li>
+          <li>Marca como <code>required</code> solo lo que de verdad rompe el bloque.</li>
+          <li>Prefiere <code>select</code> o <code>boolean</code> a campos de texto libre para variantes.</li>
+        </ul>
+      </div>
+
+      <!-- block: feedback · nuevo -->
+      <div class="feedback" data-feedback>
+        <p>¿Te sirvió esta página?</p>
+        <div class="feedback__actions">
+          <button class="btn btn--secondary btn--sm" type="button" data-answer="yes">👍 Sí</button>
+          <button class="btn btn--secondary btn--sm" type="button" data-answer="no">👎 No</button>
+        </div>
+      </div>
+
+      <!-- block: pager · nuevo (anterior / siguiente) -->
+      <nav class="pager" aria-label="Paginación de documentación">
+        <a href="#"><small>← Anterior</small>Estructura del proyecto</a>
+        <a class="pager__next" href="#"><small>Siguiente →</small>Definiciones</a>
+      </nav>
+    </main>
+
+    <!-- block: toc · nuevo (mismo bloque que en el artículo) -->
+    <aside class="toc docs-toc" aria-labelledby="docs-toc-title">
+      <p class="toc__title" id="docs-toc-title">En esta página</p>
+      <nav data-spy aria-labelledby="docs-toc-title">
+        <ol>
+          <li><a href="#introduccion">Introducción</a></li>
+          <li><a href="#estructura">Estructura de archivos</a></li>
+          <li><a href="#tipos">Tipos de campo</a></li>
+          <li><a href="#variantes">Variantes y block options</a></li>
+          <li><a href="#graphql">Content Fragments con GraphQL</a></li>
+          <li><a href="#buenas-practicas">Buenas prácticas</a></li>
+        </ol>
+      </nav>
+      <div class="toc__extra">
+        <a href="#">✎ Editar esta página</a>
+        <a href="#">⚑ Reportar un problema</a>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="margin-top: 0; padding-top: 0; border-top: 0;">
+        <span>© 2026 AEM knowledge</span>
+        <span><a href="index.html">Inicio</a> · <a href="blog.html">Blog</a> · <a href="paths.html">Rutas</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search" id="search" aria-label="Buscar en el sitio">
+    <input class="search__input" type="search" placeholder="Buscar guías, documentación, artículos…" aria-label="Buscar">
+    <ul class="search__results"></ul>
+    <p class="search__empty" hidden>Sin resultados. Prueba con otra palabra.</p>
+    <div class="search__footer"><span><kbd>Esc</kbd> cerrar</span><span><kbd>⌘K</kbd> abrir/cerrar</span></div>
+  </dialog>
+</body>
+</html>

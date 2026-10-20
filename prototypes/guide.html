@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crea tu primer bloque · Guías · AEM knowledge</title>
+  <meta name="description" content="Prototipo: guía paso a paso con progreso persistente, terminal, solución de problemas y siguientes pasos.">
+  <script>
+    (() => {
+      let theme = 'dark';
+      try {
+        const saved = localStorage.getItem('aem-forge-theme');
+        if (saved === 'dark' || saved === 'light') theme = saved;
+      } catch (e) { /* sin almacenamiento */ }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">A</span>AEM <span class="brand__desc">knowledge</span></a>
+      <nav class="nav" aria-label="Principal">
+        <a href="docs.html">Documentación</a>
+        <a href="guide.html" aria-current="page">Guías</a>
+        <a href="paths.html">Rutas</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-search-open><span aria-hidden="true">⌕</span>Buscar…<kbd>⌘K</kbd></button>
+        <button class="icon-btn search-icon" type="button" data-search-open aria-label="Buscar">⌕</button>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Cambiar tema">☀</button>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Principal (móvil)">
+      <div class="container">
+        <a href="docs.html">Documentación</a>
+        <a href="guide.html">Guías</a>
+        <a href="paths.html">Rutas</a>
+        <a href="blog.html">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- block: guide-hero · nuevo (hero con datos clave: duración, nivel, pasos, requisitos) -->
+    <section class="page-hero grid-bg">
+      <div class="container">
+        <ol class="breadcrumb">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="#">Guías</a></li>
+          <li aria-current="page">Edge Delivery</li>
+        </ol>
+        <div class="tags"><span class="badge">Guía práctica</span><span class="badge badge--success">Principiante</span></div>
+        <h1 class="display">Crea tu primer bloque<br><span class="text-gradient">en Edge Delivery.</span></h1>
+        <p class="lead">Del contenido al bloque decorado y editable en Universal Editor. Al terminar tendrás un bloque <code>quote</code> funcionando en local y listo para tu primer pull request.</p>
+        <dl class="stats">
+          <div class="stat"><dt>Duración</dt><dd>45 min</dd></div>
+          <div class="stat"><dt>Nivel</dt><dd>Principiante</dd></div>
+          <div class="stat"><dt>Pasos</dt><dd>5</dd></div>
+          <div class="stat"><dt>Requisitos</dt><dd>Node 18+</dd></div>
+        </dl>
+        <div class="btn-row">
+          <a class="btn btn--primary" href="#paso-1">Empezar la guía →</a>
+          <a class="btn btn--secondary" href="#">Descargar proyecto base</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="container guide-layout" data-guide="primer-bloque">
+      <!-- block: guide-stepper · nuevo (progreso + navegación de pasos) -->
+      <aside class="stepper" aria-labelledby="stepper-title">
+        <p class="toc__title" id="stepper-title">Tu progreso</p>
+        <div class="progress-row"><span data-guide-label aria-live="polite">0 de 5 pasos · 0%</span></div>
+        <div class="progress" role="presentation"><div class="progress__bar" data-guide-bar></div></div>
+        <nav data-spy data-stepper aria-labelledby="stepper-title">
+          <ol>
+            <li><a href="#paso-1"><span class="stepper__num">1</span>Prepara el entorno</a></li>
+            <li><a href="#paso-2"><span class="stepper__num">2</span>Escribe el contenido</a></li>
+            <li><a href="#paso-3"><span class="stepper__num">3</span>Crea el bloque</a></li>
+            <li><a href="#paso-4"><span class="stepper__num">4</span>Añade el modelo</a></li>
+            <li><a href="#paso-5"><span class="stepper__num">5</span>Valida y publica</a></li>
+          </ol>
+        </nav>
+        <button class="btn btn--ghost btn--sm" type="button" data-guide-reset style="margin-top: 14px;">Reiniciar progreso</button>
+      </aside>
+
+      <div>
+        <!-- block: checklist · nuevo (requisitos previos; reutilizable en rutas) -->
+        <div class="card" style="margin-bottom: 20px;">
+          <h2 class="h3" style="margin-bottom: 16px;">Antes de empezar</h2>
+          <ul class="checks">
+            <li><span class="tick" aria-hidden="true">✓</span><div><strong>Node.js 18 o superior</strong>Comprueba tu versión con <code>node -v</code>.</div></li>
+            <li><span class="tick" aria-hidden="true">✓</span><div><strong>AEM CLI</strong>Lo usaremos para el servidor local en el puerto 3000.</div></li>
+            <li><span class="tick" aria-hidden="true">✓</span><div><strong>Acceso al repositorio</strong>Un fork o rama del proyecto basado en el boilerplate.</div></li>
+          </ul>
+        </div>
+
+        <!-- block: guide-step · nuevo (cada paso es un ítem del bloque contenedor) -->
+        <section class="step" id="paso-1" aria-labelledby="paso-1-title">
+          <div class="step__head">
+            <span class="step__num" aria-hidden="true">01</span>
+            <div>
+              <h2 class="h3" id="paso-1-title">Prepara el entorno</h2>
+              <p>Clona el proyecto e inicia el servidor local.</p>
+            </div>
+          </div>
+          <div class="prose">
+            <div class="code">
+              <div class="code__head"><span class="code__dots" aria-hidden="true"><span></span><span></span><span></span></span>Terminal<button class="copy-btn" type="button">Copiar</button></div>
+              <pre><code><span class="tk-p">$</span> <span class="tk-cmd">git clone</span> https://github.com/tu-org/aem-practice.git
+<span class="tk-p">$</span> <span class="tk-cmd">cd</span> aem-practice &amp;&amp; <span class="tk-cmd">npm install</span>
+<span class="tk-p">$</span> <span class="tk-cmd">npx -y @adobe/aem-cli up</span> --no-open
+<span class="tk-ok">✓ AEM dev server up and running: http://localhost:3000/</span></code></pre>
+            </div>
+            <p>Abre <code>http://localhost:3000</code>. Si ves la página de inicio, el entorno está listo.</p>
+          </div>
+          <label class="step__check"><input type="checkbox" data-step-check> Marcar como completado</label>
+        </section>
+
+        <section class="step" id="paso-2" aria-labelledby="paso-2-title">
+          <div class="step__head">
+            <span class="step__num" aria-hidden="true">02</span>
+            <div>
+              <h2 class="h3" id="paso-2-title">Escribe el contenido</h2>
+              <p>Antes del código, define cómo lo va a escribir el autor.</p>
+            </div>
+          </div>
+          <div class="prose">
+            <p>Crea un borrador en <code>drafts/quote.html</code> con el markup que entregaría AEM: un bloque con la cita y su autor.</p>
+            <div class="code">
+              <div class="code__head">drafts/quote.html<button class="copy-btn" type="button">Copiar</button></div>
+              <pre><code>&lt;<span class="tk-k">div</span> <span class="tk-f">class</span>=<span class="tk-s">"quote"</span>&gt;
+  &lt;<span class="tk-k">div</span>&gt;&lt;<span class="tk-k">div</span>&gt;El mejor bloque es el que el autor entiende.&lt;/<span class="tk-k">div</span>&gt;&lt;/<span class="tk-k">div</span>&gt;
+  &lt;<span class="tk-k">div</span>&gt;&lt;<span class="tk-k">div</span>&gt;Equipo de contenido&lt;/<span class="tk-k">div</span>&gt;&lt;/<span class="tk-k">div</span>&gt;
+&lt;/<span class="tk-k">div</span>&gt;</code></pre>
+            </div>
+          </div>
+          <label class="step__check"><input type="checkbox" data-step-check> Marcar como completado</label>
+        </section>
+
+        <section class="step" id="paso-3" aria-labelledby="paso-3-title">
+          <div class="step__head">
+            <span class="step__num" aria-hidden="true">03</span>
+            <div>
+              <h2 class="h3" id="paso-3-title">Crea el bloque</h2>
+              <p>Un archivo JS que decora y un CSS con estilos acotados al bloque.</p>
+            </div>
+          </div>
+          <div class="prose">
+            <div class="code">
+              <div class="code__head">blocks/quote/quote.js<button class="copy-btn" type="button">Copiar</button></div>
+              <pre><code><span class="tk-k">export default function</span> <span class="tk-f">decorate</span>(block) {
+  <span class="tk-k">const</span> [quoteRow, authorRow] = [...block.children];
+  <span class="tk-k">const</span> figure = document.<span class="tk-f">createElement</span>(<span class="tk-s">'figure'</span>);
+  figure.innerHTML = <span class="tk-s">`&lt;blockquote&gt;&lt;/blockquote&gt;&lt;figcaption&gt;&lt;/figcaption&gt;`</span>;
+  figure.<span class="tk-f">querySelector</span>(<span class="tk-s">'blockquote'</span>).textContent = quoteRow?.textContent.<span class="tk-f">trim</span>() || <span class="tk-s">''</span>;
+  figure.<span class="tk-f">querySelector</span>(<span class="tk-s">'figcaption'</span>).textContent = authorRow?.textContent.<span class="tk-f">trim</span>() || <span class="tk-s">''</span>;
+  block.<span class="tk-f">replaceChildren</span>(figure);
+}</code></pre>
+            </div>
+            <div class="callout callout--tip" role="note">
+              <span class="callout__icon" aria-hidden="true">✓</span>
+              <div><span class="callout__title">Campos opcionales</span>Fíjate en el <code>?.</code>: el bloque no se rompe si el autor deja el autor vacío.</div>
+            </div>
+          </div>
+          <label class="step__check"><input type="checkbox" data-step-check> Marcar como completado</label>
+        </section>
+
+        <section class="step" id="paso-4" aria-labelledby="paso-4-title">
+          <div class="step__head">
+            <span class="step__num" aria-hidden="true">04</span>
+            <div>
+              <h2 class="h3" id="paso-4-title">Añade el modelo para Universal Editor</h2>
+              <p>Para que el autor pueda crearlo y editarlo desde UE.</p>
+            </div>
+          </div>
+          <div class="prose">
+            <div class="code">
+              <div class="code__head">blocks/quote/_quote.json<button class="copy-btn" type="button">Copiar</button></div>
+              <pre><code>{
+  <span class="tk-k">"models"</span>: [{
+    <span class="tk-k">"id"</span>: <span class="tk-s">"quote"</span>,
+    <span class="tk-k">"fields"</span>: [
+      { <span class="tk-k">"component"</span>: <span class="tk-s">"text"</span>, <span class="tk-k">"name"</span>: <span class="tk-s">"quote"</span>, <span class="tk-k">"label"</span>: <span class="tk-s">"Quote"</span> },
+      { <span class="tk-k">"component"</span>: <span class="tk-s">"text"</span>, <span class="tk-k">"name"</span>: <span class="tk-s">"author"</span>, <span class="tk-k">"label"</span>: <span class="tk-s">"Author"</span> }
+    ]
+  }]
+}</code></pre>
+            </div>
+            <p>Después regenera los JSON agregados:</p>
+            <div class="code">
+              <div class="code__head"><span class="code__dots" aria-hidden="true"><span></span><span></span><span></span></span>Terminal<button class="copy-btn" type="button">Copiar</button></div>
+              <pre><code><span class="tk-p">$</span> <span class="tk-cmd">npm run build:json</span></code></pre>
+            </div>
+          </div>
+          <label class="step__check"><input type="checkbox" data-step-check> Marcar como completado</label>
+        </section>
+
+        <section class="step" id="paso-5" aria-labelledby="paso-5-title">
+          <div class="step__head">
+            <span class="step__num" aria-hidden="true">05</span>
+            <div>
+              <h2 class="h3" id="paso-5-title">Valida y publica</h2>
+              <p>Lint, revisión visual y pull request con enlace de preview.</p>
+            </div>
+          </div>
+          <div class="prose">
+            <div class="code">
+              <div class="code__head"><span class="code__dots" aria-hidden="true"><span></span><span></span><span></span></span>Terminal<button class="copy-btn" type="button">Copiar</button></div>
+              <pre><code><span class="tk-p">$</span> <span class="tk-cmd">npm run lint</span>
+<span class="tk-ok">✓ 0 errors</span>
+<span class="tk-p">$</span> <span class="tk-cmd">git push</span> origin quote-block</code></pre>
+            </div>
+            <p>Abre <code>https://quote-block--aem-practice--tu-org.aem.page/drafts/quote</code> y comparte el enlace en el pull request.</p>
+          </div>
+          <label class="step__check"><input type="checkbox" data-step-check> Marcar como completado</label>
+        </section>
+
+        <div class="done-card" hidden role="status">
+          <span class="done-card__icon" aria-hidden="true">✓</span>
+          <h2 class="h3">¡Guía completada!</h2>
+          <p class="muted">Ya sabes crear un bloque de punta a punta. El siguiente paso natural es añadirle variantes.</p>
+          <a class="btn btn--primary" href="docs.html#variantes">Aprender variantes →</a>
+        </div>
+
+        <!-- block: accordion · nuevo (solución de problemas / FAQ) -->
+        <section style="margin-top: 56px;" aria-labelledby="troubleshooting-title">
+          <h2 class="h3" id="troubleshooting-title" style="margin-bottom: 16px;">Solución de problemas</h2>
+          <div class="accordion">
+            <details>
+              <summary>El puerto 3000 ya está en uso</summary>
+              <div class="accordion__body">Cierra el otro proceso o inicia el servidor en otro puerto con <code>aem up --port 3001</code>.</div>
+            </details>
+            <details>
+              <summary>El bloque no aparece en Universal Editor</summary>
+              <div class="accordion__body">Comprueba que añadiste el id del bloque al filtro de la sección en <code>models/_section.json</code> y que ejecutaste <code>npm run build:json</code>.</div>
+            </details>
+            <details>
+              <summary>Veo el contenido sin decorar</summary>
+              <div class="accordion__body">Revisa la consola: un error de sintaxis en el JS hace que el bloque se quede con el markup original. El nombre de la carpeta debe coincidir con la clase del bloque.</div>
+            </details>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- block: doc-cards · existente (siguientes pasos) -->
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Siguientes pasos</span>
+          <h2 class="h2">Sigue construyendo</h2>
+        </div>
+        <div class="grid grid--3">
+          <a class="card card--link" href="docs.html#variantes" style="color: inherit; text-decoration: none;">
+            <p class="muted mono" style="font-size: 12px;">GUÍA · 30 MIN</p>
+            <h3 class="h3" style="margin-top: 8px;">Variantes de bloque</h3>
+            <p class="muted" style="margin-top: 6px;">Un bloque, varios diseños, sin duplicar código.</p>
+          </a>
+          <a class="card card--link" href="docs.html#graphql" style="color: inherit; text-decoration: none;">
+            <p class="muted mono" style="font-size: 12px;">GUÍA · 60 MIN</p>
+            <h3 class="h3" style="margin-top: 8px;">Bloques con Content Fragments</h3>
+            <p class="muted" style="margin-top: 6px;">Lee datos estructurados con persisted queries.</p>
+          </a>
+          <a class="card card--link" href="path-detail.html" style="color: inherit; text-decoration: none;">
+            <p class="muted mono" style="font-size: 12px;">RUTA · 12 H</p>
+            <h3 class="h3" style="margin-top: 8px;">Ruta para desarrolladores</h3>
+            <p class="muted" style="margin-top: 6px;">El camino completo de bloques a despliegue.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">A</span>AEM <span class="brand__desc">knowledge</span></a>
+          <p>Tu mapa para entender AEM: documentación, guías y rutas para construir con criterio.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Aprender</h2>
+          <ul>
+            <li><a href="docs.html">Documentación</a></li>
+            <li><a href="guide.html">Guías</a></li>
+            <li><a href="paths.html">Rutas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Comunidad</h2>
+          <ul>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="#">Ejemplos</a></li>
+            <li><a href="#">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Recursos</h2>
+          <ul>
+            <li><a href="https://www.aem.live/docs/" rel="noopener">aem.live</a></li>
+            <li><a href="https://experienceleague.adobe.com/" rel="noopener">Experience League</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 AEM knowledge</span>
+        <span>Hecho con Edge Delivery Services</span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search" id="search" aria-label="Buscar en el sitio">
+    <input class="search__input" type="search" placeholder="Buscar guías, documentación, artículos…" aria-label="Buscar">
+    <ul class="search__results"></ul>
+    <p class="search__empty" hidden>Sin resultados. Prueba con otra palabra.</p>
+    <div class="search__footer"><span><kbd>Esc</kbd> cerrar</span><span><kbd>⌘K</kbd> abrir/cerrar</span></div>
+  </dialog>
+</body>
+</html>
