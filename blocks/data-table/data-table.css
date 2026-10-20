@@ -1,0 +1,4 @@
+/* the table loads asynchronously; reserving space avoids a layout shift */
+main .data-table[aria-busy="true"] {
+  min-height: 360px;
+}
