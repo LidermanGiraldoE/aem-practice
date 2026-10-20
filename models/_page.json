@@ -21,6 +21,176 @@
           "name": "keywords",
           "multi": true,
           "label": "Keywords"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "template",
+          "label": "Template",
+          "description": "Save and reload the properties panel to see the template fields",
+          "value": "",
+          "options": [
+            { "name": "Default", "value": "" },
+            { "name": "Blog post", "value": "blog-post" },
+            { "name": "Blog author", "value": "blog-author" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blog-post-metadata",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "jcr:title",
+          "label": "Title",
+          "required": true
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "jcr:description",
+          "label": "Description",
+          "description": "Summary shown on blog cards and search results",
+          "required": true
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "template",
+          "label": "Template",
+          "value": "blog-post",
+          "options": [
+            { "name": "Default", "value": "" },
+            { "name": "Blog post", "value": "blog-post" },
+            { "name": "Blog author", "value": "blog-author" }
+          ]
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Cover Image",
+          "description": "Used on the article, blog cards and social sharing",
+          "multi": false
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "category",
+          "label": "Category",
+          "required": true,
+          "options": [
+            { "name": "Edge Delivery", "value": "edge-delivery" },
+            { "name": "Universal Editor", "value": "universal-editor" },
+            { "name": "Frontend", "value": "frontend" },
+            { "name": "Performance", "value": "performance" },
+            { "name": "Real-world cases", "value": "casos-reales" }
+          ]
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "tags",
+          "label": "Tags",
+          "description": "Specific topics, for example graphql or modelado",
+          "multi": true
+        },
+        {
+          "component": "aem-content",
+          "valueType": "string",
+          "name": "author",
+          "label": "Author",
+          "description": "Page under /blog/authors",
+          "required": true
+        },
+        {
+          "component": "date-time",
+          "valueType": "date-time",
+          "name": "publication-date",
+          "label": "Publication Date",
+          "required": true
+        },
+        {
+          "component": "number",
+          "valueType": "number",
+          "name": "reading-time",
+          "label": "Reading Time (min)",
+          "min": 1
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "featured",
+          "label": "Featured",
+          "description": "Highlight on the blog home page",
+          "value": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "keywords",
+          "multi": true,
+          "label": "Keywords"
+        }
+      ]
+    },
+    {
+      "id": "blog-author-metadata",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "jcr:title",
+          "label": "Name",
+          "required": true
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "jcr:description",
+          "label": "Short Bio",
+          "required": true
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "template",
+          "label": "Template",
+          "value": "blog-author",
+          "options": [
+            { "name": "Default", "value": "" },
+            { "name": "Blog post", "value": "blog-post" },
+            { "name": "Blog author", "value": "blog-author" }
+          ]
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "role",
+          "label": "Role",
+          "description": "For example: Frontend · AEM"
+        },
+        {
+          "component": "reference",
+          "valueType": "string",
+          "name": "image",
+          "label": "Photo",
+          "description": "Initials are shown when empty",
+          "multi": false
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkedin",
+          "label": "LinkedIn URL"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "github",
+          "label": "GitHub URL"
         }
       ]
     }
