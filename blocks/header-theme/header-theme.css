@@ -1,1 +1,4 @@
-/* Theme control presentation is provided by the design-system Preact component. */
+.header-theme {
+  display: flex;
+  align-items: center;
+}

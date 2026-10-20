@@ -18,12 +18,12 @@ const HEADER_PARTS = [
   [
     'header-search',
     'HeaderSearch',
-    'Campo de búsqueda con resultados del índice, teclado y navegación.',
+    'Campo de búsqueda que abre un buscador modal (también con la tecla /) con sugerencias del índice y navegación con teclado.',
   ],
   [
     'header-theme',
-    'HeaderOptionControl + Select',
-    'Opciones de tema authorables; el usuario elige el tema activo.',
+    'ThemeToggle + IconButton',
+    'Opciones de tema authorables; un botón alterna entre ellas y recuerda la elección.',
   ],
   [
     'header-language',
@@ -59,7 +59,7 @@ export default function HeaderSample() {
           </tbody>
         </table>
       </div>
-      <p class="m-0! text-xs text-fg-3">Shared atom: Select. Shared molecules: Brand, NavigationLinks, HeaderSearch and HeaderOptionControl.</p>
+      <p class="m-0! text-xs text-fg-3">Shared atoms: Select and IconButton. Shared molecules: Brand, NavigationLinks, HeaderSearch, ThemeToggle and HeaderOptionControl.</p>
     <//>
   `;
 }
