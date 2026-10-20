@@ -118,7 +118,7 @@ export default async function decorate(block) {
 
   const { headers, rows } = parseTable(sanitize(item?.table?.html));
   if (!rows.length) {
-    if (IS_AUTHOR) block.textContent = 'Selecciona un Content Fragment del modelo Table.';
+    if (IS_AUTHOR) block.textContent = 'Select a Content Fragment based on the Table model.';
     return;
   }
 

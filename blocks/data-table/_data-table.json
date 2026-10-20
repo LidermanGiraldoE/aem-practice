@@ -25,15 +25,15 @@
           "valueType": "string",
           "name": "reference",
           "label": "Content Fragment",
-          "description": "Content Fragment del modelo Table",
+          "description": "Content Fragment based on the Table model",
           "required": true
         },
         {
           "component": "boolean",
           "valueType": "boolean",
           "name": "classes_caption",
-          "label": "Mostrar caption",
-          "description": "Si está desactivado, el caption solo lo leen los lectores de pantalla",
+          "label": "Show Caption",
+          "description": "When off, the caption is only announced to screen readers",
           "value": false
         }
       ]
