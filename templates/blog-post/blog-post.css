@@ -1,0 +1,201 @@
+/*
+ * Blog post template: layout and reading styles for the sections built by
+ * buildBlogPostBlocks() in scripts.js. Values mirror prototypes/blog-post.html.
+ */
+
+/* ── Hero band (article-header) ─────────────────────────────── */
+
+main > .section.article-hero {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  border-bottom: 1px solid var(--ds-line);
+  padding: 64px 0 56px;
+}
+
+main > .section.article-hero::before {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(55% 60% at 8% 16%, color-mix(in srgb, var(--ds-brand) 18%, transparent), transparent 70%),
+    radial-gradient(50% 58% at 94% 18%, color-mix(in srgb, var(--ds-violet) 22%, transparent), transparent 70%),
+    radial-gradient(45% 50% at 82% 88%, color-mix(in srgb, var(--ds-accent-violet) 12%, transparent), transparent 70%),
+    radial-gradient(45% 50% at 18% 88%, color-mix(in srgb, var(--ds-cyan) 11%, transparent), transparent 70%);
+  content: '';
+  pointer-events: none;
+}
+
+main > .section.article-hero > div {
+  position: relative;
+}
+
+/* ── Body: prose column + sticky table of contents ──────────── */
+
+main > .section.article-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  width: min(calc(100% - 2 * var(--spacing-gutter)), var(--container-site));
+  margin: 56px auto 0;
+}
+
+main > .section.article-body > div {
+  width: auto;
+  max-width: none;
+  margin-inline: 0;
+}
+
+main > .section.article-body > div + div {
+  margin-top: 32px;
+}
+
+main > .section.article-body > .toc-wrapper {
+  display: none;
+}
+
+main > .section.article-body > .toc-wrapper + div {
+  margin-top: 0;
+}
+
+@media (width >= 1024px) {
+  main > .section.article-body {
+    grid-template-columns: minmax(0, 1fr) 240px;
+    column-gap: 48px;
+  }
+
+  main > .section.article-body > div {
+    grid-column: 1;
+  }
+
+  main > .section.article-body > .toc-wrapper {
+    display: block;
+    grid-column: 2;
+    grid-row: 1 / span 40;
+  }
+
+  main > .section.article-body .toc {
+    position: sticky;
+    top: calc(var(--spacing-header) + 32px);
+  }
+}
+
+/* ── Reading styles for authored content ────────────────────── */
+
+main .article-body .default-content-wrapper {
+  color: var(--ds-text-2);
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+main > .section.article-body > .default-content-wrapper {
+  max-width: 720px;
+}
+
+main .article-body .default-content-wrapper > * {
+  margin: 0;
+}
+
+main .article-body .default-content-wrapper > * + * {
+  margin-top: 1.2em;
+}
+
+main .article-body .default-content-wrapper :is(h2, h3) {
+  color: var(--ds-text);
+  scroll-margin-top: calc(var(--spacing-header) + 24px);
+}
+
+main .article-body .default-content-wrapper h2 {
+  font-size: clamp(26px, 3vw, 32px);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+main .article-body .default-content-wrapper > h2:not(:first-child) {
+  margin-top: 2.2em;
+}
+
+main .article-body .default-content-wrapper h3 {
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+main .article-body .default-content-wrapper > h3:not(:first-child) {
+  margin-top: 1.8em;
+}
+
+main .article-body .default-content-wrapper strong {
+  color: var(--ds-text);
+}
+
+main .article-body .default-content-wrapper a:any-link {
+  color: var(--ds-brand);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--ds-brand) 40%, transparent);
+  text-underline-offset: 3px;
+}
+
+main .article-body .default-content-wrapper :is(ul, ol) {
+  padding-left: 1.3em;
+}
+
+main .article-body .default-content-wrapper li + li {
+  margin-top: 0.5em;
+}
+
+main .article-body .default-content-wrapper li::marker {
+  color: var(--ds-brand);
+}
+
+main .article-body .default-content-wrapper blockquote {
+  margin: 1.8em 0;
+  border-left: 3px solid var(--ds-brand);
+  padding: 4px 0 4px 22px;
+  color: var(--ds-text);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+main .article-body .default-content-wrapper hr {
+  margin: 3em 0;
+  border: 0;
+  border-top: 1px solid var(--ds-line);
+}
+
+main .article-body .default-content-wrapper :not(pre) > code {
+  border: 1px solid var(--ds-line);
+  border-radius: 6px;
+  padding: 2px 6px;
+  background: var(--ds-surface-2);
+  color: var(--ds-text);
+  font-size: 0.86em;
+}
+
+main .article-body .default-content-wrapper picture img {
+  border: 1px solid var(--ds-line);
+  border-radius: 16px;
+}
+
+/* ── Footer and related posts ───────────────────────────────── */
+
+main > .section.article-footer-container {
+  margin: 56px 0 0;
+}
+
+main > .section.article-related {
+  margin: 80px 0 0;
+  border-block: 1px solid var(--ds-line);
+  padding: 80px 0;
+  background-color: var(--ds-bg-soft);
+}
+
+@media (width >= 768px) {
+  main > .section.article-hero {
+    padding: 88px 0 72px;
+  }
+
+  main > .section.article-related {
+    padding: 110px 0;
+  }
+}

@@ -46,6 +46,43 @@ function toDate(value = '') {
   return year ? new Date(Number(year), Number(month) - 1, Number(day)) : null;
 }
 
+function meta(name) {
+  const attr = name.includes(':') ? 'property' : 'name';
+  return document.head.querySelector(`meta[${attr}="${name}"]`)?.content.trim() || '';
+}
+
+/** Author shown before the index loads (and in the editor): its name comes from the page slug. */
+export function authorFromPath(path = '') {
+  if (!path) return null;
+  const slug = path.split('/').filter(Boolean).pop() || '';
+  const name = slug.split('-').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  return {
+    name, role: '', bio: '', image: '', href: path,
+  };
+}
+
+/** Reads the current article from its page metadata. */
+export function getArticleMeta() {
+  const date = toDate(meta('publication-date'));
+  const category = CATEGORIES[meta('category')] ? meta('category') : '';
+  const authorPath = meta('author') ? toSitePath(meta('author')) : '';
+  return {
+    path: toSitePath(window.location.pathname),
+    title: meta('og:title') || document.title,
+    description: meta('description'),
+    image: toImage(meta('og:image') && new URL(meta('og:image'), window.location.origin).pathname),
+    category,
+    date,
+    dateLabel: date ? DATE_FORMAT.format(date) : '',
+    isoDate: meta('publication-date'),
+    readingTime: Number.parseInt(meta('reading-time'), 10) || 0,
+    tags: [...document.head.querySelectorAll('meta[property="article:tag"]')]
+      .map((tag) => tag.content.trim())
+      .filter(Boolean),
+    authorPath,
+  };
+}
+
 /**
  * Loads the blog index and returns posts (newest first) with their authors resolved.
  * @returns {Promise<{posts: object[], authors: Map<string, object>}>}
@@ -59,6 +96,7 @@ export async function getBlogData() {
     .map((row) => [row.path, {
       name: row.title,
       role: row.role,
+      bio: row.description,
       image: toImage(row.image),
       href: row.path,
     }]));
@@ -92,6 +130,14 @@ export function getFeaturedPost(posts, path = '') {
     || posts.find((post) => post.featured)
     || posts[0]
     || null;
+}
+
+/** Up to `limit` other posts, same category first, then the newest. */
+export function getRelatedPosts(posts, current, limit = 3) {
+  const others = posts.filter((post) => post.path !== current.path);
+  const sameCategory = others.filter((post) => post.category === current.category);
+  const rest = others.filter((post) => post.category !== current.category);
+  return [...sameCategory, ...rest].slice(0, limit);
 }
 
 /** Placeholder shown inside Universal Editor, where the blog index is not available. */

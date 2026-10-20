@@ -1,0 +1,4 @@
+/* the template stylesheet places the toc next to the article body */
+.toc {
+  display: block;
+}

@@ -1,4 +1,6 @@
 import {
+  buildBlock,
+  getMetadata,
   loadHeader,
   loadFooter,
   decorateIcons,
@@ -58,12 +60,35 @@ async function loadFonts() {
 }
 
 /**
+ * Wraps the authored article body with the blog post template blocks.
+ * @param {Element} main The container element
+ */
+function buildBlogPostBlocks(main) {
+  const bodySections = [...main.querySelectorAll(':scope > div')];
+  if (!bodySections.length) return;
+
+  const section = (blockName, className) => {
+    const element = document.createElement('div');
+    if (className) element.classList.add(className);
+    element.append(buildBlock(blockName, ''));
+    return element;
+  };
+
+  bodySections.forEach((bodySection) => bodySection.classList.add('article-body'));
+  bodySections[0].prepend(buildBlock('toc', ''));
+  main.prepend(section('article-header', 'article-hero'), section('article-cover'));
+  main.append(section('article-footer'), section('related-posts', 'article-related'));
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-function buildAutoBlocks() {
+function buildAutoBlocks(main) {
   try {
-    // TODO: add auto block, if needed
+    // fragments (nav, footer) are decorated with decorateMain too but must not get page templates
+    const isPageMain = main === document.querySelector('main');
+    if (isPageMain && getMetadata('template') === 'blog-post') buildBlogPostBlocks(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -129,10 +154,16 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  const template = getMetadata('template');
+  // template styles shape the first section, so they load before the LCP section
+  const templateStyles = template === 'blog-post'
+    ? loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`)
+    : Promise.resolve();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
     document.body.classList.add('appear');
+    await templateStyles;
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
 
