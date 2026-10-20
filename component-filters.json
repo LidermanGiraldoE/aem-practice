@@ -28,7 +28,9 @@
       "split-showcase",
       "doc-cards",
       "cta-banner",
-      "data-table"
+      "data-table",
+      "blog-featured",
+      "blog-list"
     ]
   },
   {

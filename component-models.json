@@ -362,6 +362,51 @@
     ]
   },
   {
+    "id": "blog-featured",
+    "fields": [
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "article",
+        "label": "Article",
+        "description": "Optional. Leave empty to show the newest article marked as Featured"
+      }
+    ]
+  },
+  {
+    "id": "blog-list",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "value": "Últimos artículos"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "pageSize",
+        "label": "Articles per Page",
+        "value": "9",
+        "options": [
+          {
+            "name": "6",
+            "value": "6"
+          },
+          {
+            "name": "9",
+            "value": "9"
+          },
+          {
+            "name": "12",
+            "value": "12"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {
@@ -1042,21 +1087,28 @@
         "label": "Description"
       },
       {
-        "component": "select",
+        "component": "multiselect",
         "valueType": "string",
         "name": "classes",
-        "label": "Alignment",
-        "value": "",
+        "label": "Style",
+        "description": "Centered by default",
         "options": [
           {
-            "name": "Center",
-            "value": ""
+            "name": "Left aligned",
+            "value": "left"
           },
           {
-            "name": "Left",
-            "value": "left"
+            "name": "Page hero (large title)",
+            "value": "page-hero"
           }
         ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title_highlight",
+        "label": "Highlighted Line",
+        "description": "Optional second line of the title, shown with the accent gradient"
       }
     ]
   },

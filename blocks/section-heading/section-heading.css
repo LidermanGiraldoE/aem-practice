@@ -2,3 +2,40 @@
 main > .section > .section-heading-wrapper + div {
   margin-top: calc(var(--spacing) * 12);
 }
+
+/* page hero: the whole section becomes the hero band */
+main > .section:has(.section-heading.page-hero) {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  border-bottom: 1px solid var(--ds-line);
+  padding: 64px 0 56px;
+  background-image:
+    linear-gradient(var(--ds-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ds-grid-line) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+main > .section:has(.section-heading.page-hero)::before {
+  position: absolute;
+  inset: -40% -10% auto auto;
+  width: 640px;
+  height: 640px;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--ds-brand) 16%, transparent), transparent);
+  content: '';
+  pointer-events: none;
+}
+
+main > .section:has(.section-heading.page-hero) > div {
+  position: relative;
+}
+
+main > .section:has(.section-heading.page-hero) + .section {
+  margin-top: 56px;
+}
+
+@media (width >= 768px) {
+  main > .section:has(.section-heading.page-hero) {
+    padding: 88px 0 72px;
+  }
+}

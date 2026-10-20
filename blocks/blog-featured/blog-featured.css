@@ -1,0 +1,4 @@
+/* the article loads from the blog index; reserving space avoids a layout shift */
+main .blog-featured[aria-busy='true'] {
+  min-height: 420px;
+}

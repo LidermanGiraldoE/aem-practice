@@ -53,15 +53,22 @@
           "label": "Description"
         },
         {
-          "component": "select",
+          "component": "multiselect",
           "valueType": "string",
           "name": "classes",
-          "label": "Alignment",
-          "value": "",
+          "label": "Style",
+          "description": "Centered by default",
           "options": [
-            { "name": "Center", "value": "" },
-            { "name": "Left", "value": "left" }
+            { "name": "Left aligned", "value": "left" },
+            { "name": "Page hero (large title)", "value": "page-hero" }
           ]
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "title_highlight",
+          "label": "Highlighted Line",
+          "description": "Optional second line of the title, shown with the accent gradient"
         }
       ]
     }

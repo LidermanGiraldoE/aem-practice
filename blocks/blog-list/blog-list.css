@@ -1,0 +1,4 @@
+/* the list loads from the blog index; reserving space avoids a layout shift */
+main .blog-list[aria-busy='true'] {
+  min-height: 640px;
+}
