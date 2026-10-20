@@ -20,8 +20,10 @@ function getFragmentPath(block) {
 async function fetchFragment(path) {
   // author serves UE from the same origin; published pages read from AEM publish
   const origin = IS_AUTHOR ? '' : PUBLISH_ORIGIN;
+  // AEM does not decode %2F in persisted query variables, so slashes stay literal
+  const encodedPath = path.split('/').map(encodeURIComponent).join('/');
   const response = await fetch(
-    `${origin}${QUERY_PATH};path=${encodeURIComponent(path)}`,
+    `${origin}${QUERY_PATH};path=${encodedPath}`,
     IS_AUTHOR ? { cache: 'no-store' } : {},
   );
   if (!response.ok) throw new Error(`Table fragment request failed: ${response.status}`);
