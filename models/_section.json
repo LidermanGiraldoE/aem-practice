@@ -73,7 +73,8 @@
         "cta-banner",
         "data-table",
         "blog-featured",
-        "blog-list"
+        "blog-list",
+        "newsletter"
       ]
     }
   ]

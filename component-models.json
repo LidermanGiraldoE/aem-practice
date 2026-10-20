@@ -1044,6 +1044,61 @@
     ]
   },
   {
+    "id": "newsletter",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "eyebrow",
+        "label": "Eyebrow"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "required": true
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "titleType",
+        "label": "Title Level",
+        "value": "h2",
+        "options": [
+          {
+            "name": "H2",
+            "value": "h2"
+          },
+          {
+            "name": "H3",
+            "value": "h3"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "description",
+        "label": "Description"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "form_button",
+        "label": "Button Text",
+        "value": "Suscribirme",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "form_note",
+        "label": "Note Below the Form"
+      }
+    ]
+  },
+  {
     "id": "section-heading",
     "fields": [
       {
