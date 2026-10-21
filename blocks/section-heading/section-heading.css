@@ -18,10 +18,8 @@ main > .section:has(.section-heading.page-hero) {
 
 main > .section:has(.section-heading.page-hero)::before {
   position: absolute;
-  inset: -40% -10% auto auto;
-  width: 640px;
-  height: 640px;
-  background: radial-gradient(closest-side, color-mix(in srgb, var(--ds-brand) 16%, transparent), transparent);
+  inset: 0;
+  background: var(--ds-gradient-mesh);
   content: '';
   pointer-events: none;
 }

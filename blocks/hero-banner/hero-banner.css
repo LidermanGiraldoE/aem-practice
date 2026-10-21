@@ -28,11 +28,7 @@
 }
 
 .hero-banner-scene::before {
-  background:
-    radial-gradient(55% 60% at 8% 16%, color-mix(in srgb, var(--ds-brand) 18%, transparent), transparent 70%),
-    radial-gradient(50% 58% at 94% 18%, color-mix(in srgb, var(--ds-violet) 22%, transparent), transparent 70%),
-    radial-gradient(45% 50% at 82% 88%, color-mix(in srgb, var(--ds-accent-violet) 12%, transparent), transparent 70%),
-    radial-gradient(45% 50% at 18% 88%, color-mix(in srgb, var(--ds-cyan) 11%, transparent), transparent 70%);
+  background: var(--ds-gradient-mesh);
 }
 
 .hero-banner-scene::after {

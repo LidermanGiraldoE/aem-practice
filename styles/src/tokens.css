@@ -62,6 +62,11 @@
   --ds-gradient-brand: linear-gradient(180deg, var(--ds-brand-2), var(--ds-brand));
   --ds-gradient-mint-cyan: linear-gradient(135deg, var(--ds-brand), var(--ds-cyan));
   --ds-gradient-accent: linear-gradient(90deg, var(--ds-brand-2), var(--ds-accent-cyan) 52%, var(--ds-accent-violet));
+  --ds-gradient-mesh:
+    radial-gradient(55% 60% at 8% 16%, color-mix(in srgb, var(--ds-brand) 18%, transparent), transparent 70%),
+    radial-gradient(50% 58% at 94% 18%, color-mix(in srgb, var(--ds-violet) 22%, transparent), transparent 70%),
+    radial-gradient(45% 50% at 82% 88%, color-mix(in srgb, var(--ds-accent-violet) 12%, transparent), transparent 70%),
+    radial-gradient(45% 50% at 18% 88%, color-mix(in srgb, var(--ds-cyan) 11%, transparent), transparent 70%);
   --ds-grid-line: rgb(255 255 255 / 4.5%);
 
   /* Shadows */
