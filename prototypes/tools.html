@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Herramientas · AEM knowledge</title>
+  <meta name="description" content="Prototipo: página principal de herramientas con el catálogo, una vista previa de cada herramienta, el asistente de AEM y referencias rápidas.">
+  <script>
+    (() => {
+      let theme = 'dark';
+      try {
+        const saved = localStorage.getItem('aem-forge-theme');
+        if (saved === 'dark' || saved === 'light') theme = saved;
+      } catch (e) { /* sin almacenamiento */ }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">A</span>AEM <span class="brand__desc">knowledge</span></a>
+      <nav class="nav" aria-label="Principal">
+        <a href="learn.html">Aprender</a>
+        <a href="#">Bloques</a>
+        <a href="tools.html" aria-current="page">Herramientas</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-search-open><span aria-hidden="true">⌕</span>Buscar…<kbd>⌘K</kbd></button>
+        <button class="icon-btn search-icon" type="button" data-search-open aria-label="Buscar">⌕</button>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Cambiar tema">☀</button>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Principal (móvil)">
+      <div class="container">
+        <a href="learn.html">Aprender</a>
+        <a href="#">Bloques</a>
+        <a href="tools.html">Herramientas</a>
+        <a href="blog.html">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- block: section-heading · existente (variante page-hero) -->
+    <section class="page-hero page-hero--center grid-bg">
+      <div class="container">
+        <span class="eyebrow">Herramientas</span>
+        <h1 class="display">Utilidades para<br><span class="text-gradient">el trabajo diario.</span></h1>
+        <p class="lead">Pequeñas herramientas para las tareas que repites en cada proyecto de Edge Delivery: modelos de Universal Editor, URLs de cada entorno y la revisión antes de publicar.</p>
+        <a href="#probar">Pruébalas aquí mismo ↓</a>
+      </div>
+    </section>
+
+    <!-- block: feature-cards · existente (las herramientas del menú; link_status como badge) -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Catálogo</span>
+          <h2 class="h2">Herramientas</h2>
+        </div>
+        <div class="grid grid--3">
+          <article class="card card--link learn-card tool-card">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">{ }</span><span class="badge badge--success">Disponible</span></div>
+            <h3 class="h3"><a class="stretched" href="#">Generador de modelos</a></h3>
+            <p>Arma los campos de un bloque y obtén el JSON para Universal Editor: definición, modelo y filtro.</p>
+            <span class="learn-card__cta">Abrir herramienta →</span>
+          </article>
+          <article class="card card--link learn-card tool-card path-card--violet">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">⇄</span><span class="badge badge--success">Disponible</span></div>
+            <h3 class="h3"><a class="stretched" href="#">Constructor de URLs</a></h3>
+            <p>URLs de preview y live para cualquier rama, repositorio y organización, listas para copiar.</p>
+            <span class="learn-card__cta">Abrir herramienta →</span>
+          </article>
+          <article class="card card--link learn-card tool-card path-card--cyan">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">✓</span><span class="badge badge--violet">Beta</span></div>
+            <h3 class="h3"><a class="stretched" href="#">Checklist de lanzamiento</a></h3>
+            <p>Lo que hay que revisar antes de publicar un sitio, con tu avance guardado en el navegador.</p>
+            <span class="learn-card__cta">Abrir herramienta →</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: tool-tabs · nuevo (una pestaña por herramienta con una versión reducida para probarla) -->
+    <section class="section section--soft" id="probar">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Pruébalas</span>
+          <h2 class="h2">Una vista rápida de cada una</h2>
+          <p class="lead">Versiones reducidas para resolver lo puntual sin salir de esta página. La herramienta completa tiene todas las opciones.</p>
+        </div>
+
+        <div class="tablist" role="tablist" aria-label="Herramientas">
+          <button class="tab" type="button" role="tab" id="tab-urls" aria-controls="panel-urls" aria-selected="true">Constructor de URLs</button>
+          <button class="tab" type="button" role="tab" id="tab-models" aria-controls="panel-models" aria-selected="false" tabindex="-1">Generador de modelos</button>
+          <button class="tab" type="button" role="tab" id="tab-launch" aria-controls="panel-launch" aria-selected="false" tabindex="-1">Checklist de lanzamiento</button>
+        </div>
+
+        <!-- pestaña 1: funciona en el prototipo, arma las URLs al escribir -->
+        <div class="tool-demo" role="tabpanel" id="panel-urls" aria-labelledby="tab-urls" data-url-builder>
+          <div class="tool-demo__fields">
+            <label class="field"><span>Organización</span><input class="input mono" name="owner" value="lidermangiraldoe" autocomplete="off" spellcheck="false"></label>
+            <label class="field"><span>Repositorio</span><input class="input mono" name="repo" value="aem-practice" autocomplete="off" spellcheck="false"></label>
+            <label class="field"><span>Rama</span><input class="input mono" name="branch" value="development" autocomplete="off" spellcheck="false"></label>
+            <label class="field"><span>Ruta</span><input class="input mono" name="path" value="/" autocomplete="off" spellcheck="false"></label>
+          </div>
+          <div class="tool-demo__output">
+            <div class="url-row">
+              <span class="badge badge--cyan">Preview</span>
+              <a class="url-row__value mono" data-url="page" href="#" target="_blank" rel="noopener"></a>
+              <button class="btn btn--secondary btn--sm" type="button" data-url-copy="page">Copiar</button>
+            </div>
+            <div class="url-row">
+              <span class="badge badge--success">Live</span>
+              <a class="url-row__value mono" data-url="live" href="#" target="_blank" rel="noopener"></a>
+              <button class="btn btn--secondary btn--sm" type="button" data-url-copy="live">Copiar</button>
+            </div>
+            <p class="muted tool-demo__note">La rama se normaliza: minúsculas y cualquier carácter distinto de letras o números se convierte en guion.</p>
+            <a class="learn-card__cta" href="#">Abrir el constructor completo →</a>
+          </div>
+        </div>
+
+        <!-- pestaña 2: vista estática del resultado -->
+        <div class="tool-demo" role="tabpanel" id="panel-models" aria-labelledby="tab-models" hidden>
+          <div class="tool-demo__fields">
+            <p class="toc__title" style="margin: 0;">Campos del bloque <span class="mono muted">callout</span></p>
+            <ul class="field-list">
+              <li><span class="mono">variant</span><span class="tag">select</span><span class="muted">Tipo</span></li>
+              <li><span class="mono">title</span><span class="tag">text</span><span class="muted">Título</span></li>
+              <li><span class="mono">text</span><span class="tag">richtext</span><span class="muted">Contenido</span></li>
+            </ul>
+            <button class="btn btn--secondary btn--sm" type="button" style="width: fit-content;">＋ Agregar campo</button>
+          </div>
+          <div class="tool-demo__output">
+            <div class="code">
+              <div class="code__head"><span>_callout.json · models</span><button class="copy-btn" type="button">Copiar</button></div>
+              <pre>{
+  <span class="tk-s">"id"</span>: <span class="tk-s">"callout"</span>,
+  <span class="tk-s">"fields"</span>: [
+    { <span class="tk-s">"component"</span>: <span class="tk-s">"select"</span>, <span class="tk-s">"name"</span>: <span class="tk-s">"variant"</span>, … },
+    { <span class="tk-s">"component"</span>: <span class="tk-s">"text"</span>, <span class="tk-s">"name"</span>: <span class="tk-s">"title"</span>, … },
+    { <span class="tk-s">"component"</span>: <span class="tk-s">"richtext"</span>, <span class="tk-s">"name"</span>: <span class="tk-s">"text"</span>, … }
+  ]
+}</pre>
+            </div>
+            <a class="learn-card__cta" href="#">Abrir el generador completo →</a>
+          </div>
+        </div>
+
+        <!-- pestaña 3: el avance se calcula en el prototipo, sin guardarse -->
+        <div class="tool-demo" role="tabpanel" id="panel-launch" aria-labelledby="tab-launch" hidden data-launch-check>
+          <div class="tool-demo__fields">
+            <div class="progress-row"><strong>Antes de publicar</strong><span data-launch-label>0 de 6</span></div>
+            <div class="progress" role="presentation"><div class="progress__bar" data-launch-bar></div></div>
+            <p class="muted tool-demo__note">Una muestra de la lista. La versión completa agrupa los puntos por SEO, rendimiento, accesibilidad y operación.</p>
+            <a class="learn-card__cta" href="#">Abrir el checklist completo →</a>
+          </div>
+          <ul class="launch-list">
+            <li><label><input type="checkbox">Título y descripción en los metadatos de cada página</label></li>
+            <li><label><input type="checkbox">Imágenes con texto alternativo significativo</label></li>
+            <li><label><input type="checkbox">Lighthouse en verde en móvil para las plantillas principales</label></li>
+            <li><label><input type="checkbox">Redirecciones de las URLs antiguas configuradas</label></li>
+            <li><label><input type="checkbox">Sitemap y robots.txt revisados para producción</label></li>
+            <li><label><input type="checkbox">Dominio y CDN apuntando al sitio live</label></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: assistant-chat · nuevo (texto + chat embebido; respuestas de ejemplo en el prototipo) -->
+    <section class="section" id="asistente">
+      <div class="container learn-split">
+        <div class="learn-split__copy">
+          <div class="tags"><span class="eyebrow">Asistente</span><span class="badge badge--violet">Beta</span></div>
+          <h2 class="h2">¿Una duda puntual? Pregunta.</h2>
+          <p class="lead">Escribe tu pregunta sobre bloques, modelos, Content Fragments o desarrollo local. Responde con un ejemplo y te enlaza a la documentación donde se explica.</p>
+          <ul class="checks">
+            <li><span class="tick" aria-hidden="true">✓</span><div><strong>Con fuentes</strong>Cada respuesta indica de qué página de la documentación sale.</div></li>
+            <li><span class="tick" aria-hidden="true">✓</span><div><strong>Con código</strong>Ejemplos que siguen las convenciones del proyecto, listos para copiar.</div></li>
+          </ul>
+          <a class="btn btn--secondary" href="assistant.html" style="width: fit-content;">Abrir en pantalla completa ↗</a>
+        </div>
+
+        <div class="chat-embed" data-chat>
+          <div class="chat-panel__head">
+            <span class="chat-avatar" aria-hidden="true">✦</span>
+            <div class="chat-panel__title">
+              <p class="h3" style="font-size: 16px;">Asistente de AEM</p>
+              <span class="muted">Prototipo · respuestas de ejemplo</span>
+            </div>
+          </div>
+          <div class="chat-log" role="log" aria-live="polite" aria-label="Conversación" data-chat-log>
+            <div class="chat-welcome chat-welcome--compact" data-chat-welcome>
+              <p class="muted">Prueba con una de estas preguntas</p>
+              <div class="chips">
+                <button class="chip" type="button" data-chat-ask="¿Cómo creo un bloque nuevo?">Crear un bloque</button>
+                <button class="chip" type="button" data-chat-ask="¿Cómo agrego un campo a un bloque en Universal Editor?">Agregar un campo</button>
+                <button class="chip" type="button" data-chat-ask="¿Cómo levanto el sitio en local?">Desarrollo local</button>
+                <button class="chip" type="button" data-chat-ask="¿Qué es field collapse?">Field collapse</button>
+              </div>
+            </div>
+          </div>
+          <form class="chat-composer" data-chat-form>
+            <div class="chat-composer__box">
+              <label class="sr-only" for="chat-input">Escribe tu pregunta</label>
+              <textarea class="chat-composer__input" id="chat-input" rows="1" placeholder="Escribe tu pregunta sobre AEM…" data-chat-input></textarea>
+              <button class="btn btn--primary chat-composer__send" type="submit" aria-label="Enviar" data-chat-send>↑</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: doc-cards · existente (referencias rápidas que complementan las herramientas) -->
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section-head section-head--row">
+          <div>
+            <span class="eyebrow">Utilidades</span>
+            <h2 class="h2">Referencias rápidas</h2>
+          </div>
+          <a class="btn btn--secondary btn--sm" href="docs.html">Ver toda la documentación</a>
+        </div>
+        <div class="grid grid--3">
+          <article class="card card--link learn-card">
+            <span class="badge">Referencia · 2 min</span>
+            <h3 class="h3"><a class="stretched" href="docs.html">Comandos de la CLI de AEM</a></h3>
+            <p>Levantar el sitio en local, apuntar a otra rama y reenviar los logs del navegador.</p>
+          </article>
+          <article class="card card--link learn-card">
+            <span class="badge">Referencia · 3 min</span>
+            <h3 class="h3"><a class="stretched" href="docs.html">Tipos de campo de Universal Editor</a></h3>
+            <p>Qué componente usar para cada dato y cómo llega al bloque.</p>
+          </article>
+          <article class="card card--link learn-card">
+            <span class="badge">Referencia · 2 min</span>
+            <h3 class="h3"><a class="stretched" href="docs.html">Metadatos de página</a></h3>
+            <p>Título, descripción, imagen para redes y plantilla de cada página.</p>
+          </article>
+          <article class="card card--link learn-card">
+            <span class="badge">Guía · 4 min</span>
+            <h3 class="h3"><a class="stretched" href="docs.html">Indexar contenido con query-index</a></h3>
+            <p>Configura helix-query.yaml y consume el JSON desde un bloque.</p>
+          </article>
+          <article class="card card--link learn-card">
+            <span class="badge">Guía · 3 min</span>
+            <h3 class="h3"><a class="stretched" href="docs.html">Fixtures en drafts/</a></h3>
+            <p>Prueba un bloque en local sin depender de contenido publicado.</p>
+          </article>
+          <article class="card card--link learn-card">
+            <span class="badge">Guía · 5 min</span>
+            <h3 class="h3"><a class="stretched" href="docs.html">Rendimiento y fases de carga</a></h3>
+            <p>Qué va en eager, lazy y delayed para mantener el LCP bajo control.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: cta-banner · existente -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-band" style="grid-template-columns: 1fr; justify-items: center; text-align: center;">
+          <div class="cta-band__copy" style="align-items: center;">
+            <span class="eyebrow">¿Te falta algo?</span>
+            <h2 class="h2">Propón la próxima herramienta.</h2>
+            <p class="lead">Cuéntanos qué tarea repites en cada proyecto y la convertimos en una utilidad.</p>
+          </div>
+          <a class="btn btn--primary" href="#">Proponer una herramienta →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="margin-top: 0; padding-top: 0; border-top: 0;">
+        <span>© 2026 AEM knowledge</span>
+        <span><a href="index.html">Prototipos</a> · <a href="learn.html">Aprender</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search" id="search" aria-label="Buscar en el sitio">
+    <input class="search__input" type="search" placeholder="Buscar guías, documentación, artículos…" aria-label="Buscar">
+    <ul class="search__results"></ul>
+    <p class="search__empty" hidden>Sin resultados. Prueba con otra palabra.</p>
+    <div class="search__footer"><span><kbd>Esc</kbd> cerrar</span><span><kbd>⌘K</kbd> abrir/cerrar</span></div>
+  </dialog>
+
+  <script>
+    (() => {
+      // constructor de URLs: {rama}--{repositorio}--{organización}.aem.page / .aem.live
+      const builder = document.querySelector('[data-url-builder]');
+      const slug = (value) => value.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      const buildUrls = () => {
+        const get = (name) => builder.querySelector(`[name="${name}"]`).value;
+        const host = `${slug(get('branch')) || 'main'}--${slug(get('repo'))}--${slug(get('owner'))}`;
+        const path = `/${get('path').trim().replace(/^\/+/, '')}`;
+        ['page', 'live'].forEach((env) => {
+          const link = builder.querySelector(`[data-url="${env}"]`);
+          link.href = `https://${host}.aem.${env}${path}`;
+          link.textContent = link.href;
+        });
+      };
+      builder.addEventListener('input', buildUrls);
+      builder.querySelectorAll('[data-url-copy]').forEach((button) => {
+        button.addEventListener('click', async () => {
+          const { href } = builder.querySelector(`[data-url="${button.dataset.urlCopy}"]`);
+          try {
+            await navigator.clipboard.writeText(href);
+            button.textContent = 'Copiado ✓';
+          } catch {
+            button.textContent = 'No disponible';
+          }
+          setTimeout(() => { button.textContent = 'Copiar'; }, 1600);
+        });
+      });
+      buildUrls();
+
+      // checklist de lanzamiento: solo calcula el avance
+      const launch = document.querySelector('[data-launch-check]');
+      const checks = [...launch.querySelectorAll('input[type="checkbox"]')];
+      const renderLaunch = () => {
+        const done = checks.filter((check) => check.checked).length;
+        launch.querySelector('[data-launch-bar]').style.setProperty('--value', `${Math.round((done / checks.length) * 100)}%`);
+        launch.querySelector('[data-launch-label]').textContent = `${done} de ${checks.length}`;
+      };
+      checks.forEach((check) => check.addEventListener('change', renderLaunch));
+      renderLaunch();
+    })();
+  </script>
+</body>
+</html>

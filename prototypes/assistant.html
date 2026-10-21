@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Asistente de AEM · AEM knowledge</title>
+  <meta name="description" content="Prototipo: chat para preguntar sobre Edge Delivery, Universal Editor y Content Fragments. Las respuestas son de ejemplo.">
+  <script>
+    (() => {
+      let theme = 'dark';
+      try {
+        const saved = localStorage.getItem('aem-forge-theme');
+        if (saved === 'dark' || saved === 'light') theme = saved;
+      } catch (e) { /* sin almacenamiento */ }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body class="chat-page">
+  <a class="skip-link" href="#chat-input">Saltar al chat</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">A</span>AEM <span class="brand__desc">knowledge</span></a>
+      <nav class="nav" aria-label="Principal">
+        <a href="learn.html">Aprender</a>
+        <a href="#">Bloques</a>
+        <a href="tools.html" aria-current="page">Herramientas</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-search-open><span aria-hidden="true">⌕</span>Buscar…<kbd>⌘K</kbd></button>
+        <button class="icon-btn search-icon" type="button" data-search-open aria-label="Buscar">⌕</button>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Cambiar tema">☀</button>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Principal (móvil)">
+      <div class="container">
+        <a href="learn.html">Aprender</a>
+        <a href="#">Bloques</a>
+        <a href="tools.html">Herramientas</a>
+        <a href="blog.html">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="chat-layout" data-chat data-chat-query>
+    <!-- block: chat-history · nuevo (historial de conversaciones; drawer en móvil) -->
+    <aside class="chat-sidebar" id="chat-history" aria-label="Historial de conversaciones">
+      <button class="btn btn--secondary chat-sidebar__new" type="button" data-chat-new>＋ Nueva conversación</button>
+      <p class="chat-sidebar__label">Recientes</p>
+      <ul class="chat-history">
+        <li><a href="#" aria-current="true">Agregar un campo a hero-banner</a></li>
+        <li><a href="#">Content Fragments con GraphQL</a></li>
+        <li><a href="#">Error 404 en aem up</a></li>
+        <li><a href="#">Variantes con block options</a></li>
+      </ul>
+      <p class="chat-sidebar__note">Las conversaciones se guardan solo en este navegador.</p>
+    </aside>
+    <button class="chat-backdrop" type="button" data-chat-history-close aria-label="Cerrar historial"></button>
+
+    <!-- block: assistant-chat · nuevo (conversación + caja de texto) -->
+    <section class="chat-panel" aria-labelledby="chat-title">
+      <div class="chat-panel__head">
+        <button class="icon-btn chat-panel__history" type="button" data-chat-history-open aria-controls="chat-history" aria-label="Ver historial">◷</button>
+        <span class="chat-avatar" aria-hidden="true">✦</span>
+        <div class="chat-panel__title">
+          <h1 class="h3" id="chat-title">Asistente de AEM</h1>
+          <span class="muted">Edge Delivery · Universal Editor · Content Fragments</span>
+        </div>
+        <span class="badge badge--violet">Prototipo</span>
+      </div>
+
+      <div class="chat-log" role="log" aria-live="polite" aria-label="Conversación" data-chat-log>
+        <div class="chat-welcome" data-chat-welcome>
+          <span class="chat-avatar chat-avatar--lg" aria-hidden="true">✦</span>
+          <h2 class="h2">¿En qué te ayudo con AEM?</h2>
+          <p class="lead">Pregunta sobre bloques, modelos, Content Fragments, desarrollo local o despliegue. Cada respuesta enlaza a la documentación.</p>
+          <div class="chat-suggestions">
+            <button class="chat-suggestion" type="button" data-chat-ask="¿Cómo creo un bloque nuevo?"><strong>Crear un bloque</strong><span>Estructura de archivos y decorate()</span></button>
+            <button class="chat-suggestion" type="button" data-chat-ask="¿Cómo agrego un campo a un bloque en Universal Editor?"><strong>Modelos de Universal Editor</strong><span>Agregar un campo a un bloque</span></button>
+            <button class="chat-suggestion" type="button" data-chat-ask="¿Cómo levanto el sitio en local?"><strong>Desarrollo local</strong><span>aem up y el servidor en el puerto 3000</span></button>
+            <button class="chat-suggestion" type="button" data-chat-ask="¿Cómo consulto Content Fragments con GraphQL?"><strong>Content Fragments</strong><span>Consultas persistidas con GraphQL</span></button>
+          </div>
+        </div>
+      </div>
+
+      <form class="chat-composer" data-chat-form>
+        <div class="chat-composer__box">
+          <label class="sr-only" for="chat-input">Escribe tu pregunta</label>
+          <textarea class="chat-composer__input" id="chat-input" name="message" rows="1" placeholder="Escribe tu pregunta sobre AEM…" data-chat-input></textarea>
+          <button class="btn btn--primary chat-composer__send" type="submit" aria-label="Enviar" data-chat-send>↑</button>
+        </div>
+        <p class="chat-composer__note"><kbd>Enter</kbd> enviar · <kbd>Shift</kbd> + <kbd>Enter</kbd> nueva línea · Prototipo: las respuestas son de ejemplo.</p>
+      </form>
+    </section>
+  </main>
+
+  <dialog class="search" id="search" aria-label="Buscar en el sitio">
+    <input class="search__input" type="search" placeholder="Buscar guías, documentación, artículos…" aria-label="Buscar">
+    <ul class="search__results"></ul>
+    <p class="search__empty" hidden>Sin resultados. Prueba con otra palabra.</p>
+    <div class="search__footer"><span><kbd>Esc</kbd> cerrar</span><span><kbd>⌘K</kbd> abrir/cerrar</span></div>
+  </dialog>
+
+  <script>
+    (() => {
+      // historial como drawer en móvil
+      const closeHistory = () => document.body.classList.remove('chat-history-open');
+      document.querySelector('[data-chat-history-open]').addEventListener('click', () => document.body.classList.add('chat-history-open'));
+      document.querySelector('[data-chat-history-close]').addEventListener('click', closeHistory);
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') closeHistory();
+      });
+      document.querySelector('[data-chat-new]').addEventListener('click', closeHistory);
+    })();
+  </script>
+</body>
+</html>

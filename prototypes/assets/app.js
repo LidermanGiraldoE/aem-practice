@@ -38,6 +38,8 @@
     { title: 'Content Fragments con GraphQL', path: 'docs.html#graphql', section: 'Documentación' },
     { title: 'Block options y variantes', path: 'docs.html#variantes', section: 'Documentación' },
     { title: 'Performance-first en EDS', path: 'blog.html', section: 'Publicaciones' },
+    { title: 'Herramientas', path: 'tools.html', section: 'Herramientas' },
+    { title: 'Asistente de AEM', path: 'assistant.html', section: 'Herramientas' },
   ];
 
   const search = document.getElementById('search');
@@ -281,5 +283,191 @@
       if (note) note.textContent = '¡Listo! Revisa tu correo para confirmar la suscripción.';
       form.reset();
     });
+  });
+
+  /* Asistente (prototipo): respuestas de ejemplo elegidas por palabras clave, sin IA ni red */
+  const CHAT_ANSWERS = [
+    {
+      keywords: ['campo', 'modelo', 'universal editor', 'component-models'],
+      html: `<p>Agrega el campo en el modelo del bloque, dentro de <code>blocks/{nombre}/_{nombre}.json</code>, y después regenera los JSON agregados.</p>
+<div class="code"><div class="code__head"><span>_hero-banner.json</span><button class="copy-btn" type="button">Copiar</button></div><pre>{
+  <span class="tk-s">"component"</span>: <span class="tk-s">"text"</span>,
+  <span class="tk-s">"name"</span>: <span class="tk-s">"subtitle"</span>,
+  <span class="tk-s">"label"</span>: <span class="tk-s">"Subtítulo"</span>,
+  <span class="tk-s">"valueType"</span>: <span class="tk-s">"string"</span>
+}</pre></div>
+<p>Luego ejecuta <code>npm run build:json</code> e incluye en el cambio los archivos <code>component-*.json</code> que se modifiquen. El orden de los campos define el orden de las celdas que recibe <code>decorate()</code>.</p>`,
+      sources: [['Universal Editor · modelos', 'docs.html'], ['Crea tu primer bloque', 'guide.html']],
+    },
+    {
+      keywords: ['bloque', 'block', 'decorate'],
+      html: `<p>Un bloque es una carpeta en <code>blocks/</code> con su JS y su CSS. El JS exporta una función <code>decorate(block)</code> que transforma el markup que entrega AEM.</p>
+<div class="code"><div class="code__head"><span>blocks/callout/callout.js</span><button class="copy-btn" type="button">Copiar</button></div><pre><span class="tk-k">export default function</span> <span class="tk-f">decorate</span>(block) {
+  <span class="tk-k">const</span> [title, body] = [...block.children];
+  block.classList.<span class="tk-f">add</span>(<span class="tk-s">'is-ready'</span>);
+  <span class="tk-c">// maneja celdas vacías sin romper el bloque</span>
+  <span class="tk-k">if</span> (!body) <span class="tk-k">return</span>;
+}</pre></div>
+<p>Escribe el CSS con selectores dentro de <code>.callout</code> y mobile-first. Para probarlo sin contenido publicado, crea un fixture en <code>drafts/</code>.</p>`,
+      sources: [['Crea tu primer bloque', 'guide.html'], ['Cómo pensar un bloque', 'blog-post.html']],
+    },
+    {
+      keywords: ['local', 'aem up', 'servidor', '3000', 'cli', 'levanto'],
+      html: `<p>Instala las dependencias y levanta el servidor con la CLI de AEM. Sirve los archivos de tu copia de trabajo y el contenido desde la preview.</p>
+<div class="code"><div class="code__head"><span>Terminal</span><button class="copy-btn" type="button">Copiar</button></div><pre><span class="tk-p">$</span> <span class="tk-cmd">npm install</span>
+<span class="tk-p">$</span> <span class="tk-cmd">npx -y @adobe/aem-cli up --no-open</span>
+<span class="tk-ok">✓ AEM dev server up and running: http://localhost:3000/</span></pre></div>
+<p>Si ves un 404, revisa que la página exista en la rama de preview o usa un fixture de <code>drafts/</code>.</p>`,
+      sources: [['Desarrollo local', 'docs.html']],
+    },
+    {
+      keywords: ['content fragment', 'fragment', 'graphql'],
+      html: `<p>Usa una <strong>consulta persistida</strong> de GraphQL y llámala desde el bloque con <code>fetch</code>. Así la respuesta se puede cachear en la CDN.</p>
+<div class="code"><div class="code__head"><span>data-table.js</span><button class="copy-btn" type="button">Copiar</button></div><pre><span class="tk-k">const</span> url = <span class="tk-s">'/graphql/execute.json/proyecto/articulos'</span>;
+<span class="tk-k">const</span> { data } = <span class="tk-k">await</span> (<span class="tk-k">await</span> <span class="tk-f">fetch</span>(url)).<span class="tk-f">json</span>();</pre></div>
+<p>El bloque <code>data-table</code> de este proyecto sigue este patrón.</p>`,
+      sources: [['Content Fragments con GraphQL', 'docs.html#graphql']],
+    },
+    {
+      keywords: [' alt', 'collapse', 'imagen', 'image'],
+      html: '<p>Es el <strong>field collapse</strong>: si un modelo tiene <code>image</code> e <code>imageAlt</code>, AEM los combina en un solo <code>&lt;picture&gt;</code> con su texto alternativo. Funciona igual con <code>Text</code>, <code>Title</code> y <code>Type</code>.</p>',
+      sources: [['Universal Editor · modelos', 'docs.html']],
+    },
+  ];
+
+  const CHAT_FALLBACK = {
+    html: '<p>Todavía no tengo una respuesta de ejemplo para eso. En este prototipo respondo sobre <strong>bloques</strong>, <strong>modelos de Universal Editor</strong>, <strong>desarrollo local</strong>, <strong>Content Fragments</strong> y <strong>field collapse</strong>.</p>',
+    sources: [['Documentación', 'docs.html']],
+  };
+
+  /*
+   * Contrato: [data-chat] contiene [data-chat-log], [data-chat-welcome], [data-chat-form],
+   * [data-chat-input] y [data-chat-send]. Opcionales: [data-chat-ask], [data-chat-new] y
+   * el atributo data-chat-query para enviar la pregunta que llega en ?q=.
+   */
+  document.querySelectorAll('[data-chat]').forEach((chat) => {
+    const log = chat.querySelector('[data-chat-log]');
+    const welcome = chat.querySelector('[data-chat-welcome]');
+    const form = chat.querySelector('[data-chat-form]');
+    const input = chat.querySelector('[data-chat-input]');
+    const send = chat.querySelector('[data-chat-send]');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let busy = false;
+
+    const findAnswer = (question) => {
+      const text = question.toLowerCase();
+      return CHAT_ANSWERS.find((answer) => answer.keywords
+        .some((word) => text.includes(word))) || CHAT_FALLBACK;
+    };
+
+    const scrollToEnd = () => log.scrollTo({ top: log.scrollHeight, behavior: reducedMotion ? 'auto' : 'smooth' });
+
+    const addUserMessage = (text) => {
+      const message = document.createElement('div');
+      const bubble = document.createElement('p');
+      message.className = 'chat-msg chat-msg--user';
+      bubble.className = 'chat-msg__bubble';
+      bubble.textContent = text;
+      message.append(bubble);
+      log.append(message);
+    };
+
+    const addTyping = () => {
+      const typing = document.createElement('div');
+      typing.className = 'chat-msg chat-msg--bot';
+      typing.innerHTML = `<span class="chat-avatar" aria-hidden="true">✦</span>
+<div class="chat-msg__bubble chat-typing" aria-label="El asistente está escribiendo"><span></span><span></span><span></span></div>`;
+      log.append(typing);
+      return typing;
+    };
+
+    const addBotMessage = ({ html, sources }) => {
+      const message = document.createElement('div');
+      const links = sources.map(([label, href]) => `<a href="${href}">${label}</a>`).join('');
+      message.className = 'chat-msg chat-msg--bot';
+      message.innerHTML = `<span class="chat-avatar" aria-hidden="true">✦</span>
+<div class="chat-msg__bubble">${html}
+  <div class="chat-sources"><span>Fuentes</span>${links}</div>
+  <div class="chat-feedback" role="group" aria-label="¿Te sirvió esta respuesta?">
+    <button class="btn btn--ghost btn--sm" type="button" aria-pressed="false">✓ Me sirvió</button>
+    <button class="btn btn--ghost btn--sm" type="button" aria-pressed="false">✕ No me sirvió</button>
+  </div>
+</div>`;
+      log.append(message);
+    };
+
+    const ask = (question) => {
+      const text = question.trim();
+      if (!text || busy) return;
+      busy = true;
+      send.disabled = true;
+      welcome.hidden = true;
+      addUserMessage(text);
+      const typing = addTyping();
+      scrollToEnd();
+      setTimeout(() => {
+        typing.remove();
+        addBotMessage(findAnswer(text));
+        busy = false;
+        send.disabled = false;
+        scrollToEnd();
+      }, reducedMotion ? 200 : 900);
+    };
+
+    /* la caja de texto crece con el contenido hasta un máximo */
+    const resize = () => {
+      input.style.height = 'auto';
+      input.style.height = `${Math.min(input.scrollHeight, 180)}px`;
+    };
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      ask(input.value);
+      input.value = '';
+      resize();
+    });
+    input.addEventListener('input', resize);
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && !event.shiftKey && !event.isComposing) {
+        event.preventDefault();
+        form.requestSubmit();
+      }
+    });
+
+    chat.querySelectorAll('[data-chat-ask]').forEach((button) => {
+      button.addEventListener('click', () => ask(button.dataset.chatAsk));
+    });
+
+    /* copiar código y valorar respuestas: los mensajes se crean después de la carga */
+    log.addEventListener('click', async (event) => {
+      const copy = event.target.closest('.copy-btn');
+      if (copy) {
+        const code = copy.closest('.code')?.querySelector('pre')?.innerText || '';
+        try {
+          await navigator.clipboard.writeText(code.replace(/^\$ /gm, ''));
+          copy.textContent = 'Copiado ✓';
+        } catch {
+          copy.textContent = 'No disponible';
+        }
+        setTimeout(() => { copy.textContent = 'Copiar'; }, 1600);
+        return;
+      }
+      const vote = event.target.closest('.chat-feedback button');
+      if (!vote) return;
+      vote.parentElement.querySelectorAll('button').forEach((button) => {
+        button.setAttribute('aria-pressed', String(button === vote));
+      });
+    });
+
+    chat.querySelector('[data-chat-new]')?.addEventListener('click', () => {
+      log.querySelectorAll('.chat-msg').forEach((message) => message.remove());
+      welcome.hidden = false;
+      input.focus();
+    });
+
+    if (chat.hasAttribute('data-chat-query')) {
+      const initial = new URLSearchParams(window.location.search).get('q');
+      if (initial) ask(initial);
+    }
   });
 })();
