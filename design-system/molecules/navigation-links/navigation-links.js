@@ -12,6 +12,21 @@ const MAX_COLUMNS = 4;
 const focusClass = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand';
 const controlClass = `inline-flex items-center gap-1.5 rounded-md px-2 py-1.5 text-fg-2 !no-underline transition-colors hover:bg-surface-overlay hover:text-fg focus-visible:text-fg ${focusClass}`;
 const buttonClass = `${controlClass} cursor-pointer bg-transparent [font:inherit]`;
+const currentClass = '!text-fg relative after:absolute after:inset-x-2 after:-bottom-0.5 after:h-0.5 after:rounded-full after:bg-brand';
+
+function normalizePath(pathname) {
+  return pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+}
+
+// a top-level link is current on its own page and on every page below it
+function isCurrentSection(href, currentPath) {
+  if (!href || href.startsWith('#')) return false;
+  const url = new URL(href, window.location.href);
+  if (url.origin !== window.location.origin) return false;
+  const linkPath = normalizePath(url.pathname);
+  if (linkPath === '/') return currentPath === '/';
+  return currentPath === linkPath || currentPath.startsWith(`${linkPath}/`);
+}
 
 function Chevron({ open }) {
   return html`
@@ -70,7 +85,7 @@ function Column({ item }) {
 }
 
 function MenuItem({
-  item, open, instant, onToggle, onClose,
+  item, open, instant, current, onToggle, onClose,
 }) {
   const panelId = useId();
   const itemRef = useRef(null);
@@ -86,10 +101,11 @@ function MenuItem({
   }, [open]);
 
   if (!item.children.length) {
+    const linkClass = `${controlClass} ${current ? currentClass : ''}`;
     return html`
       <li data-nav-index=${item.index}>
         ${item.href
-    ? html`<a href=${item.href} title=${item.title || null} class=${controlClass}>${item.label}</a>`
+    ? html`<a href=${item.href} title=${item.title || null} class=${linkClass} aria-current=${current ? 'page' : null}>${item.label}</a>`
     : html`<span class=${controlClass}>${item.label}</span>`}
       </li>
     `;
@@ -119,7 +135,7 @@ function MenuItem({
       <button
         ref=${toggleRef}
         type="button"
-        class="${buttonClass} ${open ? '!text-fg' : ''}"
+        class="${buttonClass} ${open ? '!text-fg' : ''} ${current ? currentClass : ''}"
         aria-expanded=${open}
         aria-controls=${panelId}
         onClick=${onToggle}
@@ -141,7 +157,7 @@ function MenuItem({
             ${item.href || item.description ? html`
               <div class="flex flex-col gap-2 self-start rounded-card border border-line bg-surface-raised p-5">
                 ${item.href
-    ? html`<a href=${item.href} title=${item.title || null} class="rounded-sm text-lg font-bold !text-fg !no-underline hover:!text-brand ${focusClass}">${item.label} →</a>`
+    ? html`<a href=${item.href} title=${item.title || null} class="rounded-sm text-lg font-bold !text-fg !no-underline hover:!text-brand ${focusClass}" aria-current=${current ? 'page' : null}>${item.label} →</a>`
     : html`<span class="text-lg font-bold text-fg">${item.label}</span>`}
                 ${item.description ? html`<p class="m-0 text-sm leading-relaxed text-fg-3">${item.description}</p>` : null}
               </div>
@@ -162,6 +178,7 @@ function MenuItem({
 export default function NavigationLinks({ items, className = '' }) {
   const [openIndex, setOpenIndex] = useState(null);
   const close = () => setOpenIndex(null);
+  const currentPath = normalizePath(window.location.pathname);
 
   return html`
     <ul class="m-0 flex list-none flex-col gap-5 p-0 text-base md:justify-center md:gap-6 md:text-md lg:flex-row ${className}">
@@ -171,6 +188,7 @@ export default function NavigationLinks({ items, className = '' }) {
           item=${{ children: [], ...item }}
           open=${openIndex === i}
           instant=${openIndex !== null && openIndex !== i}
+          current=${isCurrentSection(item.href, currentPath)}
           onToggle=${() => setOpenIndex(openIndex === i ? null : i)}
           onClose=${close}
         />

@@ -12,15 +12,21 @@ function addReadingProgress() {
   document.body.append(bar);
 
   const update = () => {
-    const sections = document.querySelectorAll('main .article-body');
-    if (!sections.length) return;
-    const start = sections[0].getBoundingClientRect().top + window.scrollY;
-    const end = sections[sections.length - 1].getBoundingClientRect().bottom
-      + window.scrollY - window.innerHeight;
+    const sections = [...document.querySelectorAll('main .article-body')];
+    const first = sections[0]?.getBoundingClientRect();
+    const last = sections.at(-1)?.getBoundingClientRect();
+    // sections still loading have no height yet; keep the bar empty until they render
+    if (!first || !last || last.bottom - first.top <= 0) {
+      bar.style.transform = 'scaleX(0)';
+      return;
+    }
+    const start = first.top + window.scrollY;
+    const end = last.bottom + window.scrollY - window.innerHeight;
     const ratio = end > start ? (window.scrollY - start) / (end - start) : 1;
     bar.style.transform = `scaleX(${Math.min(Math.max(ratio, 0), 1)})`;
   };
   window.addEventListener('scroll', update, { passive: true });
+  new ResizeObserver(update).observe(document.querySelector('main'));
   update();
 }
 
