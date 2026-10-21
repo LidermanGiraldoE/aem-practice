@@ -21,14 +21,19 @@ export default function decorate(block) {
     const [icon, title, description, linkCell] = [...row.children];
     const link = linkCell?.querySelector('a');
     const href = link?.getAttribute('href') || '';
-    const label = getText(link || linkCell);
+    const label = getText(link);
+    // link_status is grouped into the link cell; it only shows when there is no link
+    const status = [...(linkCell?.children || [])]
+      .filter((element) => !element.querySelector('a') && element.tagName !== 'A')
+      .map(getText)
+      .join(' ') || (link ? '' : getText(linkCell));
     return {
       icon: getText(icon),
       title: getText(title),
       description: getText(description),
       href,
       // a link without Link Text is rendered with its URL as the text
-      linkLabel: label === href ? '' : label,
+      linkLabel: href ? (label !== href && label) || '' : status,
     };
   });
 

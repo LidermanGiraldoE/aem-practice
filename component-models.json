@@ -834,7 +834,14 @@
         "valueType": "string",
         "name": "linkText",
         "label": "Link Text",
-        "description": "Call to action at the bottom of the card. Without a link it shows as a status, for example \"Próximamente\"."
+        "description": "Call to action at the bottom of the card."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "link_status",
+        "label": "Status",
+        "description": "Shown instead of the call to action when the card has no link, for example \"Próximamente\"."
       }
     ]
   },
