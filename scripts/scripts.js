@@ -11,6 +11,7 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  toClassName,
 } from './aem.js';
 
 /**
@@ -161,10 +162,23 @@ export function decorateButtons(main) {
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
+/**
+ * Turns the Section Anchor ID authored in Universal Editor into the section id,
+ * so links such as #probar jump to it.
+ * @param {Element} main The container element
+ */
+function decorateSectionAnchors(main) {
+  main.querySelectorAll(':scope > .section[data-id]').forEach((section) => {
+    const id = toClassName(section.dataset.id.replace(/^#/, ''));
+    if (id && !document.getElementById(id)) section.id = id;
+  });
+}
+
 export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateSectionAnchors(main);
   decorateBlocks(main);
   decorateButtons(main);
 }

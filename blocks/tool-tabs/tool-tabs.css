@@ -1,0 +1,24 @@
+.tool-tabs-notes > * {
+  margin: 0;
+}
+
+.tool-tabs-notes h3,
+.tool-tabs-notes h4 {
+  color: var(--ds-text);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.tool-tabs-notes p {
+  color: var(--ds-text-2);
+  font-size: var(--text-md);
+}
+
+.tool-tabs-notes code {
+  border-radius: var(--radius-xs);
+  padding: 1px 6px;
+  background: var(--ds-surface-2);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}

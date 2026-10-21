@@ -86,7 +86,9 @@
         "learn-hero",
         "path-cards",
         "quiz-teaser",
-        "accordion"
+        "accordion",
+        "tool-tabs",
+        "assistant-chat"
       ]
     }
   ]

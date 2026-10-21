@@ -3,7 +3,7 @@ import htm from 'htm';
 
 const html = htm.bind(h);
 
-const TONES = {
+export const TONES = {
   brand: 'border-brand/30 bg-brand/9 text-brand',
   violet: 'border-violet/30 bg-violet/9 text-violet',
   cyan: 'border-cyan/30 bg-cyan/9 text-cyan',

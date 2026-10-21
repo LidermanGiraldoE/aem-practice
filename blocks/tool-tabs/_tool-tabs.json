@@ -1,0 +1,89 @@
+{
+  "definitions": [
+    {
+      "title": "Tool Tabs",
+      "id": "tool-tabs",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Tool Tabs",
+              "filter": "tool-tabs"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Tool Tab",
+      "id": "tool-tab",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Tool Tab",
+              "model": "tool-tab",
+              "tool": "url-builder"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "tool-tab",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "title",
+          "label": "Tab Label",
+          "required": true
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "tool",
+          "label": "Tool",
+          "value": "url-builder",
+          "options": [
+            { "name": "URL builder", "value": "url-builder" },
+            { "name": "Model generator", "value": "model-builder" },
+            { "name": "Launch checklist", "value": "launch-checklist" }
+          ]
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "text",
+          "label": "Notes",
+          "description": "Shown next to the tool. Launch checklist: each bulleted item becomes a checkbox. Model generator: each bulleted item \"name: component\" (for example \"title: text\") becomes an initial field."
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Full Tool Link",
+          "description": "Optional. Page with the complete version of the tool."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkText",
+          "label": "Link Text",
+          "description": "For example \"Abrir el constructor completo\""
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "tool-tabs",
+      "components": [
+        "tool-tab"
+      ]
+    }
+  ]
+}

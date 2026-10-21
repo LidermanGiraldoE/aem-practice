@@ -77,6 +77,28 @@
         {
           "component": "text",
           "valueType": "string",
+          "name": "title_badge",
+          "label": "Badge",
+          "description": "Optional. Short label in the top corner, for example \"Disponible\" or \"Beta\"."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "title_badgeTone",
+          "label": "Badge Color",
+          "value": "brand",
+          "options": [
+            { "name": "Brand", "value": "brand" },
+            { "name": "Success", "value": "success" },
+            { "name": "Violet", "value": "violet" },
+            { "name": "Cyan", "value": "cyan" },
+            { "name": "Warning", "value": "warning" },
+            { "name": "Coral", "value": "coral" }
+          ]
+        },
+        {
+          "component": "text",
+          "valueType": "string",
           "name": "description",
           "label": "Description"
         },

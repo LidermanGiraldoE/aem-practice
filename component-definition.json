@@ -113,6 +113,22 @@
           }
         },
         {
+          "title": "Assistant Chat",
+          "id": "assistant-chat",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Assistant Chat",
+                  "model": "assistant-chat",
+                  "assistantName": "Asistente de AEM"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Blog Featured",
           "id": "blog-featured",
           "plugins": {
@@ -517,6 +533,37 @@
                 "template": {
                   "name": "Showcase Card",
                   "model": "showcase-card"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Tool Tabs",
+          "id": "tool-tabs",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Tool Tabs",
+                  "filter": "tool-tabs"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Tool Tab",
+          "id": "tool-tab",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Tool Tab",
+                  "model": "tool-tab",
+                  "tool": "url-builder"
                 }
               }
             }

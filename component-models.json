@@ -458,6 +458,60 @@
     ]
   },
   {
+    "id": "assistant-chat",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "content-tab",
+        "label": "Content"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_eyebrow",
+        "label": "Eyebrow"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content_text",
+        "label": "Copy",
+        "description": "An H2, a paragraph and an optional bulleted list. Start each list item with bold text to use it as the item's title."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "cta_linkText",
+        "label": "CTA Text"
+      },
+      {
+        "component": "aem-content",
+        "name": "cta_link",
+        "label": "CTA Link",
+        "description": "Optional. For example a page with the assistant in full screen."
+      },
+      {
+        "component": "tab",
+        "name": "chat-tab",
+        "label": "Chat"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "assistantName",
+        "label": "Assistant Name",
+        "value": "Asistente de AEM"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "suggestions",
+        "label": "Suggested Questions",
+        "description": "A bulleted list with one question per item (up to 4). Shown before the first message."
+      }
+    ]
+  },
+  {
     "id": "blog-featured",
     "fields": [
       {
@@ -816,6 +870,46 @@
         "name": "title",
         "label": "Title",
         "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title_badge",
+        "label": "Badge",
+        "description": "Optional. Short label in the top corner, for example \"Disponible\" or \"Beta\"."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "title_badgeTone",
+        "label": "Badge Color",
+        "value": "brand",
+        "options": [
+          {
+            "name": "Brand",
+            "value": "brand"
+          },
+          {
+            "name": "Success",
+            "value": "success"
+          },
+          {
+            "name": "Violet",
+            "value": "violet"
+          },
+          {
+            "name": "Cyan",
+            "value": "cyan"
+          },
+          {
+            "name": "Warning",
+            "value": "warning"
+          },
+          {
+            "name": "Coral",
+            "value": "coral"
+          }
+        ]
       },
       {
         "component": "text",
@@ -1692,6 +1786,59 @@
         "valueType": "string",
         "name": "description",
         "label": "Description"
+      }
+    ]
+  },
+  {
+    "id": "tool-tab",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Tab Label",
+        "required": true
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "tool",
+        "label": "Tool",
+        "value": "url-builder",
+        "options": [
+          {
+            "name": "URL builder",
+            "value": "url-builder"
+          },
+          {
+            "name": "Model generator",
+            "value": "model-builder"
+          },
+          {
+            "name": "Launch checklist",
+            "value": "launch-checklist"
+          }
+        ]
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "text",
+        "label": "Notes",
+        "description": "Shown next to the tool. Launch checklist: each bulleted item becomes a checkbox. Model generator: each bulleted item \"name: component\" (for example \"title: text\") becomes an initial field."
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Full Tool Link",
+        "description": "Optional. Page with the complete version of the tool."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "label": "Link Text",
+        "description": "For example \"Abrir el constructor completo\""
       }
     ]
   }

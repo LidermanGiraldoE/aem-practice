@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Herramientas Fixture</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "@dropins/tools/": "/scripts/__dropins__/tools/",
+          "htm": "/scripts/vendor/htm/dist/htm.mjs"
+        }
+      }
+    </script>
+    <script src="/scripts/aem.js" type="module"></script>
+    <script src="/scripts/scripts.js" type="module"></script>
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/tailwind.css" />
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div>
+        <div class="section-heading page-hero">
+          <div><div>Herramientas</div></div>
+          <div><div><h1>Utilidades para</h1><p>el trabajo diario.</p></div></div>
+          <div><div><p>Pequeñas herramientas para las tareas que repites en cada proyecto de Edge Delivery: modelos de Universal Editor, URLs de cada entorno y la revisión antes de publicar.</p><p><a href="#probar">Pruébalas aquí mismo ↓</a></p></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-heading left">
+          <div><div>Catálogo</div></div>
+          <div><div><h2>Herramientas</h2></div></div>
+          <div><div></div></div>
+        </div>
+        <div class="feature-cards multicolor">
+          <div><div>{ }</div><div><p>Generador de modelos</p><p>Disponible</p><p>success</p></div><div>Arma los campos de un bloque y obtén el JSON para Universal Editor: definición, modelo y filtro.</div><div><p><a href="/tools/model-generator">Abrir herramienta</a></p></div></div>
+          <div><div>⇄</div><div><p>Constructor de URLs</p><p>Disponible</p><p>success</p></div><div>URLs de preview y live para cualquier rama, repositorio y organización, listas para copiar.</div><div><p><a href="/tools/url-builder">Abrir herramienta</a></p></div></div>
+          <div><div>✓</div><div><p>Checklist de lanzamiento</p><p>Beta</p><p>violet</p></div><div>Lo que hay que revisar antes de publicar un sitio, con tu avance guardado en el navegador.</div><div><p><a href="/tools/launch-checklist">Abrir herramienta</a></p></div></div>
+          <div><div>◌</div><div>Tarjeta sin badge</div><div>Caso de prueba: contenido anterior al campo Badge, sin párrafos en la celda del título.</div><div><p>Próximamente</p></div></div>
+        </div>
+        <div class="section-metadata">
+          <div><div>style</div><div>spacious</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-heading left">
+          <div><div>Pruébalas</div></div>
+          <div><div><h2>Una vista rápida de cada una</h2></div></div>
+          <div><div>Versiones reducidas para resolver lo puntual sin salir de esta página. La herramienta completa tiene todas las opciones.</div></div>
+        </div>
+        <div class="tool-tabs">
+          <div>
+            <div>Constructor de URLs</div>
+            <div>url-builder</div>
+            <div><h3>Preview y live en un paso</h3><p>Escribe la organización, el repositorio y la rama. En una preview o live del sitio, los valores salen de la URL actual.</p></div>
+            <div><p><a href="/tools/url-builder">Abrir el constructor completo</a></p></div>
+          </div>
+          <div>
+            <div>Generador de modelos</div>
+            <div>model-builder</div>
+            <div><h3>Del campo al JSON</h3><p>Agrega los campos del bloque y copia el modelo para <code>_bloque.json</code>.</p><ul><li>variant: select</li><li>title: text</li><li>text: richtext</li><li>title: text</li><li>image: inventado</li></ul></div>
+            <div><p><a href="/tools/model-generator">Abrir el generador completo</a></p></div>
+          </div>
+          <div>
+            <div>Checklist de lanzamiento</div>
+            <div>launch-checklist</div>
+            <div><p>Una muestra de la lista. La versión completa agrupa los puntos por SEO, rendimiento, accesibilidad y operación.</p><ul><li>Título y descripción en los metadatos de cada página</li><li>Imágenes con texto alternativo significativo</li><li>Lighthouse en verde en móvil para las plantillas principales</li><li>Redirecciones de las URLs antiguas configuradas</li><li>Sitemap y robots.txt revisados para producción</li><li>Dominio y CDN apuntando al sitio live</li></ul></div>
+            <div><p><a href="/tools/launch-checklist">Abrir el checklist completo</a></p></div>
+          </div>
+          <div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <div class="section-metadata">
+          <div><div>id</div><div>probar</div></div>
+          <div><div>style</div><div>spacious, soft</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="assistant-chat">
+          <div><div><p>Asistente</p><h2>¿Una duda puntual? Pregunta.</h2><p>Escribe tu pregunta sobre bloques, modelos, Content Fragments o desarrollo local. Responde con un ejemplo y te enlaza a la documentación donde se explica.</p><ul><li><strong>Con fuentes</strong> Cada respuesta indica de qué página de la documentación sale.</li><li><strong>Con código</strong> Ejemplos que siguen las convenciones del proyecto, listos para copiar.</li></ul></div></div>
+          <div><div><p class="button-container"><a href="/tools/assistant" title="Abrir en pantalla completa">Abrir en pantalla completa</a></p></div></div>
+          <div><div>Asistente de AEM</div></div>
+          <div><div><ul><li>¿Cómo creo un bloque nuevo?</li><li>¿Cómo agrego un campo a un bloque en Universal Editor?</li><li>¿Cómo levanto el sitio en local?</li><li>¿Qué es field collapse?</li></ul></div></div>
+        </div>
+        <div class="section-metadata">
+          <div><div>id</div><div>asistente</div></div>
+          <div><div>style</div><div>spacious</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="section-heading left">
+          <div><div>Utilidades</div></div>
+          <div><div><h2>Referencias rápidas</h2></div></div>
+          <div><div><p><a href="/learn/docs">Ver toda la documentación</a></p></div></div>
+        </div>
+        <div class="doc-cards">
+          <div><div>Referencia</div><div>2 min</div><div><p>Comandos de la CLI de AEM</p><p>Levantar el sitio en local, apuntar a otra rama y reenviar los logs del navegador.</p></div><div><a href="/learn/docs">/learn/docs</a></div></div>
+          <div><div>Referencia</div><div>3 min</div><div><p>Tipos de campo de Universal Editor</p><p>Qué componente usar para cada dato y cómo llega al bloque.</p></div><div><a href="/learn/docs">/learn/docs</a></div></div>
+          <div><div>Referencia</div><div>2 min</div><div><p>Metadatos de página</p><p>Título, descripción, imagen para redes y plantilla de cada página.</p></div><div><a href="/learn/docs">/learn/docs</a></div></div>
+          <div><div>Guía</div><div>4 min</div><div><p>Indexar contenido con query-index</p><p>Configura helix-query.yaml y consume el JSON desde un bloque.</p></div><div><a href="/learn/docs">/learn/docs</a></div></div>
+          <div><div>Guía</div><div>3 min</div><div><p>Fixtures en drafts/</p><p>Prueba un bloque en local sin depender de contenido publicado.</p></div><div><a href="/learn/docs">/learn/docs</a></div></div>
+          <div><div>Guía</div><div>5 min</div><div><p>Rendimiento y fases de carga</p><p>Qué va en eager, lazy y delayed para mantener el LCP bajo control.</p></div><div><a href="/learn/docs">/learn/docs</a></div></div>
+        </div>
+        <div class="section-metadata">
+          <div><div>style</div><div>spacious, soft</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="cta-banner">
+          <div><div>¿Te falta algo?</div></div>
+          <div><div><h2>Propón la próxima herramienta.</h2></div></div>
+          <div><div>Cuéntanos qué tarea repites en cada proyecto y la convertimos en una utilidad.</div></div>
+          <div>
+            <div>
+              <p class="button-container"><strong><a href="/contacto" title="Proponer una herramienta">Proponer una herramienta</a></strong></p>
+              <p>arrow-right</p>
+            </div>
+          </div>
+        </div>
+        <div class="section-metadata">
+          <div><div>style</div><div>spacious</div></div>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>

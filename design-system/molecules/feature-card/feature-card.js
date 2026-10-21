@@ -1,6 +1,7 @@
 import { h } from '@dropins/tools/preact.js';
 import htm from 'htm';
 import IconBox from '../../atoms/icon-box/icon-box.js';
+import Badge from '../../atoms/badge/badge.js';
 
 const html = htm.bind(h);
 
@@ -10,6 +11,7 @@ const LINK_CLASS = 'text-fg! no-underline! hover:text-fg! hover:no-underline! af
 /**
  * With `href` the whole card is clickable and `linkLabel` reads as its call to action.
  * Without it, `linkLabel` is shown as a muted status such as "Próximamente".
+ * `badge` is an optional label in the top corner, such as "Beta".
  */
 export default function FeatureCard({
   icon = '',
@@ -18,12 +20,22 @@ export default function FeatureCard({
   href = '',
   linkLabel = '',
   tone = 'brand',
+  badge = '',
+  badgeTone = 'brand',
 }) {
   const pending = !href && linkLabel;
+  const top = badge
+    ? html`
+      <div class="mb-4.5 flex min-h-10 items-center gap-3">
+        <${IconBox} icon=${icon} tone=${tone} />
+        <${Badge} tone=${badgeTone} className="ml-auto">${badge}<//>
+      </div>
+    `
+    : html`<${IconBox} icon=${icon} tone=${tone} className="mb-4.5" />`;
 
   return html`
     <article class="relative flex h-full flex-col rounded-card border ${pending ? 'border-dashed' : ''} border-line bg-surface-card p-6 transition-[border-color,transform] duration-[var(--ds-motion-base)] ease-standard hover:border-[color-mix(in_srgb,var(--ds-line)_60%,var(--ds-brand)_40%)] motion-safe:hover:-translate-y-[3px] motion-reduce:transition-none">
-      <${IconBox} icon=${icon} tone=${tone} className="mb-4.5" />
+      ${top}
       ${title && html`
         <h3 class="m-0! mb-2! text-xl! text-fg">
           ${href ? html`<a href=${href} class=${LINK_CLASS}>${title}</a>` : title}
