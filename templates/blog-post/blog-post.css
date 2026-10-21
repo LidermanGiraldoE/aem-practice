@@ -44,6 +44,10 @@ main > .section.article-body > div + div {
   margin-top: 32px;
 }
 
+main > .section.article-body > .callout-wrapper {
+  max-width: 720px;
+}
+
 main > .section.article-body > .toc-wrapper {
   display: none;
 }

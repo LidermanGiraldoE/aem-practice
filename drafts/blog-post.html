@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blog Post Fixture</title>
+    <meta property="og:title" content="Fixture: callouts y bloques de código" />
+    <meta name="description" content="Página de prueba para los bloques callout y code." />
+    <meta name="template" content="blog-post" />
+    <meta name="category" content="frontend" />
+    <meta name="author" content="/blog/authors/liderman-giraldo" />
+    <meta name="publication-date" content="2026-10-21T00:00:00" />
+    <meta name="reading-time" content="4" />
+    <meta property="article:tag" content="fixture" />
+    <script type="importmap">
+      {
+        "imports": {
+          "@dropins/tools/": "/scripts/__dropins__/tools/",
+          "htm": "/scripts/vendor/htm/dist/htm.mjs"
+        }
+      }
+    </script>
+    <script src="/scripts/aem.js" type="module"></script>
+    <script src="/scripts/scripts.js" type="module"></script>
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/tailwind.css" />
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div>
+        <p>Párrafo de introducción para comprobar el ancho de lectura junto a los nuevos bloques.</p>
+        <h2>1. Callouts</h2>
+        <div class="callout tip">
+          <div><div></div></div>
+          <div><div><p>Un consejo con <strong>énfasis</strong> y un <a href="/blog">enlace</a>.</p></div></div>
+        </div>
+        <div class="callout warning">
+          <div><div>Antes de pegarlo</div></div>
+          <div><div><p>Pega en la consola solo código que entiendas.</p><ul><li>Primer punto.</li><li>Segundo punto.</li></ul></div></div>
+        </div>
+        <div class="callout note">
+          <div><div></div></div>
+          <div><div><p>Una nota informativa sin título propio.</p></div></div>
+        </div>
+        <h2>2. Código</h2>
+        <p>JavaScript con nombre de archivo:</p>
+        <pre><code>// blocks/hero/hero.js
+export default function decorate(block) {
+  const rows = [...block.children];
+  if (!rows.length) return; // nada que decorar
+  block.classList.add('hero--ready', `rows-${rows.length}`);
+}</code></pre>
+        <p>Terminal:</p>
+        <pre><code>$ npm run lint
+$ npx -y @adobe/aem-cli up --no-open</code></pre>
+        <p>JSON, CSS y YAML detectados automáticamente:</p>
+        <pre><code>{
+  "id": "callout",
+  "fields": [{ "name": "title", "required": false, "max": 3 }]
+}</code></pre>
+        <pre><code>.callout {
+  border-radius: 12px;
+  padding: 20px;
+  color: var(--ds-text);
+}</code></pre>
+        <pre><code># helix-query.yaml
+tags:
+  select: head > meta[property="article:tag"]
+  values: attribute(el, "content")</code></pre>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>

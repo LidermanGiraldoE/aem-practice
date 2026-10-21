@@ -187,6 +187,11 @@ async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadSections(main);
 
+  if (main.querySelector('.default-content-wrapper pre')) {
+    // eslint-disable-next-line import/no-cycle
+    import('./code-blocks.js').then(({ default: decorateCodeBlocks }) => decorateCodeBlocks(main));
+  }
+
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();

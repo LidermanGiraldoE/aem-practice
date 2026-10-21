@@ -45,7 +45,7 @@ indices:
         value: attribute(el, "content")
       tags:
         select: head > meta[property="article:tag"]
-        value: attribute(el, "content")
+        values: attribute(el, "content")
       author:
         select: head > meta[name="author"]
         value: attribute(el, "content")

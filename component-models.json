@@ -407,6 +407,46 @@
     ]
   },
   {
+    "id": "callout",
+    "fields": [
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "classes",
+        "label": "Type",
+        "value": "note",
+        "options": [
+          {
+            "name": "Note",
+            "value": "note"
+          },
+          {
+            "name": "Tip",
+            "value": "tip"
+          },
+          {
+            "name": "Warning",
+            "value": "warning"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "title",
+        "label": "Title",
+        "description": "Optional. Defaults to the type name (Nota, Consejo, Atención)."
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "text",
+        "label": "Text",
+        "required": true
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {

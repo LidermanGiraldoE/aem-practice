@@ -1,0 +1,18 @@
+/* Presentation is provided by the design-system Callout molecule; these rules style the authored rich text. */
+.callout .callout-content > * {
+  margin: 0;
+}
+
+.callout .callout-content > * + * {
+  margin-top: 0.6em;
+}
+
+.callout .callout-content a:any-link {
+  color: var(--ds-brand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.callout .callout-content :is(ul, ol) {
+  padding-left: 1.2em;
+}
