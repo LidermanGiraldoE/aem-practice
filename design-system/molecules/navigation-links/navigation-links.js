@@ -18,14 +18,30 @@ function normalizePath(pathname) {
   return pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
 }
 
-// a top-level link is current on its own page and on every page below it
-function isCurrentSection(href, currentPath) {
-  if (!href || href.startsWith('#')) return false;
+// a top-level link matches its own page and every page below it; returns the matched path length
+function sectionMatchLength(href, currentPath) {
+  if (!href || href.startsWith('#')) return -1;
   const url = new URL(href, window.location.href);
-  if (url.origin !== window.location.origin) return false;
+  if (url.origin !== window.location.origin) return -1;
   const linkPath = normalizePath(url.pathname);
-  if (linkPath === '/') return currentPath === '/';
-  return currentPath === linkPath || currentPath.startsWith(`${linkPath}/`);
+  if (linkPath === '/') return currentPath === '/' ? 1 : -1;
+  const matches = currentPath === linkPath || currentPath.startsWith(`${linkPath}/`);
+  return matches ? linkPath.length : -1;
+}
+
+// a menu matches through its own link or any link in its submenu; when sections nest
+// (/docs and /docs/tutorial) only the most specific one is current
+function findCurrentIndex(items, currentPath) {
+  const bestLength = (item) => Math.max(
+    sectionMatchLength(item.href, currentPath),
+    ...(item.children || []).map(bestLength),
+  );
+  let best = { index: -1, length: -1 };
+  items.forEach((item, index) => {
+    const length = bestLength(item);
+    if (length > best.length) best = { index, length };
+  });
+  return best.index;
 }
 
 function Chevron({ open }) {
@@ -179,6 +195,7 @@ export default function NavigationLinks({ items, className = '' }) {
   const [openIndex, setOpenIndex] = useState(null);
   const close = () => setOpenIndex(null);
   const currentPath = normalizePath(window.location.pathname);
+  const currentIndex = findCurrentIndex(items, currentPath);
 
   return html`
     <ul class="m-0 flex list-none flex-col gap-5 p-0 text-base md:justify-center md:gap-6 md:text-md lg:flex-row ${className}">
@@ -188,7 +205,7 @@ export default function NavigationLinks({ items, className = '' }) {
           item=${{ children: [], ...item }}
           open=${openIndex === i}
           instant=${openIndex !== null && openIndex !== i}
-          current=${isCurrentSection(item.href, currentPath)}
+          current=${i === currentIndex}
           onToggle=${() => setOpenIndex(openIndex === i ? null : i)}
           onClose=${close}
         />

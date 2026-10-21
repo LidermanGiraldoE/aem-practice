@@ -2,7 +2,8 @@ import { h, render } from '@dropins/tools/preact.js';
 import NavigationLinks from '../../design-system/molecules/navigation-links/navigation-links.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-// cells follow the model order, so link, description and level are read from the end
+// cells follow the model order (label + link grouped, description, level), read from the end;
+// older items only have the link, with its text as the label
 function parseRow(row, index) {
   const cells = [...row.children];
   const text = (cell) => cell?.textContent.trim() || '';
@@ -10,7 +11,8 @@ function parseRow(row, index) {
   const hasLevel = cells.length >= 3 && /^\d*$/.test(levelText);
   const linkCell = hasLevel ? cells.at(-3) : row;
   const anchor = linkCell.querySelector('a');
-  const label = text(anchor) || text(linkCell) || 'New item';
+  const labelElement = [...linkCell.children].find((child) => !child.querySelector('a') && child.tagName !== 'A');
+  const label = text(labelElement) || text(anchor) || text(linkCell) || 'New item';
 
   return {
     index,

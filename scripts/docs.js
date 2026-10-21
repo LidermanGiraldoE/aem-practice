@@ -66,7 +66,9 @@ export function getDocsNav() {
 /** Position of the current page in the docs navigation, with its neighbours. */
 export async function getDocContext() {
   const groups = await getDocsNav();
-  const pages = groups.flatMap(({ title, items }) => items.map((item) => ({ ...item, group: title })));
+  const pages = groups.flatMap(({ title, items }) => (
+    items.map((item) => ({ ...item, group: title }))
+  ));
   const path = currentDocPath();
   const index = pages.findIndex((page) => page.path === path);
   return {
