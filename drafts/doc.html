@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Requisitos</title>
+    <meta property="og:title" content="Requisitos" />
+    <meta name="description" content="Lo que necesitas antes de crear tu primer sitio con Edge Delivery Services y Universal Editor." />
+    <meta name="template" content="doc" />
+    <meta name="reading-time" content="3" />
+    <meta name="docs-nav" content="/drafts/docs-nav" />
+    <script type="importmap">
+      {
+        "imports": {
+          "@dropins/tools/": "/scripts/__dropins__/tools/",
+          "htm": "/scripts/vendor/htm/dist/htm.mjs"
+        }
+      }
+    </script>
+    <script src="/scripts/aem.js" type="module"></script>
+    <script src="/scripts/scripts.js" type="module"></script>
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/tailwind.css" />
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div>
+        <p>Párrafo de introducción de la página de documentación de prueba.</p>
+        <h2>Cuenta y accesos</h2>
+        <ul>
+          <li>Una cuenta de GitHub.</li>
+          <li>Un entorno de AEM as a Cloud Service.</li>
+        </ul>
+        <div class="callout note">
+          <div><div></div></div>
+          <div><div><p>Una nota dentro de la documentación.</p></div></div>
+        </div>
+        <h2>Herramientas locales</h2>
+        <p>Instala la CLI:</p>
+        <pre><code>$ npm install -g @adobe/aem-cli
+$ aem up</code></pre>
+        <h3>Editor de código</h3>
+        <p>Cualquier editor sirve.</p>
+        <h2>Conocimientos previos</h2>
+        <p>HTML, CSS y JavaScript básicos.</p>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>

@@ -60,6 +60,18 @@ async function loadFonts() {
 }
 
 /**
+ * Wraps a synthetic block in its own section.
+ * @param {string} blockName The block to build
+ * @param {string} [className] Class added to the section
+ */
+function blockSection(blockName, className) {
+  const element = document.createElement('div');
+  if (className) element.classList.add(className);
+  element.append(buildBlock(blockName, ''));
+  return element;
+}
+
+/**
  * Wraps the authored article body with the blog post template blocks.
  * @param {Element} main The container element
  */
@@ -67,18 +79,27 @@ function buildBlogPostBlocks(main) {
   const bodySections = [...main.querySelectorAll(':scope > div')];
   if (!bodySections.length) return;
 
-  const section = (blockName, className) => {
-    const element = document.createElement('div');
-    if (className) element.classList.add(className);
-    element.append(buildBlock(blockName, ''));
-    return element;
-  };
-
-  bodySections.forEach((bodySection) => bodySection.classList.add('article-body'));
+  bodySections.forEach((bodySection) => bodySection.classList.add('article-body', 'prose'));
   bodySections[0].prepend(buildBlock('toc', ''));
-  main.prepend(section('article-header', 'article-hero'), section('article-cover'));
-  main.append(section('article-footer'), section('related-posts', 'article-related'));
+  main.prepend(blockSection('article-header', 'article-hero'), blockSection('article-cover'));
+  main.append(blockSection('article-footer'), blockSection('related-posts', 'article-related'));
 }
+
+/**
+ * Wraps the authored documentation page with the docs sidebar, header, pager and table of contents.
+ * @param {Element} main The container element
+ */
+function buildDocBlocks(main) {
+  const bodySections = [...main.querySelectorAll(':scope > div')];
+  bodySections.forEach((bodySection) => bodySection.classList.add('doc-body', 'prose'));
+  main.prepend(blockSection('docs-sidebar', 'doc-sidebar'), blockSection('docs-header', 'doc-hero'));
+  main.append(blockSection('docs-pager', 'doc-pager'), blockSection('toc', 'doc-toc'));
+}
+
+const TEMPLATE_BUILDERS = {
+  'blog-post': buildBlogPostBlocks,
+  doc: buildDocBlocks,
+};
 
 /**
  * Builds all synthetic blocks in a container element.
@@ -88,7 +109,8 @@ function buildAutoBlocks(main) {
   try {
     // fragments (nav, footer) are decorated with decorateMain too but must not get page templates
     const isPageMain = main === document.querySelector('main');
-    if (isPageMain && getMetadata('template') === 'blog-post') buildBlogPostBlocks(main);
+    const buildTemplate = TEMPLATE_BUILDERS[getMetadata('template')];
+    if (isPageMain && buildTemplate) buildTemplate(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -156,8 +178,11 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const template = getMetadata('template');
   // template styles shape the first section, so they load before the LCP section
-  const templateStyles = template === 'blog-post'
-    ? loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`)
+  const templateStyles = TEMPLATE_BUILDERS[template]
+    ? Promise.all([
+      loadCSS(`${window.hlx.codeBasePath}/templates/${template}/${template}.css`),
+      loadCSS(`${window.hlx.codeBasePath}/styles/prose.css`),
+    ])
     : Promise.resolve();
   const main = doc.querySelector('main');
   if (main) {

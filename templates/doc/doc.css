@@ -1,0 +1,97 @@
+/*
+ * Documentation template: sidebar, content and table of contents for the sections
+ * built by buildDocBlocks() in scripts.js. Typography lives in styles/prose.css.
+ */
+
+body.doc main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  width: min(calc(100% - 2 * var(--spacing-gutter)), var(--container-site));
+  margin-inline: auto;
+  padding: 24px 0 96px;
+}
+
+body.doc main > .section {
+  margin: 0;
+}
+
+body.doc main > .section > div {
+  width: auto;
+  max-width: none;
+  margin-inline: 0;
+}
+
+body.doc main > .section > div + div {
+  margin-top: 32px;
+}
+
+body.doc main > .section.doc-hero {
+  margin-top: 32px;
+  border-bottom: 1px solid var(--ds-line);
+  padding-bottom: 32px;
+}
+
+body.doc main > .section.doc-body {
+  margin-top: 40px;
+}
+
+body.doc main > .section.doc-body + .section.doc-body {
+  margin-top: 32px;
+}
+
+body.doc main > .section.doc-pager {
+  margin-top: 64px;
+  border-top: 1px solid var(--ds-line);
+  padding-top: 32px;
+}
+
+body.doc main > .section.doc-toc {
+  display: none;
+}
+
+@media (width >= 1024px) {
+  body.doc main {
+    grid-template-columns: 240px minmax(0, 1fr);
+    column-gap: 56px;
+    padding-top: 48px;
+  }
+
+  body.doc main > .section {
+    grid-column: 2;
+  }
+
+  /* side columns span every content row so their wrappers can stick while the page scrolls */
+  body.doc main > .section.doc-sidebar {
+    grid-column: 1;
+    grid-row: 1 / span 40;
+  }
+
+  body.doc main > .section.doc-sidebar > div {
+    position: sticky;
+    top: calc(var(--spacing-header) + 32px);
+    max-height: calc(100dvh - var(--spacing-header) - 64px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  body.doc main > .section.doc-hero {
+    margin-top: 0;
+  }
+}
+
+@media (width >= 1240px) {
+  body.doc main {
+    grid-template-columns: 240px minmax(0, 1fr) 200px;
+  }
+
+  body.doc main > .section.doc-toc {
+    display: block;
+    grid-column: 3;
+    grid-row: 1 / span 40;
+  }
+
+  body.doc main > .section.doc-toc > div {
+    position: sticky;
+    top: calc(var(--spacing-header) + 32px);
+  }
+}

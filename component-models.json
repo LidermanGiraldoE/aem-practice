@@ -40,6 +40,10 @@
           {
             "name": "Blog author",
             "value": "blog-author"
+          },
+          {
+            "name": "Documentation",
+            "value": "doc"
           }
         ]
       }
@@ -81,6 +85,10 @@
           {
             "name": "Blog author",
             "value": "blog-author"
+          },
+          {
+            "name": "Documentation",
+            "value": "doc"
           }
         ]
       },
@@ -203,6 +211,10 @@
           {
             "name": "Blog author",
             "value": "blog-author"
+          },
+          {
+            "name": "Documentation",
+            "value": "doc"
           }
         ]
       },
@@ -232,6 +244,65 @@
         "valueType": "string",
         "name": "github",
         "label": "GitHub URL"
+      }
+    ]
+  },
+  {
+    "id": "doc-metadata",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "jcr:title",
+        "label": "Title",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "jcr:description",
+        "label": "Description",
+        "description": "Lead paragraph under the title and search result summary",
+        "required": true
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "template",
+        "label": "Template",
+        "value": "doc",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Blog post",
+            "value": "blog-post"
+          },
+          {
+            "name": "Blog author",
+            "value": "blog-author"
+          },
+          {
+            "name": "Documentation",
+            "value": "doc"
+          }
+        ]
+      },
+      {
+        "component": "number",
+        "valueType": "number",
+        "name": "reading-time",
+        "label": "Reading Time (min)",
+        "min": 1
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "keywords",
+        "multi": true,
+        "label": "Keywords"
       }
     ]
   },
