@@ -1,6 +1,7 @@
 import { h } from '@dropins/tools/preact.js';
 import htm from 'htm';
 import Eyebrow from '../../atoms/eyebrow/eyebrow.js';
+import Button from '../../atoms/button/button.js';
 
 const html = htm.bind(h);
 const HEADING_LEVELS = new Set(['h1', 'h2', 'h3']);
@@ -28,6 +29,7 @@ export default function SectionHeading({
   align = 'center',
   size = 'section',
   reveal = true,
+  action = null,
 }) {
   if (!eyebrow && !title && !description) return null;
 
@@ -35,10 +37,10 @@ export default function SectionHeading({
   const centered = align !== 'left';
   const styles = SIZES[size] || SIZES.section;
 
-  return html`
+  const copy = html`
     <div
       class="flex flex-col ${styles.wrapper} ${centered ? 'mx-auto items-center text-center' : 'items-start text-left'}"
-      data-reveal=${reveal ? 'up' : null}
+      data-reveal=${reveal && !action ? 'up' : null}
     >
       <${Eyebrow} variant=${styles.eyebrow}>${eyebrow}<//>
       ${title && html`
@@ -48,6 +50,25 @@ export default function SectionHeading({
         <//>
       `}
       ${description && html`<p class="m-0! ${styles.description} text-fg-2">${description}</p>`}
+    </div>
+  `;
+
+  if (!action) return copy;
+
+  // left aligned: the button sits at the end of the row; centered: below the copy
+  return html`
+    <div
+      class="flex flex-col gap-5 ${centered ? 'items-center' : 'items-start md:flex-row md:items-end md:justify-between'}"
+      data-reveal=${reveal ? 'up' : null}
+    >
+      ${copy}
+      <${Button}
+        href=${action.href}
+        label=${action.label}
+        title=${action.title}
+        variant="secondary"
+        className="shrink-0"
+      />
     </div>
   `;
 }

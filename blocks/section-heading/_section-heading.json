@@ -69,6 +69,18 @@
           "name": "title_highlight",
           "label": "Highlighted Line",
           "description": "Optional second line of the title, shown with the accent gradient"
+        },
+        {
+          "component": "aem-content",
+          "name": "description_link",
+          "label": "Link",
+          "description": "Optional. Shown as a button next to a left aligned heading, or below a centered one."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "description_linkText",
+          "label": "Link Text"
         }
       ]
     }

@@ -1,0 +1,110 @@
+{
+  "definitions": [
+    {
+      "title": "Learn Hero",
+      "id": "learn-hero",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Learn Hero",
+              "model": "learn-hero",
+              "content_eyebrow": "Aprender",
+              "content_text": "<h1>Aprende Edge Delivery<br>a tu ritmo.</h1><p>Documentación para entender, rutas para avanzar en orden y evaluaciones para comprobar lo que sabes.</p>"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "learn-hero",
+      "fields": [
+        {
+          "component": "tab",
+          "name": "content-tab",
+          "label": "Content"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "content_eyebrow",
+          "label": "Eyebrow"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content_text",
+          "label": "Heading and Lead",
+          "description": "An H1 and a paragraph. A line break inside the H1 shows the rest of the heading with the accent gradient."
+        },
+        {
+          "component": "tab",
+          "name": "ctas-tab",
+          "label": "Calls to Action"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "primary_linkText",
+          "label": "Primary CTA Text"
+        },
+        {
+          "component": "aem-content",
+          "name": "primary_link",
+          "label": "Primary CTA Link"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "secondary_linkText",
+          "label": "Secondary CTA Text"
+        },
+        {
+          "component": "aem-content",
+          "name": "secondary_link",
+          "label": "Secondary CTA Link"
+        },
+        {
+          "component": "tab",
+          "name": "card-tab",
+          "label": "Start Card"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "card_eyebrow",
+          "label": "Card Eyebrow",
+          "description": "Shown to visitors without saved progress. Visitors with progress see where they left off instead."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "card_title",
+          "label": "Card Title",
+          "required": true
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "card_text",
+          "label": "Card Text"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "card_linkText",
+          "label": "Card CTA Text"
+        },
+        {
+          "component": "aem-content",
+          "name": "card_link",
+          "label": "Card CTA Link"
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

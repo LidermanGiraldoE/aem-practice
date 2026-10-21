@@ -1,0 +1,96 @@
+{
+  "definitions": [
+    {
+      "title": "Path Cards",
+      "id": "path-cards",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Path Cards",
+              "filter": "path-cards"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Path Card",
+      "id": "path-card",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block/item",
+            "template": {
+              "name": "Path Card",
+              "model": "path-card",
+              "level": "beginner"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "path-card",
+      "fields": [
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "icon",
+          "label": "Icon",
+          "description": "A short symbol shown in the icon box, for example { } ✎ ⌘"
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "level",
+          "label": "Level",
+          "value": "beginner",
+          "options": [
+            { "name": "Principiante", "value": "beginner" },
+            { "name": "Intermedio", "value": "intermediate" },
+            { "name": "Avanzado", "value": "advanced" }
+          ]
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "content_title",
+          "label": "Title",
+          "required": true
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "content_description",
+          "label": "Description",
+          "required": true
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "content_stats",
+          "label": "Stats",
+          "description": "Separated by commas, for example \"6 módulos, 6 quizzes, Examen final\""
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Link",
+          "description": "The path's page. Without a link the card is not clickable."
+        }
+      ]
+    }
+  ],
+  "filters": [
+    {
+      "id": "path-cards",
+      "components": [
+        "path-card"
+      ]
+    }
+  ]
+}

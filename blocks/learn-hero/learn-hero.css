@@ -1,0 +1,57 @@
+/* the hero's section becomes the page band, as with the page-hero section heading */
+main > .section:has(.learn-hero) {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  border-bottom: 1px solid var(--ds-line);
+  padding: 56px 0;
+  background-image:
+    linear-gradient(var(--ds-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ds-grid-line) 1px, transparent 1px);
+  background-size: 36px 36px;
+}
+
+main > .section:has(.learn-hero)::before {
+  position: absolute;
+  inset: 0;
+  background: var(--ds-gradient-mesh);
+  content: '';
+  pointer-events: none;
+}
+
+main > .section:has(.learn-hero) > div {
+  position: relative;
+}
+
+main > .section:has(.learn-hero) + .section:not(.spacious) {
+  margin-top: 56px;
+}
+
+.learn-hero-copy h1 {
+  margin: 0;
+  color: var(--ds-text);
+  font-size: clamp(40px, 6.4vw, 72px);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: var(--tracking-tightest);
+}
+
+.learn-hero-copy h1 > span {
+  background-image: var(--ds-gradient-accent);
+  background-clip: text;
+  color: transparent;
+}
+
+.learn-hero-copy p {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--ds-text-2);
+  font-size: var(--text-lead);
+  line-height: var(--leading-body);
+}
+
+@media (width >= 768px) {
+  main > .section:has(.learn-hero) {
+    padding: 88px 0 72px;
+  }
+}

@@ -26,6 +26,13 @@
           "description": "The label shown for this section in the Content Tree"
         },
         {
+          "component": "text",
+          "valueType": "string",
+          "name": "id",
+          "label": "Section Anchor ID",
+          "description": "Optional. Lets links jump to this section, for example #empezar"
+        },
+        {
           "component": "multiselect",
           "name": "style",
           "label": "Style",
@@ -75,7 +82,11 @@
         "blog-featured",
         "blog-list",
         "newsletter",
-        "callout"
+        "callout",
+        "learn-hero",
+        "path-cards",
+        "quiz-teaser",
+        "accordion"
       ]
     }
   ]

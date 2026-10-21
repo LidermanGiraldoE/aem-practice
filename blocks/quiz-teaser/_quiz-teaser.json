@@ -1,0 +1,107 @@
+{
+  "definitions": [
+    {
+      "title": "Quiz Teaser",
+      "id": "quiz-teaser",
+      "plugins": {
+        "xwalk": {
+          "page": {
+            "resourceType": "core/franklin/components/block/v1/block",
+            "template": {
+              "name": "Quiz Teaser",
+              "model": "quiz-teaser",
+              "question_answer": "a"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "quiz-teaser",
+      "fields": [
+        {
+          "component": "tab",
+          "name": "content-tab",
+          "label": "Content"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "content_eyebrow",
+          "label": "Eyebrow"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "content_text",
+          "label": "Copy",
+          "description": "An H2, a paragraph and an optional bulleted list. Start each list item with bold text to use it as the item's title."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "cta_linkText",
+          "label": "CTA Text"
+        },
+        {
+          "component": "aem-content",
+          "name": "cta_link",
+          "label": "CTA Link"
+        },
+        {
+          "component": "tab",
+          "name": "question-tab",
+          "label": "Sample Question"
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "question_topic",
+          "label": "Topic",
+          "description": "Shown as a badge, for example \"Universal Editor\""
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "question_prompt",
+          "label": "Question",
+          "required": true,
+          "description": "Wrap code in backticks, for example `imageAlt`"
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "question_options",
+          "label": "Options",
+          "required": true,
+          "description": "A numbered or bulleted list with one option per item (up to 6). Wrap code in backticks."
+        },
+        {
+          "component": "select",
+          "valueType": "string",
+          "name": "question_answer",
+          "label": "Correct Option",
+          "value": "a",
+          "options": [
+            { "name": "A", "value": "a" },
+            { "name": "B", "value": "b" },
+            { "name": "C", "value": "c" },
+            { "name": "D", "value": "d" },
+            { "name": "E", "value": "e" },
+            { "name": "F", "value": "f" }
+          ]
+        },
+        {
+          "component": "richtext",
+          "valueType": "string",
+          "name": "explanation",
+          "label": "Explanation",
+          "description": "Shown after answering. Explain why the right option is correct and link to the documentation."
+        }
+      ]
+    }
+  ],
+  "filters": []
+}

@@ -1,8 +1,8 @@
 import { getMetadata } from './aem.js';
-import { toSitePath } from './blog.js';
+import { toPageHref, toSitePath } from './blog.js';
 
 const SITE_ROOT = '/content/aem-practice';
-const DEFAULT_NAV = '/docs/nav';
+const DEFAULT_NAV = '/learn/docs/nav';
 const SAFE_HREF = /^(?:https?:|\/|#)/;
 
 let navPromise;
@@ -18,11 +18,11 @@ const normalize = (path) => path.replace(/\/$/, '') || '/';
 
 export const currentDocPath = () => normalize(toSitePath(window.location.href));
 
-export const DOCS_ROOT = '/docs';
+export const LEARN_ROOT = '/learn';
+export const DOCS_ROOT = `${LEARN_ROOT}/docs`;
 
-export const docsHomeHref = () => (
-  window.location.pathname.startsWith(SITE_ROOT) ? `${SITE_ROOT}${DOCS_ROOT}.html` : DOCS_ROOT
-);
+export const docsHomeHref = () => toPageHref(DOCS_ROOT);
+export const learnHomeHref = () => toPageHref(LEARN_ROOT);
 
 // headings start a group; the links of the lists that follow become its pages
 function parseNav(source) {

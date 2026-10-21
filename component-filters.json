@@ -32,7 +32,17 @@
       "blog-featured",
       "blog-list",
       "newsletter",
-      "callout"
+      "callout",
+      "learn-hero",
+      "path-cards",
+      "quiz-teaser",
+      "accordion"
+    ]
+  },
+  {
+    "id": "accordion",
+    "components": [
+      "accordion-item"
     ]
   },
   {
@@ -84,6 +94,12 @@
     "id": "header-theme",
     "components": [
       "header-theme-option"
+    ]
+  },
+  {
+    "id": "path-cards",
+    "components": [
+      "path-card"
     ]
   },
   {

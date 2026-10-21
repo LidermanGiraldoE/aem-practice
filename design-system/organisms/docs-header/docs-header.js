@@ -12,17 +12,19 @@ export default function DocsHeader({
   description = '',
   group = '',
   readingTime = 0,
-  docsHref = '/docs',
+  docsHref = '/learn/docs',
+  learnHref = '/learn',
   isRoot = false,
 }) {
   return html`
     <div class="flex flex-col gap-4">
       <nav aria-label="Ruta de navegación">
         <ol class="m-0! flex list-none flex-wrap gap-2 p-0 text-sm text-fg-3">
+          <li><a href=${learnHref} class=${LINK_CLASS}>Aprender</a></li>
           ${isRoot
-    ? html`<li aria-current="page">Documentación</li>`
+    ? html`<li class=${CRUMB_CLASS} aria-current="page">Documentación</li>`
     : html`
-              <li><a href=${docsHref} class=${LINK_CLASS}>Documentación</a></li>
+              <li class=${CRUMB_CLASS}><a href=${docsHref} class=${LINK_CLASS}>Documentación</a></li>
               ${group && html`<li class=${CRUMB_CLASS}>${group}</li>`}
               <li class=${CRUMB_CLASS} aria-current="page">${title}</li>
             `}

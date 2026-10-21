@@ -314,6 +314,11 @@ main > .section:first-of-type {
   margin-top: 0;
 }
 
+/* sections with an anchor id stop below the sticky header */
+main > .section[id] {
+  scroll-margin-top: var(--spacing-header);
+}
+
 /* section metadata */
 main .section.light,
 main .section.highlight {

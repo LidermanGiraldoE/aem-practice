@@ -47,6 +47,13 @@
             { "name": "2 columns", "value": "two-columns" },
             { "name": "4 columns", "value": "four-columns" }
           ]
+        },
+        {
+          "component": "boolean",
+          "valueType": "boolean",
+          "name": "classes_multicolor",
+          "label": "Multicolor icons",
+          "description": "Gives each card's icon a different accent colour"
         }
       ]
     },
@@ -72,6 +79,19 @@
           "valueType": "string",
           "name": "description",
           "label": "Description"
+        },
+        {
+          "component": "aem-content",
+          "name": "link",
+          "label": "Link",
+          "description": "Optional. Makes the whole card clickable."
+        },
+        {
+          "component": "text",
+          "valueType": "string",
+          "name": "linkText",
+          "label": "Link Text",
+          "description": "Call to action at the bottom of the card. Without a link it shows as a status, for example \"Próximamente\"."
         }
       ]
     }

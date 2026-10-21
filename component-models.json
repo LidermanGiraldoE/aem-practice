@@ -412,6 +412,13 @@
         "description": "The label shown for this section in the Content Tree"
       },
       {
+        "component": "text",
+        "valueType": "string",
+        "name": "id",
+        "label": "Section Anchor ID",
+        "description": "Optional. Lets links jump to this section, for example #empezar"
+      },
+      {
         "component": "multiselect",
         "name": "style",
         "label": "Style",
@@ -429,6 +436,24 @@
             "value": "soft"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "accordion-item",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "summary",
+        "label": "Question",
+        "required": true
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "text",
+        "label": "Answer"
       }
     ]
   },
@@ -765,6 +790,13 @@
             "value": "four-columns"
           }
         ]
+      },
+      {
+        "component": "boolean",
+        "valueType": "boolean",
+        "name": "classes_multicolor",
+        "label": "Multicolor icons",
+        "description": "Gives each card's icon a different accent colour"
       }
     ]
   },
@@ -790,6 +822,19 @@
         "valueType": "string",
         "name": "description",
         "label": "Description"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link",
+        "description": "Optional. Makes the whole card clickable."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "linkText",
+        "label": "Link Text",
+        "description": "Call to action at the bottom of the card. Without a link it shows as a status, for example \"Próximamente\"."
       }
     ]
   },
@@ -1155,6 +1200,92 @@
     ]
   },
   {
+    "id": "learn-hero",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "content-tab",
+        "label": "Content"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_eyebrow",
+        "label": "Eyebrow"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content_text",
+        "label": "Heading and Lead",
+        "description": "An H1 and a paragraph. A line break inside the H1 shows the rest of the heading with the accent gradient."
+      },
+      {
+        "component": "tab",
+        "name": "ctas-tab",
+        "label": "Calls to Action"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "primary_linkText",
+        "label": "Primary CTA Text"
+      },
+      {
+        "component": "aem-content",
+        "name": "primary_link",
+        "label": "Primary CTA Link"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "secondary_linkText",
+        "label": "Secondary CTA Text"
+      },
+      {
+        "component": "aem-content",
+        "name": "secondary_link",
+        "label": "Secondary CTA Link"
+      },
+      {
+        "component": "tab",
+        "name": "card-tab",
+        "label": "Start Card"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "card_eyebrow",
+        "label": "Card Eyebrow",
+        "description": "Shown to visitors without saved progress. Visitors with progress see where they left off instead."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "card_title",
+        "label": "Card Title",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "card_text",
+        "label": "Card Text"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "card_linkText",
+        "label": "Card CTA Text"
+      },
+      {
+        "component": "aem-content",
+        "name": "card_link",
+        "label": "Card CTA Link"
+      }
+    ]
+  },
+  {
     "id": "newsletter",
     "fields": [
       {
@@ -1206,6 +1337,168 @@
         "valueType": "string",
         "name": "form_note",
         "label": "Note Below the Form"
+      }
+    ]
+  },
+  {
+    "id": "path-card",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon",
+        "description": "A short symbol shown in the icon box, for example { } ✎ ⌘"
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "level",
+        "label": "Level",
+        "value": "beginner",
+        "options": [
+          {
+            "name": "Principiante",
+            "value": "beginner"
+          },
+          {
+            "name": "Intermedio",
+            "value": "intermediate"
+          },
+          {
+            "name": "Avanzado",
+            "value": "advanced"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_title",
+        "label": "Title",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_description",
+        "label": "Description",
+        "required": true
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_stats",
+        "label": "Stats",
+        "description": "Separated by commas, for example \"6 módulos, 6 quizzes, Examen final\""
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link",
+        "description": "The path's page. Without a link the card is not clickable."
+      }
+    ]
+  },
+  {
+    "id": "quiz-teaser",
+    "fields": [
+      {
+        "component": "tab",
+        "name": "content-tab",
+        "label": "Content"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "content_eyebrow",
+        "label": "Eyebrow"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "content_text",
+        "label": "Copy",
+        "description": "An H2, a paragraph and an optional bulleted list. Start each list item with bold text to use it as the item's title."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "cta_linkText",
+        "label": "CTA Text"
+      },
+      {
+        "component": "aem-content",
+        "name": "cta_link",
+        "label": "CTA Link"
+      },
+      {
+        "component": "tab",
+        "name": "question-tab",
+        "label": "Sample Question"
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "question_topic",
+        "label": "Topic",
+        "description": "Shown as a badge, for example \"Universal Editor\""
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "question_prompt",
+        "label": "Question",
+        "required": true,
+        "description": "Wrap code in backticks, for example `imageAlt`"
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "question_options",
+        "label": "Options",
+        "required": true,
+        "description": "A numbered or bulleted list with one option per item (up to 6). Wrap code in backticks."
+      },
+      {
+        "component": "select",
+        "valueType": "string",
+        "name": "question_answer",
+        "label": "Correct Option",
+        "value": "a",
+        "options": [
+          {
+            "name": "A",
+            "value": "a"
+          },
+          {
+            "name": "B",
+            "value": "b"
+          },
+          {
+            "name": "C",
+            "value": "c"
+          },
+          {
+            "name": "D",
+            "value": "d"
+          },
+          {
+            "name": "E",
+            "value": "e"
+          },
+          {
+            "name": "F",
+            "value": "f"
+          }
+        ]
+      },
+      {
+        "component": "richtext",
+        "valueType": "string",
+        "name": "explanation",
+        "label": "Explanation",
+        "description": "Shown after answering. Explain why the right option is correct and link to the documentation."
       }
     ]
   },
@@ -1275,6 +1568,18 @@
         "name": "title_highlight",
         "label": "Highlighted Line",
         "description": "Optional second line of the title, shown with the accent gradient"
+      },
+      {
+        "component": "aem-content",
+        "name": "description_link",
+        "label": "Link",
+        "description": "Optional. Shown as a button next to a left aligned heading, or below a centered one."
+      },
+      {
+        "component": "text",
+        "valueType": "string",
+        "name": "description_linkText",
+        "label": "Link Text"
       }
     ]
   },

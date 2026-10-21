@@ -83,6 +83,36 @@
       "id": "blocks",
       "components": [
         {
+          "title": "Accordion",
+          "id": "accordion",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Accordion",
+                  "filter": "accordion"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Accordion Item",
+          "id": "accordion-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Accordion Item",
+                  "model": "accordion-item"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Blog Featured",
           "id": "blog-featured",
           "plugins": {
@@ -345,6 +375,23 @@
           }
         },
         {
+          "title": "Learn Hero",
+          "id": "learn-hero",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Learn Hero",
+                  "model": "learn-hero",
+                  "content_eyebrow": "Aprender",
+                  "content_text": "<h1>Aprende Edge Delivery<br>a tu ritmo.</h1><p>Documentación para entender, rutas para avanzar en orden y evaluaciones para comprobar lo que sabes.</p>"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Newsletter",
           "id": "newsletter",
           "plugins": {
@@ -360,6 +407,53 @@
                   "description": "Nuevos artículos, guías y cambios importantes de la plataforma, sin ruido.",
                   "form_button": "Suscribirme",
                   "form_note": "Sin spam. Puedes darte de baja cuando quieras."
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Path Cards",
+          "id": "path-cards",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Path Cards",
+                  "filter": "path-cards"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Path Card",
+          "id": "path-card",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Path Card",
+                  "model": "path-card",
+                  "level": "beginner"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Quiz Teaser",
+          "id": "quiz-teaser",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Quiz Teaser",
+                  "model": "quiz-teaser",
+                  "question_answer": "a"
                 }
               }
             }

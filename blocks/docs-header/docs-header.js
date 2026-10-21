@@ -2,7 +2,7 @@ import { h, render } from '@dropins/tools/preact.js';
 import { getMetadata } from '../../scripts/aem.js';
 import DocsHeader from '../../design-system/organisms/docs-header/docs-header.js';
 import {
-  DOCS_ROOT, currentDocPath, docsHomeHref, getDocContext,
+  DOCS_ROOT, currentDocPath, docsHomeHref, getDocContext, learnHomeHref,
 } from '../../scripts/docs.js';
 
 export default function decorate(block) {
@@ -11,6 +11,7 @@ export default function decorate(block) {
     description: getMetadata('description'),
     readingTime: Number.parseInt(getMetadata('reading-time'), 10) || 0,
     docsHref: docsHomeHref(),
+    learnHref: learnHomeHref(),
     isRoot: currentDocPath() === DOCS_ROOT,
   };
 

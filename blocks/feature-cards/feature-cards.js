@@ -18,12 +18,26 @@ export default function decorate(block) {
   // empty rows are kept so newly added cards stay selectable in Universal Editor
   const rows = [...block.children];
   const items = rows.map((row) => {
-    const [icon, title, description] = [...row.children].map(getText);
-    return { icon, title, description };
+    const [icon, title, description, linkCell] = [...row.children];
+    const link = linkCell?.querySelector('a');
+    const href = link?.getAttribute('href') || '';
+    const label = getText(link || linkCell);
+    return {
+      icon: getText(icon),
+      title: getText(title),
+      description: getText(description),
+      href,
+      // a link without Link Text is rendered with its URL as the text
+      linkLabel: label === href ? '' : label,
+    };
   });
 
   block.replaceChildren();
-  render(h(FeatureGrid, { items, columns: getColumns(block) }), block);
+  render(h(FeatureGrid, {
+    items,
+    columns: getColumns(block),
+    multicolor: block.classList.contains('multicolor'),
+  }), block);
   observeReveal(block);
 
   block.querySelectorAll(':scope > ul > li').forEach((li, i) => moveInstrumentation(rows[i], li));

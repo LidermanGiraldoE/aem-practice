@@ -36,6 +36,12 @@ export function toSitePath(href = '') {
   return pathname.replace(SITE_ROOT, '').replace(/\.html$/, '');
 }
 
+/** Link to a site path on either tier: the author tier serves pages under the site root. */
+export function toPageHref(path = '/') {
+  if (!window.location.pathname.startsWith(SITE_ROOT)) return path;
+  return `${SITE_ROOT}${path === '/' ? '/index' : path}.html`;
+}
+
 function toImage(path = '') {
   if (!path || path.startsWith(DEFAULT_IMAGE)) return '';
   return path.split('?')[0];

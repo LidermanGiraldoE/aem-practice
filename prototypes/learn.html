@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aprender · AEM knowledge</title>
+  <meta name="description" content="Prototipo: página principal de aprendizaje con accesos por perfil, cómo funciona, secciones, rutas, evaluaciones y documentación destacada.">
+  <script>
+    (() => {
+      let theme = 'dark';
+      try {
+        const saved = localStorage.getItem('aem-forge-theme');
+        if (saved === 'dark' || saved === 'light') theme = saved;
+      } catch (e) { /* sin almacenamiento */ }
+      document.documentElement.dataset.theme = theme;
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script src="assets/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html"><span class="brand__mark" aria-hidden="true">A</span>AEM <span class="brand__desc">knowledge</span></a>
+      <nav class="nav" aria-label="Principal">
+        <a href="learn.html" aria-current="page">Aprender</a>
+        <a href="#">Bloques</a>
+        <a href="#">Herramientas</a>
+        <a href="blog.html">Blog</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-trigger" type="button" data-search-open><span aria-hidden="true">⌕</span>Buscar…<kbd>⌘K</kbd></button>
+        <button class="icon-btn search-icon" type="button" data-search-open aria-label="Buscar">⌕</button>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="Cambiar tema">☀</button>
+        <button class="icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Principal (móvil)">
+      <div class="container">
+        <a href="learn.html">Aprender</a>
+        <a href="#">Bloques</a>
+        <a href="#">Herramientas</a>
+        <a href="blog.html">Blog</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- block: learn-hero · nuevo (texto + tarjeta de progreso del usuario) -->
+    <section class="page-hero grid-bg">
+      <div class="container path-hero-grid">
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <ol class="breadcrumb">
+            <li><a href="index.html">Inicio</a></li>
+            <li aria-current="page">Aprender</li>
+          </ol>
+          <span class="eyebrow">Aprender</span>
+          <h1 class="display">Aprende Edge Delivery<br><span class="text-gradient">a tu ritmo.</span></h1>
+          <p class="lead">Documentación para entender, rutas para avanzar en orden y evaluaciones para comprobar lo que sabes. Todo en español y con ejemplos de un proyecto real.</p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="#empezar">¿Por dónde empiezo? →</a>
+            <a class="btn btn--secondary" href="docs.html">Ver documentación</a>
+          </div>
+        </div>
+
+        <!-- el bloque muestra un estado u otro según el progreso guardado en el navegador -->
+        <aside class="summary-card" aria-labelledby="progress-title">
+          <div class="progress-state" data-progress-state="active">
+            <div class="summary-card__top">
+              <div class="ring" style="--p: 38;" role="img" aria-label="38% completado"><span>38%</span></div>
+              <div>
+                <p class="toc__title" id="progress-title" style="margin: 0;">Continúa donde lo dejaste</p>
+                <p style="margin-top: 6px; font-size: 20px; font-weight: 700;">Ruta para desarrolladores</p>
+                <p class="muted" style="font-size: 14px;">Módulo 2 de 6 · 1 quiz aprobado</p>
+              </div>
+            </div>
+            <div class="next-lesson" style="margin-top: 20px;">
+              <small>Siguiente paso</small>
+              <a href="#">2.3 · Conectar AEM y Code Sync</a>
+            </div>
+          </div>
+
+          <div class="progress-state" data-progress-state="empty" hidden>
+            <p class="toc__title" style="margin: 0;">Empieza aquí</p>
+            <p style="margin-top: 6px; font-size: 20px; font-weight: 700;">¿Primera vez con Edge Delivery?</p>
+            <p class="muted" style="font-size: 14px; margin-top: 6px;">Haz la prueba de nivel: 10 preguntas y te recomendamos una ruta.</p>
+            <a class="btn btn--primary btn--sm" href="#evaluaciones" style="margin-top: 16px; width: fit-content;">Hacer la prueba de nivel →</a>
+          </div>
+
+          <button class="btn btn--ghost btn--sm" type="button" data-progress-toggle style="width: fit-content;">Prototipo: ver estado sin progreso</button>
+        </aside>
+      </div>
+    </section>
+
+    <!-- block: feature-cards · existente (accesos según la situación del usuario) -->
+    <section class="section" id="empezar">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">¿Por dónde empiezo?</span>
+          <h2 class="h2">Elige según tu punto de partida</h2>
+        </div>
+        <div class="grid grid--3">
+          <article class="card card--link learn-card">
+            <span class="path-card__icon" aria-hidden="true">01</span>
+            <h3 class="h3"><a class="stretched" href="docs.html">Nunca usé Edge Delivery</a></h3>
+            <p>Empieza por el tutorial: en siete pasos pasas de un repositorio vacío a un sitio publicado.</p>
+            <span class="learn-card__cta">Tutorial: tu primer sitio →</span>
+          </article>
+          <article class="card card--link learn-card path-card--violet">
+            <span class="path-card__icon" aria-hidden="true">02</span>
+            <h3 class="h3"><a class="stretched" href="paths.html">Ya trabajo con AEM</a></h3>
+            <p>Sigue la ruta de tu rol: módulos en orden, cada uno con un quiz corto para fijar lo aprendido.</p>
+            <span class="learn-card__cta">Ver rutas →</span>
+          </article>
+          <article class="card card--link learn-card path-card--cyan">
+            <span class="path-card__icon" aria-hidden="true">03</span>
+            <h3 class="h3"><a class="stretched" href="#evaluaciones">Quiero medir mi nivel</a></h3>
+            <p>Diez preguntas al azar. Según tu resultado te recomendamos la ruta y el módulo para empezar.</p>
+            <span class="learn-card__cta">Hacer la prueba de nivel →</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: feature-cards · existente (cómo se conectan las secciones) -->
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Cómo funciona</span>
+          <h2 class="h2">Aprende, practica y comprueba</h2>
+        </div>
+        <div class="grid grid--4">
+          <div class="card learn-step">
+            <span class="path-card__icon" aria-hidden="true">01</span>
+            <h3 class="h3">Aprende</h3>
+            <p class="muted">La documentación explica cada concepto con ejemplos reales que puedes copiar.</p>
+          </div>
+          <div class="card learn-step path-card--violet">
+            <span class="path-card__icon" aria-hidden="true">02</span>
+            <h3 class="h3">Practica</h3>
+            <p class="muted">Las rutas ordenan el contenido por rol y te guían módulo a módulo.</p>
+          </div>
+          <div class="card learn-step path-card--cyan">
+            <span class="path-card__icon" aria-hidden="true">03</span>
+            <h3 class="h3">Comprueba</h3>
+            <p class="muted">Cada módulo cierra con un quiz y cada ruta con un examen final.</p>
+          </div>
+          <div class="card learn-step path-card--warning">
+            <span class="path-card__icon" aria-hidden="true">04</span>
+            <h3 class="h3">Avanza</h3>
+            <p class="muted">Tu progreso y tus logros quedan guardados para seguir cuando quieras.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: doc-cards · existente (las cuatro secciones de Aprender) -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Secciones</span>
+          <h2 class="h2">Todo lo que hay en Aprender</h2>
+        </div>
+        <div class="grid grid--2">
+          <article class="card card--link learn-card">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">≡</span><span class="badge badge--success">Disponible</span></div>
+            <h3 class="h3"><a class="stretched" href="docs.html">Documentación</a></h3>
+            <p>Conceptos y tutoriales paso a paso, con menú lateral, índice y ejemplos de código listos para copiar.</p>
+            <span class="learn-card__cta">Ir a la documentación →</span>
+          </article>
+          <article class="card learn-card learn-card--soon path-card--violet">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">↗</span><span class="badge">Próximamente</span></div>
+            <h3 class="h3">Rutas</h3>
+            <p>Desarrollador, autor o arquitecto: módulos en orden, un quiz por módulo y un examen final con logro.</p>
+            <span class="learn-card__cta">En construcción</span>
+          </article>
+          <article class="card learn-card learn-card--soon path-card--cyan">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">✓</span><span class="badge">Próximamente</span></div>
+            <h3 class="h3">Evaluaciones</h3>
+            <p>Prueba de nivel y exámenes por tema, con la explicación de cada respuesta y enlace a la documentación.</p>
+            <span class="learn-card__cta">En construcción</span>
+          </article>
+          <article class="card learn-card learn-card--soon path-card--warning">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">★</span><span class="badge">Próximamente</span></div>
+            <h3 class="h3">Mi progreso</h3>
+            <p>Rutas en curso, mejores puntajes y logros obtenidos. Se guarda en tu navegador, sin necesidad de cuenta.</p>
+            <span class="learn-card__cta">En construcción</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: path-cards · nuevo (mismo bloque que en /rutas, limitado a 3) -->
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section-head section-head--row">
+          <div>
+            <span class="eyebrow">Rutas</span>
+            <h2 class="h2">Un camino según tu rol</h2>
+          </div>
+          <a class="btn btn--secondary btn--sm" href="paths.html">Ver todas las rutas</a>
+        </div>
+        <div class="grid grid--3">
+          <article class="card card--link path-card">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">{ }</span><span class="badge">Intermedio</span></div>
+            <h3 class="h3"><a class="stretched" href="path-detail.html">Ruta para desarrolladores</a></h3>
+            <p>Bloques, estilos, modelos de Universal Editor y despliegue con Code Sync.</p>
+            <div class="path-card__stats"><span>6 módulos</span><span>6 quizzes</span><span>Examen final</span></div>
+          </article>
+          <article class="card card--link path-card path-card--violet">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">✎</span><span class="badge badge--success">Principiante</span></div>
+            <h3 class="h3"><a class="stretched" href="path-detail.html">Ruta para autores</a></h3>
+            <p>Crea, edita y publica contenido en Universal Editor sin tocar código.</p>
+            <div class="path-card__stats"><span>4 módulos</span><span>4 quizzes</span><span>Examen final</span></div>
+          </article>
+          <article class="card card--link path-card path-card--cyan">
+            <div class="path-card__top"><span class="path-card__icon" aria-hidden="true">⌘</span><span class="badge badge--coral">Avanzado</span></div>
+            <h3 class="h3"><a class="stretched" href="path-detail.html">Ruta para arquitectos</a></h3>
+            <p>Content Fragments, integraciones, CDN, seguridad y decisiones a escala.</p>
+            <div class="path-card__stats"><span>5 módulos</span><span>5 quizzes</span><span>Examen final</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: quiz-teaser · nuevo (texto + pregunta de ejemplo interactiva) -->
+    <section class="section" id="evaluaciones">
+      <div class="container learn-split">
+        <div class="learn-split__copy">
+          <span class="eyebrow">Evaluaciones</span>
+          <h2 class="h2">Comprueba lo que sabes</h2>
+          <p class="lead">Preguntas cortas sobre situaciones reales de proyecto. Al responder ves por qué es correcta o no, y un enlace a la documentación donde se explica.</p>
+          <ul class="checks">
+            <li><span class="tick" aria-hidden="true">✓</span><div><strong>Prueba de nivel</strong>10 preguntas al azar para saber por dónde empezar.</div></li>
+            <li><span class="tick" aria-hidden="true">✓</span><div><strong>Exámenes por tema</strong>Universal Editor, Content Fragments, rendimiento y despliegue.</div></li>
+            <li><span class="tick" aria-hidden="true">✓</span><div><strong>Sin cuenta</strong>Tus resultados se guardan en el navegador.</div></li>
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="#">Hacer la prueba de nivel →</a>
+          </div>
+        </div>
+
+        <div class="quiz-demo" data-quiz-demo>
+          <div class="quiz-demo__top"><span>Pregunta de ejemplo</span><span class="badge badge--violet">Universal Editor</span></div>
+          <p class="quiz-demo__question" id="quiz-question">Un modelo tiene los campos <code>image</code> e <code>imageAlt</code>. ¿Qué entrega AEM al bloque?</p>
+          <ul class="quiz-options" aria-labelledby="quiz-question">
+            <li><button class="quiz-option" type="button" data-correct="false"><span class="quiz-option__key">A</span>Dos celdas: una con la imagen y otra con el texto</button></li>
+            <li><button class="quiz-option" type="button" data-correct="true"><span class="quiz-option__key">B</span>Una sola imagen con su texto alternativo</button></li>
+            <li><button class="quiz-option" type="button" data-correct="false"><span class="quiz-option__key">C</span>Solo la imagen; el texto se pierde</button></li>
+            <li><button class="quiz-option" type="button" data-correct="false"><span class="quiz-option__key">D</span>Un error, porque los nombres se repiten</button></li>
+          </ul>
+          <p class="quiz-feedback" data-quiz-feedback role="status" hidden></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: doc-cards · existente (accesos directos a la documentación) -->
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section-head section-head--row">
+          <div>
+            <span class="eyebrow">Documentación</span>
+            <h2 class="h2">Accesos directos</h2>
+          </div>
+          <a class="btn btn--secondary btn--sm" href="docs.html">Ver toda la documentación</a>
+        </div>
+        <div class="grid grid--3">
+          <article class="card card--link learn-card">
+            <span class="badge">Tutorial · 3 min</span>
+            <h3 class="h3"><a class="stretched" href="docs.html">Visión general del tutorial</a></h3>
+            <p>Qué vas a construir y cómo encajan GitHub, AEM y Edge Delivery.</p>
+          </article>
+          <article class="card card--link learn-card">
+            <span class="badge">Paso 1 · 3 min</span>
+            <h3 class="h3"><a class="stretched" href="docs.html">Requisitos</a></h3>
+            <p>Cuentas, accesos y herramientas que necesitas antes de empezar.</p>
+          </article>
+          <article class="card card--link learn-card">
+            <span class="badge">Paso 3 · 4 min</span>
+            <h3 class="h3"><a class="stretched" href="docs.html">Conectar AEM y Code Sync</a></h3>
+            <p>fstab.yaml, la aplicación de GitHub y cómo comprobar que funciona.</p>
+          </article>
+          <article class="card card--link learn-card">
+            <span class="badge">Paso 5 · 4 min</span>
+            <h3 class="h3"><a class="stretched" href="docs.html">Editar y publicar</a></h3>
+            <p>Universal Editor, preview en aem.page y paso a producción.</p>
+          </article>
+          <article class="card card--link learn-card">
+            <span class="badge">Paso 6 · 5 min</span>
+            <h3 class="h3"><a class="stretched" href="docs.html">Desarrollo local</a></h3>
+            <p>CLI de AEM, estructura del código y ramas con su propia preview.</p>
+          </article>
+          <article class="card card--link learn-card">
+            <span class="badge">Paso 7 · 2 min</span>
+            <h3 class="h3"><a class="stretched" href="docs.html">Siguientes pasos</a></h3>
+            <p>Bloques, modelado de contenido y rendimiento.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: accordion · nuevo (mismo bloque que en rutas y guías) -->
+    <section class="section">
+      <div class="container" style="max-width: 820px;">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Preguntas frecuentes</span>
+          <h2 class="h2">Antes de empezar</h2>
+        </div>
+        <div class="accordion">
+          <details open>
+            <summary>¿Necesito crear una cuenta?</summary>
+            <div class="accordion__body">No. Tu progreso y tus resultados se guardan en el navegador. Si cambias de equipo o borras los datos del navegador, empiezas de cero.</div>
+          </details>
+          <details>
+            <summary>¿Las evaluaciones dan un certificado?</summary>
+            <div class="accordion__body">Son una autoevaluación para saber qué dominas y qué repasar. Al completar una ruta obtienes un logro, pero no es una certificación oficial de Adobe.</div>
+          </details>
+          <details>
+            <summary>¿Tengo que seguir un orden?</summary>
+            <div class="accordion__body">La documentación se consulta en el orden que quieras. Las rutas sí proponen un orden, porque cada módulo usa lo que aprendiste en el anterior.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- block: cta-banner · existente -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-band" style="grid-template-columns: 1fr; justify-items: center; text-align: center;">
+          <div class="cta-band__copy" style="align-items: center;">
+            <span class="eyebrow">¿No sabes por dónde empezar?</span>
+            <h2 class="h2">Mide tu nivel en cinco minutos.</h2>
+            <p class="lead">Diez preguntas y te recomendamos la ruta que mejor encaja contigo.</p>
+          </div>
+          <a class="btn btn--primary" href="#evaluaciones">Hacer la prueba de nivel →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="margin-top: 0; padding-top: 0; border-top: 0;">
+        <span>© 2026 AEM knowledge</span>
+        <span><a href="index.html">Prototipos</a> · <a href="blog.html">Blog</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="search" id="search" aria-label="Buscar en el sitio">
+    <input class="search__input" type="search" placeholder="Buscar guías, documentación, artículos…" aria-label="Buscar">
+    <ul class="search__results"></ul>
+    <p class="search__empty" hidden>Sin resultados. Prueba con otra palabra.</p>
+    <div class="search__footer"><span><kbd>Esc</kbd> cerrar</span><span><kbd>⌘K</kbd> abrir/cerrar</span></div>
+  </dialog>
+
+  <script>
+    (() => {
+      // quiz de ejemplo: marca la respuesta elegida, la correcta y muestra la explicación
+      const quiz = document.querySelector('[data-quiz-demo]');
+      const feedback = quiz.querySelector('[data-quiz-feedback]');
+      const options = [...quiz.querySelectorAll('.quiz-option')];
+      options.forEach((option) => {
+        option.addEventListener('click', () => {
+          const correct = option.dataset.correct === 'true';
+          options.forEach((item) => {
+            item.disabled = true;
+            if (item.dataset.correct === 'true') item.classList.add('is-correct');
+          });
+          if (!correct) option.classList.add('is-wrong');
+          feedback.innerHTML = `<strong>${correct ? '¡Correcto!' : 'No exactamente.'}</strong> El sufijo <code>Alt</code> hace que AEM combine ambos campos en una sola imagen con su texto alternativo (field collapse). <a href="docs.html">Ver en la documentación →</a>`;
+          feedback.hidden = false;
+        });
+      });
+
+      // solo para el prototipo: alterna entre usuario con progreso y usuario nuevo
+      const toggle = document.querySelector('[data-progress-toggle]');
+      const states = document.querySelectorAll('[data-progress-state]');
+      toggle.addEventListener('click', () => {
+        states.forEach((state) => { state.hidden = !state.hidden; });
+        const showingEmpty = !document.querySelector('[data-progress-state="empty"]').hidden;
+        toggle.textContent = showingEmpty ? 'Prototipo: ver estado con progreso' : 'Prototipo: ver estado sin progreso';
+      });
+    })();
+  </script>
+</body>
+</html>
